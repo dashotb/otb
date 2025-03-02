@@ -68,7 +68,7 @@ export default function Home() {
 
       {/* Section Landing */}
 
-      <section className="scroller-section w-screen h-[100.5vh] relative " ref={targetLanding}>
+      <section className="scroller-section w-screen h-[100.5vh] relative mb-24" ref={targetLanding}>
         <Image src={bg} alt="background" className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 opacity-0 h-screen w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
         <Image src={logo} alt="" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
         <h2 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl font-semibold text-blue-600 text-center relative pt-52 z-10"`}>Applications Web & Mobile</h2>
@@ -389,7 +389,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <h3 className={`${useIsVisible(targetDetails) ? "transform animate-slideout1500 opacity-0 text-blue-600 text-center text-2xl pt-44 font-semibold": "hidden opacity-0 translate-y-[100px]"}`}>Ils nous font confiance</h3>
+          <h3 className={`${useIsVisible(targetDetails) ? "transform animate-slideout1500 opacity-0 text-blue-600 text-center text-2xl absolute bottom-72 left-0 right-0 font-semibold": "hidden opacity-0 translate-y-[100px]"}`}>Ils nous font confiance</h3>
           <div className={`${useIsVisible(targetDetails) ? "transform animate-slideout1700 opacity-0 w-full h-64 bg-neutral-200 absolute bottom-0 left-0": "hidden opacity-0 translate-y-[100px]"}`}>
 
           </div>
