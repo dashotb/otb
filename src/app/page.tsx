@@ -405,9 +405,9 @@ export default function Home() {
             <div className=" text-xl p-2 text-blue-600 pr-64">https://www.drivephone.fr</div>
             <Image src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
           </a>
-          <div className="flex flex-row w-[40vw] items-center h-full">
+          <div className="flex flex-row w-[40vw] items-center h-full mx-auto">
             <Image src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-96 h-96 ml-72"/>
-            <Image src={iPhone} alt="iMac" className="tansform -skew-y-12 rotate-12 w-24 h-36 ml-12 mt-60"/>
+            <Image src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-20 h-36 ml-12 mt-60"/>
           </div>
         </div>
         <div className="w-[66vw] h-screen border border-red-600 ml-auto">
