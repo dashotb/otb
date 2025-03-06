@@ -384,30 +384,30 @@ export default function Home() {
 
       <section className="scroller-section h-[100vh] px-24 w-full flex flex-col relative mb-1" ref={targetDetails}>
         <div className="w-full h-[70vh] flex flex-row justify-between relative">
-          <div className="w-[40vw] grid grid-cols-4 items-center self-center ">
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown1 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+          <div className="w-[40vw] grid grid-cols-4 2xl:gap-12 items-center self-center ">
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown1 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={seoIcon} alt="-icon" className="p-6 z-10 2xl:w-5/6 mx-auto self-center"/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown2 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto relative overflow-hidden card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown2 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative overflow-hidden card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={magaeIcon} alt="-icon" className="p-6 z-10 absolute top-0 bottom-0 2xl:w-5/6 mx-auto left-0 right-0 self-center "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown3 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown3 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={emailIcon} alt="-icon" className="p-6 2xl:w-5/6 mx-auto self-center "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown4 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown4 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={ecommerceIcon} alt="-icon" className="p-6 2xl:w-5/6 mx-auto self-center "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup1 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup1 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={creatiiveIcon} alt="-icon" className="p-6 2xl:w-5/6 mx-auto self-center "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup2 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup2 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={blockchainIcon} alt="-icon" className="p-6 2xl:w-5/6 mx-auto self-center "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup3 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup3 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={cyberrsecIcon} alt="-icon" className="p-6 2xl:w-5/6 mx-auto self-center "/>
             </div>
             
-            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup4 opacity-0 w-32 h-32 2xl:w-56 2xl:h-56 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slideup4 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={robotIcon} alt="-icon" className="p-6 2xl:w-5/6 mx-auto self-center "/>
             </div>
           </div>
