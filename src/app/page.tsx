@@ -7,6 +7,7 @@ import iMac from "@/img/iMac.png"
 import iPhone from "@/img/iPhone.png"
 import iPad from "@/img/iPad.png"
 import logo from "@/img/logo.png"
+import clipboard from "@/img/clipboard.png"
 
 //Icons
 
@@ -29,6 +30,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { useInView } from "motion/react"
 
@@ -62,16 +73,52 @@ export default function Home() {
   const targetDetails = useRef(null);
   const targetClients = useRef(null);
   const targetContact = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   return (
     <main className="scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden" id="main">
+      {/* Overlay */}
+      <a href="/">
+        <Image src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "hidden transform animate-disappear opacity-0 translate-y-[-200px]" : "absolute top-4 md:left-4 left-0 right-0 mx-auto md:mx-0 transform animate-slidelogo w-12 z-30 opacity-0"}`}/>
+      </a>
+      {/* Nav */}
+      <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 translate-x-[-100px] transform animate-disappear" : "flex flex-col space-y-6 self-center absolute top-0 bottom-0 left-6 z-50"}`}>
+        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn1 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+          <div className={`${useIsVisible(targetProducts) ? "transform animate-appear w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto opacity-0" : "hidden opacity-0 transform animate-disappear translate-x-[-100px]"}`}/>
+        </div>
+        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn2 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+          <div className={`${useIsVisible(targetDetails) ?  "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
+        </div>
+        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn3 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+          <div className={`${useIsVisible(targetClients) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
+        </div>
+        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn4 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+          <div className={`${useIsVisible(targetContact) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
+        </div>
+        {/* <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleft"}`}>
+          <div className={`${useIsVisible(targetLanding) ? "w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden"}`}/>
+        </div> */}
+      </div>
 
       {/* Section Landing */}
-
-      <section className="scroller-section w-screen h-[100.5vh] relative mb-24" ref={targetLanding}>
-        <Image src={bg} alt="background" className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 opacity-0 h-screen w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
+      
+      <section className="scroller-section w-screen h-[100vh] relative mb-24" ref={targetLanding}>
+        <Image src={bg} alt="background" className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 opacity-0 h-screen  w-[200vw] md:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
         <Image src={logo} alt="" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
-        <h2 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl font-semibold text-blue-600 text-center relative pt-52 z-10"`}>Applications Web & Mobile</h2>
+        <h2 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl font-semibold text-[#3586FF] text-center relative pt-52 z-10"`}>Applications Web & Mobile</h2>
         <div className="flex flex-row z-10">
           <Image src={iPad} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideleft500 opacity-0 -translate-y-full z-10 w-44 absolute bottom-[15vh] left-0 right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
           <Image src={iMac} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slidein500 opacity-0 -translate-y-full z-10 w-[30vw] absolute bottom-[15vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
@@ -81,12 +128,12 @@ export default function Home() {
 
       {/* Section Produits */}
 
-      <section className="scroller-section w-screen h-[100.5vh] relative flex flex-row " ref={targetProducts}>
+      <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-1" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
           <div className="w-fit mx-auto pr-24 pt-24">
-            <h3 className={`${useIsVisible(targetProducts) ?"text-blue-600 text-4xl font-semibold transform animate-slidein700_0px opacity-0": "opacity-0 -translate-y-full" }`}>Site Vitrine</h3>
+            <h3 className={`${useIsVisible(targetProducts) ?"text-[#3586FF] text-4xl font-semibold transform animate-slidein700_0px opacity-0": "opacity-0 -translate-y-full" }`}>Site Vitrine</h3>
           </div>
-          <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
+          {/* <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-8 2xl:pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
             <AccordionItem value="item-1" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
               <AccordionTrigger className="text-2xl font-semibold">Maquette Offerte</AccordionTrigger>
               <AccordionContent className="overflow-scroll h-[48vh] no-scrollbar mt-4 mb-24">
@@ -273,124 +320,159 @@ export default function Home() {
               </p>
               </AccordionContent>
             </AccordionItem>
-          </Accordion>
+          </Accordion> */}
+          
 
-          <div className={`${useIsVisible(targetProducts) ?"container text-blue-600 text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout700_0px opacity-0": "opacity-0 -translate-X-full"}`}>
+          <div className={` z-0 ${useIsVisible(targetProducts) ?"container text-[#3586FF] text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout700_0px opacity-0": "opacity-0 -translate-X-full"}`}>
             <div className="center">
               <button className="btn border-none">
                 <svg width="280px" height="60px" viewBox="0 0 280 60" className="border-0">
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                 </svg>
-                <span className="text-blue-600">A partir de 499€</span>
+                <span className="text-[#3586FF]">A partir de 499€</span>
               </button>
             </div>
           </div>
-          {/* <h4 className="text-blue-600 text-2xl font-semibold absolute bottom-24 left-32"><button className="-on-hover ">A partir de 499$</button></h4> */}
+          {/* <h4 className="text-[#3586FF] text-2xl font-semibold absolute bottom-24 left-32"><button className="-on-hover ">A partir de 499$</button></h4> */}
      
           
         </div>
-        <div className={`${useIsVisible(targetProducts) ? "transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
-
+        <div className={`${useIsVisible(targetProducts) ? "transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] -top-3 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
+            <Image src={clipboard} alt="clipboard" className="transform -skew-y-12 rotate-12 w-[45vw] mx-auto my-auto pr-[5vw] self-center absolute"/>
+            <div className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar space-y-6">
+            <Drawer>
+              <DrawerTrigger asChild className={`text-2xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                  - Maquette Offerte
+                </p>
+              </DrawerTrigger>
+            </Drawer>
+            <Drawer>
+              <DrawerTrigger asChild className={`text-2xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft2 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                 - Design Sur-Mesure
+                </p>
+              </DrawerTrigger>
+            </Drawer>
+            <Drawer>
+              <DrawerTrigger asChild className={`text-2xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft3 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                 - Adaptation Mobile
+                </p>
+              </DrawerTrigger>
+            </Drawer>
+            <Drawer>
+              <DrawerTrigger asChild className={`text-2xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft4 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                 - Référencement
+                </p>
+              </DrawerTrigger>
+            </Drawer>
+            <Drawer>
+              <DrawerTrigger asChild className={`text-2xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft5 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                 - Publicités
+                </p>
+              </DrawerTrigger>
+            </Drawer>
+          </div>
         </div>
       </section>
 
       {/* Section  Details Competences*/}
 
-      <section className="scroller-section h-[100.5vh] px-24 w-full flex flex-col pt-20 lg:pt-32 relative" ref={targetDetails}>
-        <div className="w-full flex flex-row justify-between">
-          <div className="w-[40vw] grid grid-cols-4 items-center ">
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown1 opacity-0 -32 h-32 border border-[#3586FF] rounded-lg mx-auto relative card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+      <section className="scroller-section h-[100vh] px-24 w-full flex flex-col relative mb-1" ref={targetDetails}>
+        <div className="w-full h-[70vh] flex flex-row justify-between relative">
+          <div className="w-[40vw] grid grid-cols-4 items-center self-center ">
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown1 opacity-0 -32 h-32 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={seoIcon} alt="-icon" className="p-6 z-10 "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown2 opacity-0 w-32 h-32 border border-[#3586FF] rounded-lg mx-auto relative overflow-hidden card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown2 opacity-0 w-32 h-32 rounded-lg mx-auto relative overflow-hidden card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={magaeIcon} alt="-icon" className="p-6 z-10 absolute top-0 bottom-0 "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown3 opacity-0 w-32 h-32 border border-[#3586FF] rounded-lg mx-auto card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown3 opacity-0 w-32 h-32 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={emailIcon} alt="-icon" className="p-6 "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown4 opacity-0 w-32 h-32 border border-[#3586FF] rounded-lg mx-auto card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slidedown4 opacity-0 w-32 h-32 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={ecommerceIcon} alt="-icon" className="p-6 "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup1 opacity-0 w-32 h-32 border border-[#3586FF] rounded-lg mx-auto card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup1 opacity-0 w-32 h-32 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={creatiiveIcon} alt="-icon" className="p-6 "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup2 opacity-0 w-32 h-32 border border-[#3586FF] rounded-lg mx-auto card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup2 opacity-0 w-32 h-32 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={blockchainIcon} alt="-icon" className="p-6 "/>
             </div>
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup3 opacity-0 w-32 h-32 border border-[#3586FF] rounded-lg mx-auto card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup3 opacity-0 w-32 h-32 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={cyberrsecIcon} alt="-icon" className="p-6 "/>
             </div>
             
-            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup4 opacity-0 w-32 h-32 border border-[#3586FF] shadow-lg rounded-lg mx-auto card hover:scale-105 ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "transform animate-slideup4 opacity-0 w-32 h-32 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <div className=""></div>
             </div>
           </div>
-          <div className={`${useIsVisible(targetDetails) ? "transform animate-slideright300 opacity-0 flex flex-col lg:flex-row w-[50vw] text-white relative": "hidden opacity-0 translate-y-[100px]"}`}>
-            <div className="mx-12 h-full content-center pb-28">
-                <div className="lg:w-80">
-                    <h2 className="font-bold text-2xl lg:text-3xl text-blue-600">Le process de recrutement</h2>
-                    <p className="pt-5 leading-5 text-blue-600">On veut mieux te connaitre ! Et pour cela, rien de tel qu'un process de recrutement transparent. Ce sera l'occasion pour toi de découvrir un peu plus Pictarine et de pouvoir mieux te projeter dans ta future équipe.</p>
+          <div className={`${useIsVisible(targetDetails) ? "transform animate-slideright300 opacity-0 flex flex-col lg:flex-col w-[50vw] text-white relative pt-16 h-full": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className="ml-16 h-1/3 content-center">
+                <div className="lg:w-full">
+                    <h2 className="font-bold text-2xl lg:text-3xl text-[#3586FF] text-center">Le process de création</h2>
+                    <p className="pt-5 leading-5 text-[#3586FF] text-center">Découvrez les différentes étapes pour créer votre application, <br /> de l'idée à la prise en main...</p>
                 </div>
             </div>
-            <div className="absolute flex flex-col h-[50vw] w-[20vw] -top-[335px] -right-32  overflow-hidden overflow-y-scroll no-scrollbar -rotate-90">
-                <div className="inline-block rotate-90 mt-12">
-                    <div className="bg-[#3586FF] relative  w-64 h-64 rounded-[5px]">
-                        <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">1</p>
-                        <h2 className="text-2xl font-bold ml-5 relative z-[1] px-5 pt-5">Screening telephonique</h2>
-                        <p className="pt-2 px-5">20 min</p>
-                        <p className="pt-2 leading-5 px-5">1er échange pour apprendre à se connaître avec le manager de l’équipe que tu souhaites rejoindre.</p>
-                    </div>
-                    <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-28 z-[2] "><div className="bg-[#3586FF] w-[83rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
-                    <p className="flex justify-center italic font-bold mt-2 mr-32 text-blue-600">Day 1</p>
-                </div>
-                <div className="inline-block rotate-90">
-                    <div className="bg-[#3586FF] relative w-64 h-64  rounded-[5px]">
-                        <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">2</p>
-                        <h2 className="text-2xl font-bold ml-5 relative z-[1] px-5 pt-5">Entretien d’équipe</h2>
-                        <p className="pt-2 px-5">90 min</p>
-                        <p className="pt-2 px-5 leading-5">Entretien avec le manager et une personne de l’équipe que tu souhaites rejoindre.</p>
-                    </div>
-                    <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-28 z-[2] "></div>
-                    <p className="flex justify-center italic font-bold mt-2 mr-32 text-blue-600">Day 7</p>
-                </div>
-                <div className="inline-block rotate-90">
-                    <div className="bg-[#3586FF] relative w-64 h-64  rounded-[5px]">
-                    <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">3</p>
-                        <h2 className="text-2xl font-bold ml-5 relative z-[1] px-5 pt-5">Test immersif</h2>
-                        <p className="pt-2 px-5 relative z-[1]">2h à 3h</p>
-                        <p className="pt-2 px-5 leading-5">Test adapté au poste, préparé par le manager. Ensuite, tu présentes ton rendu au manager.</p>
-                    </div>
-                    <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-28 z-[2] "></div>
-                    <p className="flex justify-center italic font-bold mt-2 mr-32 text-blue-600">Day 14</p>
-                </div>
-                <div className="inline-block rotate-90">
-                    <div className="bg-[#3586FF] relative w-64 h-64  rounded-[5px]">
-                    <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">4</p>
-                        <h2 className="text-2xl font-bold ml-5 relative z-[1] px-5 pt-5">Entretien Final</h2>
-                        <p className="pt-2 px-5 relative z-[1]">1h</p>
-                        <p className="pt-2 px-5 leading-5">Rencontre avec un des fondateurs et Elodie notre Head of People.</p>
-                    </div>
-                    <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-28 z-[2] "></div>
-                    <p className="flex justify-center italic font-bold mt-2 mr-32 text-blue-600">Day 18</p>
-                </div>
-                <div className="inline-block rotate-90 mb-80">
-                    <div className="bg-[#3586FF] relative w-64 h-64  rounded-[5px]">
-                    <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
-                        <h2 className="text-2xl font-bold ml-5 relative z-[1] px-5 pt-5">Welcome Aboard!</h2>
-                        <p className="pt-2 px-5">On ne te fait pas attendre !</p>
-                        <p className="pt-2 px-5 leading-5">Ta proposition est déjà prête, il ne te reste plus qu’à l’accepter!</p>
-                    </div>
-                    <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-28 z-[2] "></div>
-                    <p className="flex justify-center italic font-bold mt-2 mr-32 text-blue-600">Day 19</p>
-                </div>
-                    
+            <div className="h-2/3 relative">
+              <div className="absolute flex flex-col h-[50vw] w-[20vw] right-32 -top-56 overflow-hidden overflow-y-scroll no-scrollbar -rotate-90">
+                  <div className="inline-block rotate-90 mt-12">
+                      <div className="bg-[#3586FF] relative  w-48 h-48 rounded-[5px]">
+                          <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">1</p>
+                          <h2 className="text-xl font-bold ml-7 relative z-[1] px-5 pt-5">Screening telephonique</h2>
+                          <p className="text-sm pt-2 px-5">20 min</p>
+                          <p className="text-sm pt-2 leading-5 px-5">1er échange pour comprendre vos besoins.</p>
+                      </div>
+                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] z-[2] "><div className="bg-[#3586FF] w-[58rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
+                  </div>
+                  <div className="inline-block rotate-90">
+                      <div className="bg-[#3586FF] relative w-48 h-48  rounded-[5px]">
+                          <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">2</p>
+                          <h2 className="text-xl font-bold ml-7 relative z-[1] px-5 pt-5">Maquette <br />& Devis</h2>
+                          {/* <p className="text-sm pt-2 px-5">90 min</p> */}
+                          <p className="text-sm pt-2 px-5 leading-5">Présentation de ce que nous sommes en mesure de vous proposer.</p>
+                      </div>
+                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] z-[2] "></div>
+                  </div>
+                  <div className="inline-block rotate-90">
+                      <div className="bg-[#3586FF] relative w-48 h-48  rounded-[5px]">
+                      <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">3</p>
+                          <h2 className="text-xl font-bold ml-7 relative z-[1] px-5 pt-5">Création du MVP</h2>
+                          {/* <p className="text-sm pt-2 px-5 relative z-[1]">2h à 3h</p> */}
+                          <p className="text-sm pt-2 px-5 leading-5">Développement de la version de base de votre application, qui pourra être améliorée par la suite...</p>
+                      </div>
+                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] z-[2] "></div>
+                  </div>
+                  <div className="inline-block rotate-90">
+                      <div className="bg-[#3586FF] relative w-48 h-48  rounded-[5px]">
+                      <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">4</p>
+                          <h2 className="text-xl font-bold ml-7 relative z-[1] px-5 pt-5">Entretien Final</h2>
+                          <p className="text-sm pt-2 px-5 relative z-[1]">1h</p>
+                          <p className="text-sm pt-2 px-5 leading-5">Rencontre avec un des fondateurs et Elodie notre Head of People.</p>
+                      </div>
+                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] z-[2] "></div>
+                  </div>
+                  <div className="inline-block rotate-90 mb-80">
+                      <div className="bg-[#3586FF] relative w-48 h-48  rounded-[5px]">
+                      <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
+                          <h2 className="text-xl font-bold ml-7 relative z-[1] px-5 pt-5">Welcome Aboard!</h2>
+                          <p className="text-sm pt-2 px-5">On ne te fait pas attendre !</p>
+                          <p className="text-sm pt-2 px-5 leading-5">Ta proposition est déjà prête, il ne te reste plus qu’à l’accepter!</p>
+                      </div>
+                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] z-[2] "></div>
+                  </div>
+                      
+              </div>
             </div>
           </div>
         </div>
         <div>
-          <h3 className={`${useIsVisible(targetDetails) ? "transform animate-slideout1500 opacity-0 text-blue-600 text-center text-2xl absolute bottom-72 left-0 right-0 font-semibold": "hidden opacity-0 translate-y-[100px]"}`}>Ils nous font confiance</h3>
-          <div className={`${useIsVisible(targetDetails) ? "transform animate-slideout1700 opacity-0 w-full h-64 bg-neutral-200 absolute bottom-0 left-0": "hidden opacity-0 translate-y-[100px]"}`}>
+          <h3 className={`${useIsVisible(targetDetails) ? "transform animate-slideout1500 opacity-0 text-[#3586FF] text-center text-2xl absolute bottom-[22vh] 2xl:bottom-72 left-0 right-0 font-semibold": "hidden opacity-0 translate-y-[100px]"}`}>Ils nous font confiance</h3>
+          <div className={`${useIsVisible(targetDetails) ? "transform animate-slideout1700 opacity-0 w-full 2xl:h-64 h-[20vh] bg-neutral-200 absolute bottom-0 left-0": "hidden opacity-0 translate-y-[100px]"}`}>
 
           </div>
         </div>
@@ -398,16 +480,16 @@ export default function Home() {
 
       {/* Section Avis Clients/Associes */}
 
-      <section className="scroller-section h-[100.5vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100" ref={targetClients}>
+      <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-1" ref={targetClients}>
         <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
           <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-72 mt-20 w-32 absolute"/>
           <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-64 italic mt-56 absolute transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
-            <div className=" text-xl p-2 text-blue-600 pr-64">https://www.drivephone.fr</div>
+            <div className=" text-xl p-2 text-[#3586FF] pr-64">https://www.drivephone.fr</div>
             <Image src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
           </a>
           <div className="flex flex-row w-[40vw] items-center h-full mx-auto">
-            <Image src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-96 h-96 ml-72"/>
-            <Image src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-20 h-36 ml-12 mt-60"/>
+            <Image src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-56 2xl:w-96 h-56 2xl:h-96 ml-56 2xl:ml-72"/>
+            <Image src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-20 h-24 2xl:h-36 ml-8 2xl:ml-12 mt-28 2xl:mt-60"/>
           </div>
         </div>
         <div className="w-[66vw] h-screen border border-red-600 ml-auto">
@@ -417,7 +499,7 @@ export default function Home() {
 
       {/* Section  Contact*/}
 
-      <section className="scroller-section min-h-[100.5vh]" ref={targetContact}>
+      <section className="scroller-section min-h-[100vh] mb-1" ref={targetContact}>
         <div className='h-screen w-screen relative'>
           <div className='absolute top-0 left-0 w-full h-full rounded-lg z-10'>
           </div>

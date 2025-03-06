@@ -147,12 +147,20 @@ export default {
 			  slideleftw: {
 				from: {
 					opacity: '0',
-					width: '0%',
 					transform: 'translateX(-500px)'
 				},
 				to: {
 					opacity: '1',
-					width: '100%',
+					transform: 'translateX(0)'
+				}
+			},
+			slideleftnw: {
+				from: {
+					opacity: '0',
+					transform: 'translateX(-500px)'
+				},
+				to: {
+					opacity: '1',
 					transform: 'translateX(0)'
 				}
 			},
@@ -167,6 +175,30 @@ export default {
 					
   				}
   			},
+			  appear: {
+				from: {
+					opacity: '0',
+				},
+				to: {
+					opacity: '1',
+				}
+			},
+			disappear: {
+				from: {
+					opacity: '1',
+				},
+				to: {
+					opacity: '0',
+				}
+			},
+			scale: {
+				from: {
+					scale: '100',
+				},
+				to: {
+					scale: '105',
+				}
+			},
   			'accordion-down': {
   				from: {
   					height: '0'
@@ -185,6 +217,10 @@ export default {
   			}
   		},
   		animation: {
+			scale: 'scale 0.5s ease 1s forwards',
+			appear: 'appear 0.5s ease 2000ms forwards',
+			disappear: 'disappear 0.1s ease 500ms forwards',
+			slidelogo: 'slidein_10px 1s ease 500ms forwards',
   			slidein300: 'slideinto 2.2s ease 300ms forwards',
   			slidein500: 'slidein 2s ease 500ms forwards',
   			slidein700: 'slidein 1s ease-in-out 700ms forwards',
@@ -205,6 +241,11 @@ export default {
 			slideleft3: 'slideleftw 1s ease 2.4s forwards',
 			slideleft4: 'slideleftw 1s ease 2.6s forwards',
 			slideleft5: 'slideleftw 1s ease 3s forwards',
+			slideleftn1: 'slideleftnw 1s ease 0.5s forwards',
+			slideleftn2: 'slideleftnw 1s ease 0.7s forwards',
+			slideleftn3: 'slideleftnw 1s ease 0.9s forwards',
+			slideleftn4: 'slideleftnw 1s ease 1.1s forwards',
+			slideleftn5: 'slideleftnw 1s ease 1.7s forwards',
 			slidedown1: 'slidein_0px 3s ease-in	1s forwards',
 			slidedown2: 'slidein_0px 3s ease-in	1.4s forwards',
 			slidedown3: 'slidein_0px 3s ease-in	1.8s forwards',
