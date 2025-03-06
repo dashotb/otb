@@ -417,7 +417,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="h-2/3 relative ">
-              <div className="absolute flex flex-col h-[50vw] w-[20vw] right-32 -top-56 2xl:-top-96 overflow-hidden overflow-y-scroll no-scrollbar -rotate-90">
+              <div className="absolute flex flex-col h-[50vw] w-[20vw] right-32 -top-56 2xl:-top-72 overflow-hidden overflow-y-scroll no-scrollbar -rotate-90">
                   <div className="inline-block rotate-90 mt-12 2xl:mt-32">
                       <div className="bg-[#3586FF] relative  w-48 h-48 2xl:w-64 2xl:h-64 rounded-[5px]">
                           <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">1</p>
