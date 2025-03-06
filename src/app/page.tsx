@@ -384,7 +384,7 @@ export default function Home() {
 
       <section className="scroller-section h-[100vh] px-24 w-full flex flex-col relative mb-1" ref={targetDetails}>
         <div className="w-full h-[70vh] flex flex-row justify-between relative">
-          <div className="w-[40vw] grid grid-cols-4 2xl:gap-12 items-center self-center ">
+          <div className="w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center ">
             <div className={`${useIsVisible(targetDetails) ? "flex transform animate-slidedown1 opacity-0 w-32 h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={seoIcon} alt="-icon" className="p-6 z-10 2xl:w-5/6 mx-auto self-center"/>
             </div>
