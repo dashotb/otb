@@ -20,6 +20,7 @@ import ecommerceIcon from "@/icons/ecommerce.png"
 import emailIcon from "@/icons/email.png"
 import robotIcon from "@/icons/robot.png"
 import searchIcon from "@/icons/search.png"
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 //Logos
 import DP_logo from "@/logos/DP.png"
@@ -42,7 +43,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { useInView } from "motion/react"
 
 
 function useIsVisible(ref: any) {
@@ -131,8 +131,10 @@ export default function Home() {
 
       <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-1" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
-          <div className="w-fit mx-auto pr-24 pt-24">
-            <h3 className={`${useIsVisible(targetProducts) ?"text-[#3586FF] text-4xl font-semibold transform animate-slidein700_0px opacity-0": "opacity-0 -translate-y-full" }`}>Site Vitrine</h3>
+          <div className="w-fit mx-auto pr-24 pt-24 flex flex-row">
+            <ArrowLeft color="#46A6F7" className="w-56 h-56"/>
+            <h3 className={`${useIsVisible(targetProducts) ?"text-[#3586FF] text-4xl 2xl:text-5xl font-semibold transform animate-slidein700_0px opacity-0": "opacity-0 -translate-y-full" }`}>Site Vitrine</h3>
+            <ArrowRight/>
           </div>
           {/* <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-8 2xl:pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
             <AccordionItem value="item-1" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -331,7 +333,7 @@ export default function Home() {
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                 </svg>
-                <span className="text-[#3586FF]">A partir de 499€</span>
+                <span className="text-[#3586FF] 2xl:text-3xl">A partir de 499€</span>
               </button>
             </div>
           </div>     
