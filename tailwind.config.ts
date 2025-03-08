@@ -218,8 +218,8 @@ export default {
   		},
   		animation: {
 			scale: 'scale 0.5s ease 1s forwards',
-			appear: 'appear 0.5s ease 200ms forwards',
-			disappear: 'disappear 0.1s ease 500ms forwards',
+			appear: 'appear 0.5s ease 800ms forwards',
+			disappear: 'disappear 0.01s ease 10ms forwards',
 			slidelogo: 'slidein_10px 1s ease 500ms forwards',
   			slidein300: 'slideinto 2.2s ease 300ms forwards',
   			slidein500: 'slidein 2s ease 500ms forwards',

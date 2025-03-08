@@ -343,35 +343,35 @@ export default function Home() {
             <div className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar space-y-6">
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
-                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
                   - Maquette Offerte
                 </p>
               </DrawerTrigger>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
-                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft2 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft2 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
                  - Design Sur-Mesure
                 </p>
               </DrawerTrigger>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
-                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft3 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft3 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
                  - Adaptation Mobile
                 </p>
               </DrawerTrigger>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
-                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft4 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft4 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
                  - Référencement
                 </p>
               </DrawerTrigger>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
-                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft5 opacity-0": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
+                <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft5 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
                  - Publicités
                 </p>
               </DrawerTrigger>
