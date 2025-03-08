@@ -481,15 +481,17 @@ export default function Home() {
       {/* Section Avis Clients/Associes */}
 
       <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-1" ref={targetClients}>
-        <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
-          <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-72 mt-20 w-32 absolute"/>
-          <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-64 italic mt-56 absolute transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
-            <div className=" text-xl p-2 text-[#3586FF] pr-64">https://www.drivephone.fr</div>
-            <Image src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
-          </a>
-          <div className="flex flex-row w-[40vw] items-center h-full mx-auto">
-            <Image src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-56 2xl:w-96 h-56 2xl:h-96 ml-56 2xl:ml-72"/>
-            <Image src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-20 h-24 2xl:h-36 ml-8 2xl:ml-12 mt-28 2xl:mt-60"/>
+        <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
+          <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-72 mt-20 w-32 absolute"/>
+          <div className="flex w-full items-center">
+            <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-56 2xl:ml-64 italic mt-56  transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
+              <div className=" text-xl p-2 text-[#3586FF] pr-[10vw] 2xl:pr-64">https://www.drivephone.fr</div>
+              <Image src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
+            </a>
+          </div>
+          <div className="flex flex-row w-[40vw] items-center h-full pb-12 mx-auto">
+            <Image src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-64 2xl:w-96 h-64 2xl:h-96 ml-52 2xl:ml-72"/>
+            <Image src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-20 h-24 2xl:h-36 ml-8 2xl:ml-12 mt-36 2xl:mt-60"/>
           </div>
         </div>
         <div className="w-[66vw] h-screen border border-red-600 ml-auto">
