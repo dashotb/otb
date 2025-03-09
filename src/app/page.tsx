@@ -113,7 +113,7 @@ export default function Home() {
 
       {/* Section Landing */}
       
-      <section className="scroller-section w-screen h-[100vh] relative mb-24" ref={targetLanding}>
+      <section className="scroller-section w-screen h-[100vh] relative mb-0.5" ref={targetLanding}>
         <Image src={bg} alt="background" className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 opacity-0 h-screen  w-[200vw] md:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
         <Image src={logo} alt="" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
         <h2 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl font-semibold text-[#3586FF] text-center relative pt-52 z-10"`}>Applications Web & Mobile</h2>
@@ -126,7 +126,7 @@ export default function Home() {
 
       {/* Section Produits */}
 
-      <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-1" ref={targetProducts}>
+      <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
           <div className="w-fit mx-auto pr-24 pt-24 flex flex-row">
             <ArrowLeft color="#46A6F7" className="w-56 h-56"/>
@@ -379,7 +379,7 @@ export default function Home() {
 
       {/* Section  Details Competences*/}
 
-      <section className="scroller-section h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-1" ref={targetDetails}>
+      <section className="scroller-section h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" ref={targetDetails}>
         <div className="w-full h-[68vh] mt-[10vh] lg:mt-0 flex flex-col flex-col-reverse lg:flex-row justify-between relative">
           <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
@@ -533,7 +533,7 @@ export default function Home() {
 
       {/* Section Avis Clients/Associes */}
 
-      <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-1" ref={targetClients}>
+      <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" ref={targetClients}>
         <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
           <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-72 mt-20 w-32 absolute"/>
           <div className="flex w-full items-center">
