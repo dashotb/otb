@@ -20,7 +20,8 @@ import ecommerceIcon from "@/icons/ecommerce.png"
 import emailIcon from "@/icons/email.png"
 import robotIcon from "@/icons/robot.png"
 import searchIcon from "@/icons/search.png"
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import chevronleft from "@/icons/chevron-left-svgrepo-com.png"
+import chevronright from "@/icons/chevron-right-svgrepo-com.png"
 
 //Logos
 import DP_logo from "@/logos/DP.png"
@@ -43,6 +44,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+// import { Icons } from "@/components/icons"
 
 
 function useIsVisible(ref: any) {
@@ -128,10 +130,10 @@ export default function Home() {
 
       <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
-          <div className="w-fit mx-auto pr-24 pt-24 flex flex-row">
-            <ArrowLeft color="#46A6F7" className="w-56 h-56"/>
-            <h3 className={`${useIsVisible(targetProducts) ?"text-[#3586FF] text-4xl 2xl:text-5xl font-semibold transform animate-slidein700_0px opacity-0": "opacity-0 -translate-y-full" }`}>Site Vitrine</h3>
-            <ArrowRight/>
+          <div className={`${useIsVisible(targetProducts) ?"w-fit mx-auto pr-24 pt-24 flex flex-row transform animate-slidein700_0px opacity-0" : "hidden opacity-0 translate-y-full"}`}>
+            <Image src={chevronleft} alt="chevronleft" className="w-10 h-10" onClick={() => {}}/>
+            <h3 className="text-[#3586FF] text-4xl 2xl:text-5xl px-4 font-semibold">Site Vitrine</h3>
+            <Image src={chevronright} alt="chevronright" className="w-10 h-10" onClick={() => {}}/>
           </div>
           {/* <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-8 2xl:pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
             <AccordionItem value="item-1" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -145,18 +147,18 @@ export default function Home() {
               <AccordionTrigger className="text-2xl font-semibold">Design Sur Mesure</AccordionTrigger>
               <AccordionContent className="overflow-scroll h-[48vh] no-scrollbar mt-4 mb-24">
               <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-6">
-                Votre site vitrine, une vitrine d’excellence grâce à notre expertise
+                Votre site vitrine, une vitrine d'excellence grâce à notre expertise
               </h1>
 
               <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold">On The Board</span>, nous sommes fiers de vous offrir bien plus qu’un simple site internet : 
-                nous concevons une véritable vitrine digitale qui sublime l’image de votre entreprise. Notre expertise en création de sites vitrines repose 
+                Chez <span className="font-semibold">On The Board</span>, nous sommes fiers de vous offrir bien plus qu'un simple site internet : 
+                nous concevons une véritable vitrine digitale qui sublime l'image de votre entreprise. Notre expertise en création de sites vitrines repose 
                 sur une approche personnalisée et innovante, où chaque détail compte pour refléter au mieux votre identité de marque.
               </p>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Un design sur mesure, reflet de votre identité</h2>
               <p className="text-gray-700 mb-6">
-                Nous créons des designs sur mesure, pensés pour être en parfaite adéquation avec l’image de votre entreprise. Que vous souhaitiez 
+                Nous créons des designs sur mesure, pensés pour être en parfaite adéquation avec l'image de votre entreprise. Que vous souhaitiez 
                 un style sobre et élégant, moderne et audacieux, ou riche et complexe, nous adaptons chaque élément graphique à vos besoins et à 
                 votre vision. Votre site vitrine devient ainsi une extension digitale harmonieuse et cohérente de votre marque.
               </p>
@@ -164,7 +166,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Une expérience visuelle immersive et engageante</h2>
               <p className="text-gray-700 mb-6">
                 Nous utilisons les dernières technologies pour donner vie à votre site, en intégrant des animations captivantes, des illustrations 3D dynamiques 
-                et des interactions fluides. Ces éléments visuels ne sont pas seulement esthétiques : ils renforcent l’engagement de vos visiteurs et les 
+                et des interactions fluides. Ces éléments visuels ne sont pas seulement esthétiques : ils renforcent l'engagement de vos visiteurs et les 
                 incitent à explorer davantage votre univers.
               </p>
               
@@ -176,9 +178,9 @@ export default function Home() {
               </p>
 
               <p className="text-lg font-medium text-gray-800">
-                Avec <span className="font-semibold">On The Board</span>, faites le choix d’un site vitrine qui non seulement met en lumière votre 
+                Avec <span className="font-semibold">On The Board</span>, faites le choix d'un site vitrine qui non seulement met en lumière votre 
                 établissement sous son plus beau jour, mais devient aussi un véritable outil pour captiver vos visiteurs et marquer les esprits. 
-                Transformez votre présence en ligne dès aujourd’hui avec notre équipe d’experts passionnés !
+                Transformez votre présence en ligne dès aujourd'hui avec notre équipe d'experts passionnés !
               </p>
               </AccordionContent>
             </AccordionItem>
@@ -190,8 +192,8 @@ export default function Home() {
               </h1>
 
               <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold">On The Board</span>, nous comprenons que la création d’un site vitrine ne s’arrête pas à son apparence. 
-                Pour maximiser votre impact en ligne, nous mettons un point d’honneur à optimiser chaque aspect de votre site pour les moteurs de recherche, 
+                Chez <span className="font-semibold">On The Board</span>, nous comprenons que la création d'un site vitrine ne s'arrête pas à son apparence. 
+                Pour maximiser votre impact en ligne, nous mettons un point d'honneur à optimiser chaque aspect de votre site pour les moteurs de recherche, 
                 notamment Google.
               </p>
               
@@ -209,7 +211,7 @@ export default function Home() {
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Vitesse et performance : des critères cruciaux</h2>
               <p className="text-gray-700 mb-6">
-                Un site rapide, c’est un site mieux classé ! Nous veillons à réduire les temps de chargement en optimisant les images, le code et les ressources, 
+                Un site rapide, c'est un site mieux classé ! Nous veillons à réduire les temps de chargement en optimisant les images, le code et les ressources, 
                 offrant ainsi une expérience fluide à vos visiteurs tout en répondant aux exigences des moteurs de recherche.
               </p>
               
@@ -235,14 +237,14 @@ export default function Home() {
 
               <p className="text-lg text-gray-700 mb-8">
                 Chez <span className="font-semibold">On The Board</span>, nous comprenons l'importance d'une expérience utilisateur fluide et agréable, 
-                quel que soit l'appareil utilisé par vos visiteurs. C’est pourquoi chaque site vitrine que nous créons est conçu pour s’adapter parfaitement 
+                quel que soit l'appareil utilisé par vos visiteurs. C'est pourquoi chaque site vitrine que nous créons est conçu pour s'adapter parfaitement 
                 à tous les écrans, des smartphones aux ordinateurs de bureau, en passant par les tablettes.
               </p>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Un design fluide et adaptable</h2>
               <p className="text-gray-700 mb-6">
-                Nous utilisons les principes du responsive design pour garantir que votre site s’affiche de manière optimale sur tous les appareils. 
-                Les mises en page, les images et les contenus s’ajustent automatiquement à la taille de l’écran pour offrir une navigation claire et intuitive.
+                Nous utilisons les principes du responsive design pour garantir que votre site s'affiche de manière optimale sur tous les appareils. 
+                Les mises en page, les images et les contenus s'ajustent automatiquement à la taille de l'écran pour offrir une navigation claire et intuitive.
               </p>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Une approche mobile-first selon votre public</h2>
@@ -254,7 +256,7 @@ export default function Home() {
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Une compatibilité complète avec tous les navigateurs</h2>
               <p className="text-gray-700 mb-6">
-                Votre site sera non seulement adapté aux différentes tailles d’écran, mais également testé pour garantir une compatibilité parfaite avec 
+                Votre site sera non seulement adapté aux différentes tailles d'écran, mais également testé pour garantir une compatibilité parfaite avec 
                 les navigateurs les plus populaires (Chrome, Safari, Firefox, Edge, etc.).
               </p>
               
@@ -266,13 +268,13 @@ export default function Home() {
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Une expérience utilisateur sans compromis</h2>
               <p className="text-gray-700 mb-6">
-                En adaptant chaque élément visuel et fonctionnel à l’appareil utilisé, nous assurons que vos visiteurs bénéficient d’une expérience utilisateur 
+                En adaptant chaque élément visuel et fonctionnel à l'appareil utilisé, nous assurons que vos visiteurs bénéficient d'une expérience utilisateur 
                 exceptionnelle, quel que soit leur support.
               </p>
 
               <p className="text-lg font-medium text-gray-800">
-                Avec <span className="font-semibold">On The Board</span>, profitez d’un site vitrine moderne, performant et parfaitement responsive, prêt à captiver 
-                vos clients, où qu’ils soient !
+                Avec <span className="font-semibold">On The Board</span>, profitez d'un site vitrine moderne, performant et parfaitement responsive, prêt à captiver 
+                vos clients, où qu'ils soient !
               </p>
                       </AccordionContent>
             </AccordionItem>
@@ -284,28 +286,28 @@ export default function Home() {
               </h1>
 
               <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold">On The Board</span>, nous savons que la réussite d’un site vitrine repose sur sa capacité à atteindre 
-                rapidement les bonnes audiences. C’est pourquoi nous proposons des campagnes publicitaires en ligne, conçues sur mesure pour attirer un trafic 
+                Chez <span className="font-semibold">On The Board</span>, nous savons que la réussite d'un site vitrine repose sur sa capacité à atteindre 
+                rapidement les bonnes audiences. C'est pourquoi nous proposons des campagnes publicitaires en ligne, conçues sur mesure pour attirer un trafic 
                 qualifié et augmenter votre retour sur investissement.
               </p>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Des campagnes ciblées et efficaces</h2>
               <p className="text-gray-700 mb-6">
-                Nous analysons vos besoins, votre secteur d’activité et votre public cible pour élaborer des campagnes Google Ads, Facebook Ads ou d'autres 
+                Nous analysons vos besoins, votre secteur d'activité et votre public cible pour élaborer des campagnes Google Ads, Facebook Ads ou d'autres 
                 plateformes adaptées. Avec des annonces personnalisées et un ciblage précis, nous vous aidons à attirer des visiteurs réellement intéressés 
                 par vos produits ou services.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Optimisation pour maximiser votre ROI</h2>
               <p className="text-gray-700 mb-6">
-                Chaque euro investi compte ! Nos experts optimisent en continu vos campagnes pour maximiser vos performances. Cela inclut le choix des bons 
+                Chaque euro investi compte ! Nos experts optimisent en continu vos campagnes pour maximiser vos performances. Cela inclut le choix des bons 
                 mots-clés, des enchères ajustées en temps réel, et la création de visuels ou textes publicitaires engageants.
               </p>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Suivi et analyse des performances</h2>
               <p className="text-gray-700 mb-6">
-                Grâce à des outils d’analyse avancés, nous suivons l’impact de vos publicités en temps réel. Vous recevez des rapports clairs et détaillés sur 
-                les résultats obtenus : clics, impressions, conversions, et plus encore.
+                Grâce à des outils d'analyse avancés, nous suivons l'impact de vos publicités en temps réel. Vous recevez des rapports clairs et détaillés sur 
+                les résultats obtenus : clics, impressions, conversions, et plus encore.
               </p>
               
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Une approche complète et intégrée</h2>
@@ -321,8 +323,6 @@ export default function Home() {
               </AccordionContent>
             </AccordionItem>
           </Accordion> */}
-          
-
           <div className={` z-0 ${useIsVisible(targetProducts) ?"container text-[#3586FF] text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout700_0px opacity-0": "opacity-0 -translate-X-full"}`}>
             <div className="center">
               <button className="btn border-none rounded-md">
@@ -466,7 +466,7 @@ export default function Home() {
                       <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
                           <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Welcome Aboard!</h2>
                           <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">On ne te fait pas attendre !</p>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Ta proposition est déjà prête, il ne te reste plus qu’à l’accepter!</p>
+                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Ta proposition est déjà prête, il ne te reste plus qu'à l'accepter!</p>
                       </div>
                       <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
                   </div>
@@ -514,7 +514,7 @@ export default function Home() {
                       <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
                           <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Welcome Aboard!</h2>
                           <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">On ne te fait pas attendre !</p>
-                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Ta proposition est déjà prête, il ne te reste plus qu’à l’accepter!</p>
+                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Ta proposition est déjà prête, il ne te reste plus qu'à l'accepter!</p>
                       </div>
                       <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
                   </div>
