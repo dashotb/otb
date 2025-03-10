@@ -171,9 +171,9 @@ export default function Home() {
       <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
           <div className={`${useIsVisible(targetProducts) ?"w-fit mx-auto pr-24 pt-24 flex flex-row transform animate-slidein700_0px opacity-0" : "hidden opacity-0 translate-y-full"}`}>
-            <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 self-center cursor-pointer" onClick={() => {PreviousProduct()}}/>
+            <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {PreviousProduct()}}/>
             <h3 className="text-[#3586FF] text-4xl 2xl:text-5xl px-4 font-semibold transition duration-1000">{products.map(p => p.id == productId ? p.name : "")}</h3>
-            <Image src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 self-center cursor-pointer" onClick={() => {NextProduct()}}/>
+            <Image src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {NextProduct()}}/>
           </div>
           {/* <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-8 2xl:pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
             <AccordionItem value="item-1" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
