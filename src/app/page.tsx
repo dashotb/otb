@@ -71,6 +71,7 @@ function useIsVisible(ref: any) {
 }
 
 export default function Home() {
+  // Page Sections
   const targetLanding = useRef(null);
   const targetProducts = useRef(null);
   const targetDetails = useRef(null);
@@ -91,6 +92,45 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
+  //  Products display
+  const [productId, setProductId] = useState(0)
+
+  function NextProduct (){
+    if (productId == 2) {
+      setProductId(0)
+    }
+    else {
+      setProductId(productId + 1)
+    }
+  }
+  function PreviousProduct (){
+    if (productId == 0) {
+      setProductId(2)
+    }
+    else {
+      setProductId(productId - 1)
+    }
+  }
+  const products = [
+    {
+      id : 0,
+      name : "Site Vitrine",
+      price: "499"
+      
+    },
+    {
+      id : 1,
+      name : "Application Web",
+      price: "999"
+      
+    },
+    {
+      id : 2,
+      name : "Application Mobile",
+      price: "999"
+      
+    }
+  ]
   return (
     <main className="scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden" id="main">
       {/* Overlay */}
@@ -131,9 +171,9 @@ export default function Home() {
       <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
           <div className={`${useIsVisible(targetProducts) ?"w-fit mx-auto pr-24 pt-24 flex flex-row transform animate-slidein700_0px opacity-0" : "hidden opacity-0 translate-y-full"}`}>
-            <Image src={chevronleft} alt="chevronleft" className="w-10 h-10" onClick={() => {}}/>
-            <h3 className="text-[#3586FF] text-4xl 2xl:text-5xl px-4 font-semibold">Site Vitrine</h3>
-            <Image src={chevronright} alt="chevronright" className="w-10 h-10" onClick={() => {}}/>
+            <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 self-center cursor-pointer" onClick={() => {PreviousProduct()}}/>
+            <h3 className="text-[#3586FF] text-4xl 2xl:text-5xl px-4 font-semibold transition duration-1000">{products.map(p => p.id == productId ? p.name : "")}</h3>
+            <Image src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 self-center cursor-pointer" onClick={() => {NextProduct()}}/>
           </div>
           {/* <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-8 2xl:pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
             <AccordionItem value="item-1" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -330,7 +370,7 @@ export default function Home() {
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                 </svg>
-                <span className="text-[#3586FF] 2xl:text-3xl">A partir de 499€</span>
+                <span className="text-[#3586FF] 2xl:text-3xl">A partir de {products.map(p => p.id == productId ? p.price : "")}€</span>
               </button>
             </div>
           </div>     
