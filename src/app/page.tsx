@@ -44,6 +44,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+import { div } from "motion/react-client";
 // import { Icons } from "@/components/icons"
 
 
@@ -170,10 +171,18 @@ export default function Home() {
 
       <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
-          <div className={`${useIsVisible(targetProducts) ?"w-fit mx-auto pr-24 pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
+          <div className={`${useIsVisible(targetProducts) ?"w-fit mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
             <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {PreviousProduct()}}/>
             <h3 className="text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-1000">{products.map(p => p.id == productId ? p.name : "")}</h3>
             <Image src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {NextProduct()}}/>
+          </div>
+          <div className="h-full w-full relative">
+            {useIsVisible(targetProducts) ? 
+              <div className="w-[40vw] h-[50vh] mx-auto pt-10 object-cover rounded-[0.5rem]">
+                <video src="https://awevideo.s3.amazonaws.com/video-37474399-9b89c6ff.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20250311%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250311T004148Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a68a29f6f3b81d3c2b3d1b766eea5c5e236b69277384d9dbd1803a41b5fe433f" className="w-full h-full object-cover rounded-[0.5rem]" autoPlay muted ></video>
+              </div>
+              : <></>
+            }
           </div>
           {/* <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-8 2xl:pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
             <AccordionItem value="item-1" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
