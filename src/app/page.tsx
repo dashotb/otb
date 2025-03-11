@@ -157,8 +157,8 @@ export default function Home() {
       
       <section className="scroller-section w-screen h-[100vh] relative mb-0.5" ref={targetLanding}>
         <Image src={bg} alt="background" className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 opacity-0 h-screen  w-[200vw] md:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
-        <Image src={logo} alt="" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
-        <h2 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl font-semibold text-[#3586FF] text-center relative pt-52 z-10"`}>Applications Web & Mobile</h2>
+        <Image src={logo} alt="" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
+        <h2 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl 2xl:text-5xl font-semibold text-[#3586FF] text-center relative pt-52 2xl:pt-60 z-10"`}>Applications Web & Mobile</h2>
         <div className="flex flex-row z-10">
           <Image src={iPad} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideleft500 opacity-0 -translate-y-full z-10 w-44 absolute bottom-[15vh] left-0 right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
           <Image src={iMac} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slidein500 opacity-0 -translate-y-full z-10 w-[30vw] absolute bottom-[15vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
@@ -185,43 +185,8 @@ export default function Home() {
             </AccordionItem>
             <AccordionItem value="item-2" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft2 opacity-0": "opacity-0 -translate-X-full" }`}>
               <AccordionTrigger className="text-2xl font-semibold">Design Sur Mesure</AccordionTrigger>
-              <AccordionContent className="overflow-scroll h-[48vh] no-scrollbar mt-4 mb-24">
-              <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-6">
-                Votre site vitrine, une vitrine d'excellence grâce à notre expertise
-              </h1>
-
-              <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold">On The Board</span>, nous sommes fiers de vous offrir bien plus qu'un simple site internet : 
-                nous concevons une véritable vitrine digitale qui sublime l'image de votre entreprise. Notre expertise en création de sites vitrines repose 
-                sur une approche personnalisée et innovante, où chaque détail compte pour refléter au mieux votre identité de marque.
-              </p>
+              <AccordionContent className="">
               
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Un design sur mesure, reflet de votre identité</h2>
-              <p className="text-gray-700 mb-6">
-                Nous créons des designs sur mesure, pensés pour être en parfaite adéquation avec l'image de votre entreprise. Que vous souhaitiez 
-                un style sobre et élégant, moderne et audacieux, ou riche et complexe, nous adaptons chaque élément graphique à vos besoins et à 
-                votre vision. Votre site vitrine devient ainsi une extension digitale harmonieuse et cohérente de votre marque.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Une expérience visuelle immersive et engageante</h2>
-              <p className="text-gray-700 mb-6">
-                Nous utilisons les dernières technologies pour donner vie à votre site, en intégrant des animations captivantes, des illustrations 3D dynamiques 
-                et des interactions fluides. Ces éléments visuels ne sont pas seulement esthétiques : ils renforcent l'engagement de vos visiteurs et les 
-                incitent à explorer davantage votre univers.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Simplicité ou complexité, selon vos besoins</h2>
-              <p className="text-gray-700 mb-6">
-                Chaque entreprise est unique, tout comme les besoins en termes de design. Nous proposons une large gamme de styles, allant des designs 
-                minimalistes et épurés, parfaits pour une communication claire et concise, aux designs complexes et riches en détails, idéaux pour des 
-                expériences plus immersives. Peu importe votre choix, nous garantissons un résultat professionnel et impactant.
-              </p>
-
-              <p className="text-lg font-medium text-gray-800">
-                Avec <span className="font-semibold">On The Board</span>, faites le choix d'un site vitrine qui non seulement met en lumière votre 
-                établissement sous son plus beau jour, mais devient aussi un véritable outil pour captiver vos visiteurs et marquer les esprits. 
-                Transformez votre présence en ligne dès aujourd'hui avec notre équipe d'experts passionnés !
-              </p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft3 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -384,6 +349,9 @@ export default function Home() {
                   - Maquette Offerte
                 </p>
               </DrawerTrigger>
+              <DrawerContent>
+
+              </DrawerContent>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -391,6 +359,44 @@ export default function Home() {
                  - Design Sur-Mesure
                 </p>
               </DrawerTrigger>
+              <DrawerContent className="overflow-hidden no-scrollbar mt-4 pb-24 px-[20vw] 2xl:px-[30vw] bg-white">
+              <DrawerTitle className="text-3xl font-extrabold text-center text-[#3586FF] mb-6">
+                Offrez à votre entreprise une vitrine d'exception grace a notre expertise !
+              </DrawerTitle>
+
+              <p className="text-lg text-gray-700 mb-8">
+                Chez <span className="font-semibold text-[#3586FF]">On The Board</span>, nous sommes fiers de vous offrir bien plus qu'un simple site internet : 
+                nous concevons une véritable vitrine digitale qui sublime l'image de votre entreprise. Notre expertise en création de sites vitrines repose 
+                sur une approche personnalisée et innovante, où chaque détail compte pour refléter au mieux votre identité de marque.
+              </p>
+              
+              <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Un design sur mesure, reflet de votre identité</h2>
+              <p className="text-gray-700 mb-6">
+                Nous créons des designs sur mesure, pensés pour être en parfaite adéquation avec l'image de votre entreprise. Que vous souhaitiez 
+                un style sobre et élégant, moderne et audacieux, ou riche et complexe, nous adaptons chaque élément graphique à vos besoins et à 
+                votre vision. Votre site vitrine devient ainsi une extension digitale harmonieuse et cohérente de votre marque.
+              </p>
+              
+              <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une expérience visuelle immersive et engageante</h2>
+              <p className="text-gray-700 mb-6">
+                Nous utilisons les dernières technologies pour donner vie à votre site, en intégrant des animations captivantes, des illustrations 3D dynamiques 
+                et des interactions fluides. Ces éléments visuels ne sont pas seulement esthétiques : ils renforcent l'engagement de vos visiteurs et les 
+                incitent à explorer davantage votre univers.
+              </p>
+              
+              <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Simplicité ou complexité, selon vos besoins</h2>
+              <p className="text-gray-700 mb-6">
+                Chaque entreprise est unique, tout comme les besoins en termes de design. Nous proposons une large gamme de styles, allant des designs 
+                minimalistes et épurés, parfaits pour une communication claire et concise, aux designs complexes et riches en détails, idéaux pour des 
+                expériences plus immersives. Peu importe votre choix, nous garantissons un résultat professionnel et impactant.
+              </p>
+
+              <p className="text-lg font-medium text-gray-800">
+                Avec <span className="font-semibold text-[#3586FF]">On The Board</span>, faites le choix d'un site vitrine qui non seulement met en lumière votre 
+                établissement sous son plus beau jour, mais devient aussi un véritable outil pour captiver vos visiteurs et marquer les esprits. 
+                Transformez votre présence en ligne dès aujourd'hui avec notre équipe d'experts passionnés !
+              </p>
+              </DrawerContent>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -424,36 +430,36 @@ export default function Home() {
           <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={seoIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600"/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">Référen<span className="lg:hidden"><br />-</span>cement</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Référen<span className="lg:hidden"><br />-</span>cement</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative overflow-hidden card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={magaeIcon} alt="-icon" className="p-5 lg:p-6 z-10 absolute top-0 bottom-0 2xl:w-5/6 mx-auto left-0 right-0 self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">Logiciel <br /> de Gestion</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Logiciel <br /> de Gestion</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={emailIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">Relation Client</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Relation Client</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={ecommerceIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">E-Commerce</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">E-Commerce</h3>
             </div> 
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={creatiiveIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">Développ<span className="lg:hidden"><br />-</span>ement Créatif</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Développ<span className="lg:hidden"><br />-</span>ement Créatif</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={blockchainIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">Smart Contract</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Smart Contract</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={cyberrsecIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">Cyber Sécurité</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Cyber Sécurité</h3>
             </div>
             
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={robotIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600"/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold  italic">Intégarion d'IA</h3>
+              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Intégarion d'IA</h3>
             </div>
           </div>
           <div className={`${useIsVisible(targetDetails) ? "transform animate-slideright300 opacity-0 flex flex-col lg:flex-col w-full lg:w-[50vw] text-white relative pt-16 h-full": "hidden opacity-0 translate-y-[100px]"}`}>
