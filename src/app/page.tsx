@@ -179,7 +179,7 @@ export default function Home() {
           {useIsVisible(targetProducts) ? 
           <div className="h-full w-full">
             
-              <div className="w-[40vw] h-[50vh] mx-auto pt-10 object-cover rounded-[0.5rem]">
+              <div className="w-[40vw] h-[50vh] mx-auto pt-10 2xl:pt-24 object-cover rounded-[0.5rem]">
                 <video className="w-full h-full object-cover rounded-[0.5rem]" autoPlay muted >
                   <source src="https://awevideo.s3.amazonaws.com/video-37474399-9b89c6ff.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20250311%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250311T004148Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a68a29f6f3b81d3c2b3d1b766eea5c5e236b69277384d9dbd1803a41b5fe433f"  />
                 </video>
