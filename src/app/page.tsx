@@ -45,6 +45,7 @@ import {
 } from "@/components/ui/drawer"
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { div } from "motion/react-client";
+import { useTimeout } from "usehooks-ts";
 // import { Icons } from "@/components/icons"
 
 
@@ -133,6 +134,8 @@ export default function Home() {
     }
   ]
 
+  const [currentVitrine, setCurrentVitrine] = useState("https://awevideo.s3.amazonaws.com/video-37474399-9b89c6ff.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20250311%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250311T004148Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a68a29f6f3b81d3c2b3d1b766eea5c5e236b69277384d9dbd1803a41b5fe433f")
+  
   // var video: any = document.getElementById("zidi");
   // video.addEventListener("canplay", function() {
   //   setTimeout(function() {
@@ -185,10 +188,9 @@ export default function Home() {
           </div>
           {useIsVisible(targetProducts) ? 
           <div className="h-full w-full transform animate-appearVideo opacity-0">
-            
-              <div className="w-[40vw] h-[50vh] mx-auto mt-8 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
+              <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
                 <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
-                  <source src="https://awevideo.s3.amazonaws.com/video-37474399-9b89c6ff.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20250311%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250311T004148Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a68a29f6f3b81d3c2b3d1b766eea5c5e236b69277384d9dbd1803a41b5fe433f"  />
+                  <source src={currentVitrine}  />
                 </video>
               </div>
           </div>
