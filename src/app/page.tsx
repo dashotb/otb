@@ -400,21 +400,24 @@ export default function Home() {
       id : 0,
       name : "Site Vitrine",
       price: "499",
-      tableau: TabVitrine
+      tableau: TabVitrine,
+      video: "/VideoZidi.mp4"
       
     },
     {
       id : 1,
       name : "Application Web",
       price: "999",
-      tableau: TabWeb
+      tableau: TabWeb,
+      video: ""
       
     },
     {
       id : 2,
       name : "Application Mobile",
       price: "999",
-      tableau: TabMobile
+      tableau: TabMobile,
+      video: ""
       
     }
   ]
@@ -467,13 +470,14 @@ export default function Home() {
           </div>
           
           {useIsVisible(targetProducts) ? 
+          products.map(p => p.id == productId ? 
             <div className="h-full w-full transform animate-slideout1700_0px opacity-0">
                 <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
                   <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
-                    <source src={currentVitrine}  />
+                    <source src={p.video}  />
                   </video>
                 </div>
-            </div>
+            </div> : <></>)
               : <></>
           }
 
@@ -504,36 +508,36 @@ export default function Home() {
           <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={seoIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600"/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Référen<span className="lg:hidden"><br />-</span>cement</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Référen<span className="lg:hidden"><br />-</span>cement</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative overflow-hidden card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={magaeIcon} alt="-icon" className="p-5 lg:p-6 z-10 absolute top-0 bottom-0 2xl:w-5/6 mx-auto left-0 right-0 self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Logiciel <br /> de Gestion</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Logiciel <br /> de Gestion</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={emailIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Relation Client</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Relation Client</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={ecommerceIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">E-Commerce</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">E-Commerce</h3>
             </div> 
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={creatiiveIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Développ<span className="lg:hidden"><br />-</span>ement Créatif</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Développ<span className="lg:hidden"><br />-</span>ement Créatif</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={blockchainIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Smart Contract</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Smart Contract</h3>
             </div>
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={cyberrsecIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Cyber Sécurité</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Cyber Sécurité</h3>
             </div>
             
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={robotIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center hover:blur-sm hover:opacity-25 transition duration-600"/>
-              <h3 className="hidden group-hover:block absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Intégarion d'IA</h3>
+              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Intégarion d'IA</h3>
             </div>
           </div>
           <div className={`${useIsVisible(targetDetails) ? "transform animate-slideright300 opacity-0 flex flex-col lg:flex-col w-full lg:w-[50vw] text-white relative pt-16 h-full": "hidden opacity-0 translate-y-[100px]"}`}>
