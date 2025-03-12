@@ -96,7 +96,7 @@ export default function Home() {
   //  Products display
   const [productId, setProductId] = useState(0)
   const [productNameAnim, setProductNameAnim] = useState("")
-  const [productVideoAnim, setProductVideoAnim] = useState("transform animate-slideout1700_0px opacity-0")
+  const [productVideoAnim, setProductVideoAnim] = useState("transform animate-slideout750_0px opacity-0")
 
   const appearProductName = () => {
     setProductNameAnim("transform animate-appearVideo opacity-0")
