@@ -96,9 +96,11 @@ export default function Home() {
   //  Products display
   const [productId, setProductId] = useState(0)
   const [productNameAnim, setProductNameAnim] = useState("")
+  const [productVideoAnim, setProductVideoAnim] = useState("transform animate-slideout1700_0px opacity-0")
 
   const appearProductName = () => {
     setProductNameAnim("transform animate-appearVideo opacity-0")
+    setProductVideoAnim("transform animate-slideout750_0px opacity-0")
   }
   const NextProductName = () => {
     if (productId == 2) {
@@ -118,13 +120,15 @@ export default function Home() {
   }
 
   async function NextProduct (){
-    setProductNameAnim("transform animate-disappear opacity-0")
+    setProductNameAnim("transform animate-disappear opacity-1")
+    setProductVideoAnim("transform animate-disappear opacity-1")
     setTimeout( NextProductName,800)
     setTimeout(appearProductName, 500)
 
   }
   async function PreviousProduct (){
-    setProductNameAnim("transform animate-disappear opacity-0")
+    setProductNameAnim("transform animate-disappear opacity-1")
+    setProductVideoAnim("transform animate-disappear opacity-1")
     setTimeout(PreviousProductName,800)
     setTimeout(appearProductName, 500)
   }
@@ -471,7 +475,7 @@ export default function Home() {
           
           {useIsVisible(targetProducts) ? 
           products.map(p => p.id == productId ? 
-            <div className="h-full w-full transform animate-slideout1700_0px opacity-0">
+            <div className={`${productVideoAnim} h-full w-full`}>
                 <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
                   <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
                     <source src={p.video}  />

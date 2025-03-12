@@ -236,6 +236,7 @@ export default {
   			slideout300: 'slideout 1s ease 300ms forwards',
   			slideout500: 'slideout 1.5s ease 1.5s forwards',
   			slideout700: 'slideout 1s ease 700ms forwards',
+			slideout750_0px: 'slideout_0px 1s ease 700ms forwards',
   			slideout1500: 'slideout_10px 1.7s ease 2s forwards',
   			slideout1700: 'slideout_10px 1.5s ease 1500ms forwards',
 			slideout1700_0px: 'slideout_0px 1.5s ease 1500ms forwards',
