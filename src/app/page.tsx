@@ -60,7 +60,6 @@ function useIsVisible(ref: any) {
     );
 
     // Start observing the element
-
     observer.observe(ref.current);
 
     // Cleanup the observer when the component unmounts or ref changes
@@ -96,8 +95,12 @@ export default function Home() {
   
   //  Products display
   const [productId, setProductId] = useState(0)
+  const [productNameAnim, setProductNameAnim] = useState("")
 
-  function NextProduct (){
+  const appearProductName = () => {
+    setProductNameAnim("transform animate-appear opacity-0")
+  }
+  const NextProductName = () => {
     if (productId == 2) {
       setProductId(0)
     }
@@ -105,13 +108,25 @@ export default function Home() {
       setProductId(productId + 1)
     }
   }
-  function PreviousProduct (){
+  const PreviousProductName = () => {
     if (productId == 0) {
       setProductId(2)
     }
     else {
       setProductId(productId - 1)
     }
+  }
+
+  async function NextProduct (){
+    setProductNameAnim("transform animate-disappear opacity-0")
+    setTimeout( NextProductName,1000)
+    setTimeout(appearProductName, 1000)
+
+  }
+  async function PreviousProduct (){
+    setProductNameAnim("transform animate-disappear opacity-0")
+    setTimeout(PreviousProductName,1000)
+    setTimeout(appearProductName, 1000)
   }
   const products = [
     {
@@ -135,13 +150,7 @@ export default function Home() {
   ]
 
   const [currentVitrine, setCurrentVitrine] = useState("https://awevideo.s3.amazonaws.com/video-37474399-9b89c6ff.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20250311%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250311T004148Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a68a29f6f3b81d3c2b3d1b766eea5c5e236b69277384d9dbd1803a41b5fe433f")
-  
-  // var video: any = document.getElementById("zidi");
-  // video.addEventListener("canplay", function() {
-  //   setTimeout(function() {
-  //     video.play();
-  //   }, 5000);
-  // });
+
   return (
     <main className="scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden" id="main">
       {/* Overlay */}
@@ -181,174 +190,23 @@ export default function Home() {
 
       <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
-          <div className={`${useIsVisible(targetProducts) ?"w-fit mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
+          <div className={`${useIsVisible(targetProducts) ?"w-[26vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
             <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {PreviousProduct()}}/>
-            <h3 className="text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-1000">{products.map(p => p.id == productId ? p.name : "")}</h3>
+            <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-1000`}>{products.map(p => p.id == productId ? p.name : "")}</h3>
             <Image src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {NextProduct()}}/>
           </div>
+          
           {useIsVisible(targetProducts) ? 
-          <div className="h-full w-full transform animate-appearVideo opacity-0">
-              <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
-                <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
-                  <source src={currentVitrine}  />
-                </video>
-              </div>
-          </div>
-            : <></>
+            <div className="h-full w-full transform animate-appearVideo opacity-0">
+                <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
+                  <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
+                    <source src={currentVitrine}  />
+                  </video>
+                </div>
+            </div>
+              : <></>
           }
-          {/* <Accordion type="single" collapsible className="sroller text-blue-500 text-xl mx-32 pt-8 2xl:pt-24 h-[65vh] ml-40 overflow-scroll no-scrollbar">
-            <AccordionItem value="item-1" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
-              <AccordionTrigger className="text-2xl font-semibold">Maquette Offerte</AccordionTrigger>
-              <AccordionContent className="overflow-scroll h-[48vh] no-scrollbar mt-4 mb-24">
-                Yes. It&apos;s animated by default, but you can disable it if you
-                prefer.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft2 opacity-0": "opacity-0 -translate-X-full" }`}>
-              <AccordionTrigger className="text-2xl font-semibold">Design Sur Mesure</AccordionTrigger>
-              <AccordionContent className="">
-              
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft3 opacity-0": "opacity-0 -translate-X-full" }`}>
-              <AccordionTrigger className="text-2xl font-semibold">Referencement & Performances</AccordionTrigger>
-              <AccordionContent className="overflow-scroll h-[48vh] no-scrollbar mt-4 mb-24">
-              <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-6">
-                Boostez votre visibilité avec un site vitrine optimisé pour le référencement
-              </h1>
 
-              <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold">On The Board</span>, nous comprenons que la création d'un site vitrine ne s'arrête pas à son apparence. 
-                Pour maximiser votre impact en ligne, nous mettons un point d'honneur à optimiser chaque aspect de votre site pour les moteurs de recherche, 
-                notamment Google.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Une structure pensée pour le SEO</h2>
-              <p className="text-gray-700 mb-6">
-                Dès la conception, nous structurons votre site avec une hiérarchie claire et des balises bien définies, garantissant une indexation rapide et 
-                efficace par les moteurs de recherche. Votre contenu est organisé de manière à être compréhensible tant pour les visiteurs que pour les algorithmes.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Des mots-clés stratégiques</h2>
-              <p className="text-gray-700 mb-6">
-                Nous intégrons des mots-clés pertinents et adaptés à votre activité pour que votre site apparaisse dans les premiers résultats des recherches 
-                de vos clients potentiels. Chaque page est optimisée pour cibler les requêtes qui comptent le plus pour votre entreprise.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Vitesse et performance : des critères cruciaux</h2>
-              <p className="text-gray-700 mb-6">
-                Un site rapide, c'est un site mieux classé ! Nous veillons à réduire les temps de chargement en optimisant les images, le code et les ressources, 
-                offrant ainsi une expérience fluide à vos visiteurs tout en répondant aux exigences des moteurs de recherche.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Un contenu optimisé et engageant</h2>
-              <p className="text-gray-700 mb-6">
-                Avec des textes clairs, informatifs et engageants, nous créons une expérience utilisateur de qualité qui améliore votre taux de conversion 
-                tout en renforçant votre positionnement SEO.
-              </p>
-
-              <p className="text-lg font-medium text-gray-800">
-                Avec <span className="font-semibold">On The Board</span>, transformez votre site vitrine en un véritable levier de visibilité et attirez 
-                davantage de clients grâce à un référencement naturel performant et durable.
-              </p>
-                        components&apos; aesthetic.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-4" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft4 opacity-0": "opacity-0 -translate-X-full" }`}>
-              <AccordionTrigger className="text-2xl font-semibold">Adaptation Mobile</AccordionTrigger>
-              <AccordionContent className="overflow-scroll h-[48vh] no-scrollbar mt-4 mb-24">
-              <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-6">
-                Un site vitrine responsive, adapté à tous les appareils
-              </h1>
-
-              <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold">On The Board</span>, nous comprenons l'importance d'une expérience utilisateur fluide et agréable, 
-                quel que soit l'appareil utilisé par vos visiteurs. C'est pourquoi chaque site vitrine que nous créons est conçu pour s'adapter parfaitement 
-                à tous les écrans, des smartphones aux ordinateurs de bureau, en passant par les tablettes.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Un design fluide et adaptable</h2>
-              <p className="text-gray-700 mb-6">
-                Nous utilisons les principes du responsive design pour garantir que votre site s'affiche de manière optimale sur tous les appareils. 
-                Les mises en page, les images et les contenus s'ajustent automatiquement à la taille de l'écran pour offrir une navigation claire et intuitive.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Une approche mobile-first selon votre public</h2>
-              <p className="text-gray-700 mb-6">
-                Si votre site est principalement destiné à un public mobile, nous adoptons une approche mobile-first, en développant et en optimisant chaque 
-                élément prioritairement pour les écrans de petite taille. En revanche, si vos utilisateurs se connectent majoritairement depuis des ordinateurs, 
-                nous adaptons le design en desktop-first tout en assurant une expérience fluide sur mobile.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Une compatibilité complète avec tous les navigateurs</h2>
-              <p className="text-gray-700 mb-6">
-                Votre site sera non seulement adapté aux différentes tailles d'écran, mais également testé pour garantir une compatibilité parfaite avec 
-                les navigateurs les plus populaires (Chrome, Safari, Firefox, Edge, etc.).
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Optimisation des performances sur mobile</h2>
-              <p className="text-gray-700 mb-6">
-                Avec une majorité des utilisateurs naviguant depuis un smartphone, nous optimisons chaque site pour une vitesse de chargement rapide et 
-                des interactions fluides sur mobile. Cela inclut des images optimisées, des polices légères et une navigation tactile intuitive.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Une expérience utilisateur sans compromis</h2>
-              <p className="text-gray-700 mb-6">
-                En adaptant chaque élément visuel et fonctionnel à l'appareil utilisé, nous assurons que vos visiteurs bénéficient d'une expérience utilisateur 
-                exceptionnelle, quel que soit leur support.
-              </p>
-
-              <p className="text-lg font-medium text-gray-800">
-                Avec <span className="font-semibold">On The Board</span>, profitez d'un site vitrine moderne, performant et parfaitement responsive, prêt à captiver 
-                vos clients, où qu'ils soient !
-              </p>
-                      </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-5" className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft5 opacity-0": "opacity-0 -translate-X-full" }`}>
-              <AccordionTrigger className="text-2xl font-semibold">Publicites</AccordionTrigger>
-              <AccordionContent className="overflow-scroll h-[48vh] no-scrollbar mt-4 mb-24">
-              <h1 className="text-3xl font-extrabold text-center text-gray-900 mb-6">
-                Boostez la visibilité de votre site vitrine grâce à une stratégie Ads performante
-              </h1>
-
-              <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold">On The Board</span>, nous savons que la réussite d'un site vitrine repose sur sa capacité à atteindre 
-                rapidement les bonnes audiences. C'est pourquoi nous proposons des campagnes publicitaires en ligne, conçues sur mesure pour attirer un trafic 
-                qualifié et augmenter votre retour sur investissement.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Des campagnes ciblées et efficaces</h2>
-              <p className="text-gray-700 mb-6">
-                Nous analysons vos besoins, votre secteur d'activité et votre public cible pour élaborer des campagnes Google Ads, Facebook Ads ou d'autres 
-                plateformes adaptées. Avec des annonces personnalisées et un ciblage précis, nous vous aidons à attirer des visiteurs réellement intéressés 
-                par vos produits ou services.
-              </p>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Optimisation pour maximiser votre ROI</h2>
-              <p className="text-gray-700 mb-6">
-                Chaque euro investi compte ! Nos experts optimisent en continu vos campagnes pour maximiser vos performances. Cela inclut le choix des bons 
-                mots-clés, des enchères ajustées en temps réel, et la création de visuels ou textes publicitaires engageants.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Suivi et analyse des performances</h2>
-              <p className="text-gray-700 mb-6">
-                Grâce à des outils d'analyse avancés, nous suivons l'impact de vos publicités en temps réel. Vous recevez des rapports clairs et détaillés sur 
-                les résultats obtenus : clics, impressions, conversions, et plus encore.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Une approche complète et intégrée</h2>
-              <p className="text-gray-700 mb-6">
-                En combinant publicité en ligne et une conception optimisée de votre site vitrine, nous garantissons que chaque visiteur sera accueilli sur 
-                une plateforme moderne, rapide et adaptée pour convertir.
-              </p>
-
-              <p className="text-lg font-medium text-gray-800">
-                Avec <span className="font-semibold">On The Board</span>, transformez votre site vitrine en un véritable aimant à clients grâce à une stratégie 
-                Ads personnalisée et performante.
-              </p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion> */}
           <div className={` z-0 ${useIsVisible(targetProducts) ?"container text-[#3586FF] text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout700_0px opacity-0": "opacity-0 -translate-X-full"}`}>
             <div className="center">
               <button className="btn border-none rounded-md">
@@ -356,22 +214,69 @@ export default function Home() {
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                 </svg>
-                <span className="text-[#3586FF] 2xl:text-3xl">A partir de {products.map(p => p.id == productId ? p.price : "")}€</span>
+                <span className={`text-[#3586FF] 2xl:text-3xl`}>A partir de <span className={`${productNameAnim} `}>{products.map(p => p.id == productId ? p.price : "")}</span>€</span>
               </button>
             </div>
           </div>     
         </div>
         <div className={`${useIsVisible(targetProducts) ? "transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] -top-3 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
             <Image src={clipboard} alt="clipboard" className="transform -skew-y-12 rotate-12 w-[45vw] mx-auto my-auto pr-[5vw] self-center absolute"/>
-            <div className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar space-y-6">
+            <div className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar max-h-[70vh] space-y-6">
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
                 <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
                   - Maquette Offerte
                 </p>
               </DrawerTrigger>
-              <DrawerContent>
+              <DrawerContent className="overflow-scroll lg:overflow-hidden no-scrollbar mt-4 pb-12 px-[20vw] 2xl:px-[30vw] bg-white">
+                <DrawerTitle className="text-3xl font-extrabold text-center text-[#3586FF] mb-6">
+                  Maquettes Offertes : Une Vision Claire Avant Développement
+                </DrawerTitle>
+                <DrawerDescription className="overflow-scroll no-scrollbar max-h-[70vh]">
+                <p className="text-lg text-gray-700 mb-6">
+                  Chez <span className="font-semibold text-[#3586FF]">On The Board</span>, nous savons à quel point il est crucial pour nos clients de 
+                  <span className="font-semibold"> visualiser leur projet avant son développement</span>. C'est pourquoi nous offrons systématiquement 
+                  une <span className="font-semibold">maquette détaillée</span> de leur site web ou application, réalisée soit sur 
+                  <span className="font-semibold"> Figma</span>, soit sous forme d'une <span className="font-semibold">page web interactive</span>. 
+                </p>
+                <p className="text-lg text-gray-700 mb-6">
+                  Nos clients peuvent ainsi explorer chaque détail de leur futur site avant même que la première ligne de code ne soit écrite. 
+                  Ils ont l'opportunité de <span className="font-semibold">valider le design, l’ergonomie et les fonctionnalités</span> tout en 
+                  apportant d’éventuels ajustements en amont, garantissant ainsi un produit final qui correspond 
+                  <span className="font-semibold"> exactement à leurs attentes</span>.
+                </p>
 
+                <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Pourquoi Offrons-Nous les Maquettes ?</h2>
+                <p className="text-gray-700 mb-6">
+                  Contrairement à d'autres agences qui facturent la conception des maquettes, nous avons choisi de l'offrir gratuitement. 
+                  Nous voulons que nos clients sachent <span className="font-semibold">précisément ce pour quoi ils vont payer</span>, avant 
+                  d’engager tout budget de développement. Cette transparence permet d'éviter les incompréhensions et de garantir un 
+                  résultat final optimal.
+                </p>
+
+                <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une Maquette Dynamique et Fidèle au Produit Final</h2>
+                <p className="text-gray-700 mb-6">
+                  Nous utilisons <span className="font-semibold">Figma</span> pour créer des maquettes interactives et détaillées. Pour aller encore plus loin, 
+                  nous pouvons proposer une <span className="font-semibold">version web interactive</span> permettant au client de naviguer 
+                  dans une pré-version de son site. 
+                </p>
+                <ul className="list-disc list-inside text-gray-700 mb-6">
+                  <li><span className="font-semibold">L’apparence générale :</span> couleurs, typographie, mise en page.</li>
+                  <li><span className="font-semibold">L’expérience utilisateur (UX) :</span> navigation intuitive et ergonomie.</li>
+                  <li><span className="font-semibold">Les fonctionnalités essentielles :</span> CTA, formulaires, animations.</li>
+                </ul>
+
+                <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Un Processus Clair et Sécurisant</h2>
+                <p className="text-gray-700 mb-6">
+                  Notre approche repose sur un processus simple et efficace :
+                </p>
+                <ol className="list-decimal list-inside text-gray-700 mb-6">
+                  <li><span className="font-semibold">Compréhension des besoins :</span> définition des objectifs du projet.</li>
+                  <li><span className="font-semibold">Création de la maquette :</span> réalisation d’un premier jet visuel.</li>
+                  <li><span className="font-semibold">Validation et ajustements :</span> modifications avant validation finale.</li>
+                  <li><span className="font-semibold">Lancement du développement :</span> début du projet en toute sérénité.</li>
+                </ol>
+                </DrawerDescription>
               </DrawerContent>
             </Drawer>
             <Drawer>
@@ -380,43 +285,45 @@ export default function Home() {
                  - Design Sur-Mesure
                 </p>
               </DrawerTrigger>
-              <DrawerContent className="overflow-hidden no-scrollbar mt-4 pb-24 px-[20vw] 2xl:px-[30vw] bg-white">
+              <DrawerContent className="overflow-scroll lg:overflow-hidden no-scrollbar mt-4 pb-24 px-[20vw] 2xl:px-[30vw] bg-white">
               <DrawerTitle className="text-3xl font-extrabold text-center text-[#3586FF] mb-6">
                 Offrez à votre entreprise une vitrine d'exception grace a notre expertise !
               </DrawerTitle>
+              <DrawerDescription className="overflow-scroll no-scrollbar max-h-[70vh]">
 
-              <p className="text-lg text-gray-700 mb-8">
-                Chez <span className="font-semibold text-[#3586FF]">On The Board</span>, nous sommes fiers de vous offrir bien plus qu'un simple site internet : 
-                nous concevons une véritable vitrine digitale qui sublime l'image de votre entreprise. Notre expertise en création de sites vitrines repose 
-                sur une approche personnalisée et innovante, où chaque détail compte pour refléter au mieux votre identité de marque.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Un design sur mesure, reflet de votre identité</h2>
-              <p className="text-gray-700 mb-6">
-                Nous créons des designs sur mesure, pensés pour être en parfaite adéquation avec l'image de votre entreprise. Que vous souhaitiez 
-                un style sobre et élégant, moderne et audacieux, ou riche et complexe, nous adaptons chaque élément graphique à vos besoins et à 
-                votre vision. Votre site vitrine devient ainsi une extension digitale harmonieuse et cohérente de votre marque.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une expérience visuelle immersive et engageante</h2>
-              <p className="text-gray-700 mb-6">
-                Nous utilisons les dernières technologies pour donner vie à votre site, en intégrant des animations captivantes, des illustrations 3D dynamiques 
-                et des interactions fluides. Ces éléments visuels ne sont pas seulement esthétiques : ils renforcent l'engagement de vos visiteurs et les 
-                incitent à explorer davantage votre univers.
-              </p>
-              
-              <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Simplicité ou complexité, selon vos besoins</h2>
-              <p className="text-gray-700 mb-6">
-                Chaque entreprise est unique, tout comme les besoins en termes de design. Nous proposons une large gamme de styles, allant des designs 
-                minimalistes et épurés, parfaits pour une communication claire et concise, aux designs complexes et riches en détails, idéaux pour des 
-                expériences plus immersives. Peu importe votre choix, nous garantissons un résultat professionnel et impactant.
-              </p>
+                <p className="text-lg text-gray-700 mb-8">
+                  Chez <span className="font-semibold text-[#3586FF] text-[#3586FF]">On The Board</span>, nous sommes fiers de vous offrir bien plus qu'un simple site internet : 
+                  nous concevons une véritable vitrine digitale qui sublime l'image de votre entreprise. Notre expertise en création de sites vitrines repose 
+                  sur une approche personnalisée et innovante, où chaque détail compte pour refléter au mieux votre identité de marque.
+                </p>
+                
+                <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Un design sur mesure, reflet de votre identité</h2>
+                <p className="text-gray-700 mb-6">
+                  Nous créons des designs sur mesure, pensés pour être en parfaite adéquation avec l'image de votre entreprise. Que vous souhaitiez 
+                  un style sobre et élégant, moderne et audacieux, ou riche et complexe, nous adaptons chaque élément graphique à vos besoins et à 
+                  votre vision. Votre site vitrine devient ainsi une extension digitale harmonieuse et cohérente de votre marque.
+                </p>
+                
+                <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une expérience visuelle immersive et engageante</h2>
+                <p className="text-gray-700 mb-6">
+                  Nous utilisons les dernières technologies pour donner vie à votre site, en intégrant des animations captivantes, des illustrations 3D dynamiques 
+                  et des interactions fluides. Ces éléments visuels ne sont pas seulement esthétiques : ils renforcent l'engagement de vos visiteurs et les 
+                  incitent à explorer davantage votre univers.
+                </p>
+                
+                <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Simplicité ou complexité, selon vos besoins</h2>
+                <p className="text-gray-700 mb-6">
+                  Chaque entreprise est unique, tout comme les besoins en termes de design. Nous proposons une large gamme de styles, allant des designs 
+                  minimalistes et épurés, parfaits pour une communication claire et concise, aux designs complexes et riches en détails, idéaux pour des 
+                  expériences plus immersives. Peu importe votre choix, nous garantissons un résultat professionnel et impactant.
+                </p>
 
-              <p className="text-lg font-medium text-gray-800">
-                Avec <span className="font-semibold text-[#3586FF]">On The Board</span>, faites le choix d'un site vitrine qui non seulement met en lumière votre 
-                établissement sous son plus beau jour, mais devient aussi un véritable outil pour captiver vos visiteurs et marquer les esprits. 
-                Transformez votre présence en ligne dès aujourd'hui avec notre équipe d'experts passionnés !
-              </p>
+                <p className="text-lg font-medium text-gray-800">
+                  Avec <span className="font-semibold text-[#3586FF] text-[#3586FF]">On The Board</span>, faites le choix d'un site vitrine qui non seulement met en lumière votre 
+                  établissement sous son plus beau jour, mais devient aussi un véritable outil pour captiver vos visiteurs et marquer les esprits. 
+                  Transformez votre présence en ligne dès aujourd'hui avec notre équipe d'experts passionnés !
+                </p>
+              </DrawerDescription>
               </DrawerContent>
             </Drawer>
             <Drawer>
@@ -425,6 +332,54 @@ export default function Home() {
                  - Adaptation Mobile
                 </p>
               </DrawerTrigger>
+              <DrawerContent className="overflow-scroll lg:overflow-hidden no-scrollbar pb-8 px-[20vw] 2xl:px-[30vw] bg-white">
+                <DrawerTitle className="text-3xl font-extrabold text-center text-[#3586FF] mb-6">
+                  Un site vitrine responsive, adapté à tous les appareils
+                </DrawerTitle>
+                <DrawerDescription className="overflow-scroll no-scrollbar max-h-[70vh]">
+                  <p className="text-lg text-gray-700 mb-8">
+                    Chez <span className="font-semibold text-[#3586FF]">On The Board</span>, nous comprenons l'importance d'une expérience utilisateur fluide et agréable, 
+                    quel que soit l'appareil utilisé par vos visiteurs. C'est pourquoi chaque site vitrine que nous créons est conçu pour s'adapter parfaitement 
+                    à tous les écrans, des smartphones aux ordinateurs de bureau, en passant par les tablettes.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Un design fluide et adaptable</h2>
+                  <p className="text-gray-700 mb-6">
+                    Nous utilisons les principes du responsive design pour garantir que votre site s'affiche de manière optimale sur tous les appareils. 
+                    Les mises en page, les images et les contenus s'ajustent automatiquement à la taille de l'écran pour offrir une navigation claire et intuitive.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une approche mobile-first selon votre public</h2>
+                  <p className="text-gray-700 mb-6">
+                    Si votre site est principalement destiné à un public mobile, nous adoptons une approche mobile-first, en développant et en optimisant chaque 
+                    élément prioritairement pour les écrans de petite taille. En revanche, si vos utilisateurs se connectent majoritairement depuis des ordinateurs, 
+                    nous adaptons le design en desktop-first tout en assurant une expérience fluide sur mobile.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une compatibilité complète avec tous les navigateurs</h2>
+                  <p className="text-gray-700 mb-6">
+                    Votre site sera non seulement adapté aux différentes tailles d'écran, mais également testé pour garantir une compatibilité parfaite avec 
+                    les navigateurs les plus populaires (Chrome, Safari, Firefox, Edge, etc.).
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Optimisation des performances sur mobile</h2>
+                  <p className="text-gray-700 mb-6">
+                    Avec une majorité des utilisateurs naviguant depuis un smartphone, nous optimisons chaque site pour une vitesse de chargement rapide et 
+                    des interactions fluides sur mobile. Cela inclut des images optimisées, des polices légères et une navigation tactile intuitive.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une expérience utilisateur sans compromis</h2>
+                  <p className="text-gray-700 mb-6">
+                    En adaptant chaque élément visuel et fonctionnel à l'appareil utilisé, nous assurons que vos visiteurs bénéficient d'une expérience utilisateur 
+                    exceptionnelle, quel que soit leur support.
+                  </p>
+
+                  <p className="text-lg font-medium text-gray-800">
+                    Avec <span className="font-semibold text-[#3586FF]">On The Board</span>, profitez d'un site vitrine moderne, performant et parfaitement responsive, prêt à captiver 
+                    vos clients, où qu'ils soient !
+                  </p>
+                </DrawerDescription>
+              </DrawerContent>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -432,6 +387,49 @@ export default function Home() {
                  - Référencement
                 </p>
               </DrawerTrigger>
+              <DrawerContent className="overflow-scroll lg:overflow-hidden no-scrollbar mt-4 pb-24 px-[20vw] 2xl:px-[30vw] bg-white">
+                <DrawerTitle className="text-3xl font-extrabold text-center text-[#3586FF] mb-6">
+                  Boostez votre visibilité avec un site vitrine optimisé pour le référencement
+                </DrawerTitle>
+
+                <DrawerDescription className="overflow-scroll no-scrollbar max-h-[70vh]">
+
+                  <p className="text-lg text-gray-700 mb-8">
+                    Chez <span className="font-semibold text-[#3586FF]">On The Board</span>, nous comprenons que la création d'un site vitrine ne s'arrête pas à son apparence. 
+                    Pour maximiser votre impact en ligne, nous mettons un point d'honneur à optimiser chaque aspect de votre site pour les moteurs de recherche, 
+                    notamment Google.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une structure pensée pour le SEO</h2>
+                  <p className="text-gray-700 mb-6">
+                    Dès la conception, nous structurons votre site avec une hiérarchie claire et des balises bien définies, garantissant une indexation rapide et 
+                    efficace par les moteurs de recherche. Votre contenu est organisé de manière à être compréhensible tant pour les visiteurs que pour les algorithmes.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Des mots-clés stratégiques</h2>
+                  <p className="text-gray-700 mb-6">
+                    Nous intégrons des mots-clés pertinents et adaptés à votre activité pour que votre site apparaisse dans les premiers résultats des recherches 
+                    de vos clients potentiels. Chaque page est optimisée pour cibler les requêtes qui comptent le plus pour votre entreprise.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Vitesse et performance : des critères cruciaux</h2>
+                  <p className="text-gray-700 mb-6">
+                    Un site rapide, c'est un site mieux classé ! Nous veillons à réduire les temps de chargement en optimisant les images, le code et les ressources, 
+                    offrant ainsi une expérience fluide à vos visiteurs tout en répondant aux exigences des moteurs de recherche.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Un contenu optimisé et engageant</h2>
+                  <p className="text-gray-700 mb-6">
+                    Avec des textes clairs, informatifs et engageants, nous créons une expérience utilisateur de qualité qui améliore votre taux de conversion 
+                    tout en renforçant votre positionnement SEO.
+                  </p>
+
+                  <p className="text-lg font-medium text-gray-800">
+                    Avec <span className="font-semibold text-[#3586FF]">On The Board</span>, transformez votre site vitrine en un véritable levier de visibilité et attirez 
+                    davantage de clients grâce à un référencement naturel performant et durable.
+                  </p>
+                </DrawerDescription>
+              </DrawerContent>
             </Drawer>
             <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl 2xl:pt-5 font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
@@ -439,6 +437,49 @@ export default function Home() {
                  - Publicités
                 </p>
               </DrawerTrigger>
+              <DrawerContent className="overflow-scroll lg:overflow-hidden no-scrollbar mt-4 pb-24 px-[20vw] 2xl:px-[30vw] bg-white">
+                <DrawerTitle className="text-3xl font-extrabold text-center text-[#3586FF] mb-6">
+                  Boostez la visibilité de votre site vitrine grâce à une stratégie Ads performante
+                </DrawerTitle>
+                <DrawerDescription className="overflow-scroll no-scrollbar max-h-[70vh]">
+
+                  <p className="text-lg text-gray-700 mb-8">
+                    Chez <span className="font-semibold text-[#3586FF]">On The Board</span>, nous savons que la réussite d'un site vitrine repose sur sa capacité à atteindre 
+                    rapidement les bonnes audiences. C'est pourquoi nous proposons des campagnes publicitaires en ligne, conçues sur mesure pour attirer un trafic 
+                    qualifié et augmenter votre retour sur investissement.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Des campagnes ciblées et efficaces</h2>
+                  <p className="text-gray-700 mb-6">
+                    Nous analysons vos besoins, votre secteur d'activité et votre public cible pour élaborer des campagnes Google Ads, Facebook Ads ou d'autres 
+                    plateformes adaptées. Avec des annonces personnalisées et un ciblage précis, nous vous aidons à attirer des visiteurs réellement intéressés 
+                    par vos produits ou services.
+                  </p>
+
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Optimisation pour maximiser votre ROI</h2>
+                  <p className="text-gray-700 mb-6">
+                    Chaque euro investi compte ! Nos experts optimisent en continu vos campagnes pour maximiser vos performances. Cela inclut le choix des bons 
+                    mots-clés, des enchères ajustées en temps réel, et la création de visuels ou textes publicitaires engageants.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Suivi et analyse des performances</h2>
+                  <p className="text-gray-700 mb-6">
+                    Grâce à des outils d'analyse avancés, nous suivons l'impact de vos publicités en temps réel. Vous recevez des rapports clairs et détaillés sur 
+                    les résultats obtenus : clics, impressions, conversions, et plus encore.
+                  </p>
+                  
+                  <h2 className="text-2xl font-bold text-[#3586FF] mb-4">Une approche complète et intégrée</h2>
+                  <p className="text-gray-700 mb-6">
+                    En combinant publicité en ligne et une conception optimisée de votre site vitrine, nous garantissons que chaque visiteur sera accueilli sur 
+                    une plateforme moderne, rapide et adaptée pour convertir.
+                  </p>
+
+                  <p className="text-lg font-medium text-gray-800">
+                    Avec <span className="font-semibold text-[#3586FF]">On The Board</span>, transformez votre site vitrine en un véritable aimant à clients grâce à une stratégie 
+                    Ads personnalisée et performante.
+                  </p>
+                </DrawerDescription>
+              </DrawerContent>
             </Drawer>
           </div>
         </div>
@@ -602,16 +643,16 @@ export default function Home() {
 
       <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" ref={targetClients}>
         <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
-          <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-72 mt-20 w-32 absolute"/>
-          <div className="flex w-full items-center">
+          <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 mt-20 2xl:mt-40 w-32 absolute"/>
+          <div className="flex w-full items-center 2xl:pl-32 2xl:mt-20">
             <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-56 2xl:ml-64 italic mt-56  transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
               <div className=" text-xl p-2 text-[#3586FF] pr-[10vw] 2xl:pr-64">https://www.drivephone.fr</div>
               <Image src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
             </a>
           </div>
-          <div className="flex flex-row w-[40vw] items-center h-full pb-12 mx-auto">
+          <div className="flex flex-row w-[40vw] items-center h-full 2xl:h-[40vh] pb-12 2xl:pt-24 mx-auto">
             <Image src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-64 2xl:w-96 h-64 2xl:h-96 ml-52 2xl:ml-72"/>
-            <Image src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-20 h-24 2xl:h-36 ml-8 2xl:ml-12 mt-36 2xl:mt-60"/>
+            <Image src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-16 h-24 2xl:h-32 ml-8 2xl:ml-12 mt-36 2xl:mt-60"/>
           </div>
         </div>
         <div className="w-[66vw] h-screen border border-red-600 ml-auto">
