@@ -192,7 +192,7 @@ export default function Home() {
         <div className="w-[60vw] flex flex-col">
           <div className={`${useIsVisible(targetProducts) ?"w-[26vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
             <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {PreviousProduct()}}/>
-            <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-1000`}>{products.map(p => p.id == productId ? p.name : "")}</h3>
+            <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name : "")}</h3>
             <Image src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer" onClick={() => {NextProduct()}}/>
           </div>
           
@@ -214,7 +214,7 @@ export default function Home() {
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                 </svg>
-                <span className={`text-[#3586FF] 2xl:text-3xl`}>A partir de <span className={`${productNameAnim} `}>{products.map(p => p.id == productId ? p.price : "")}</span>€</span>
+                <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : "")}</span>€</span>
               </button>
             </div>
           </div>     
