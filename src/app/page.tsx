@@ -413,7 +413,7 @@ export default function Home() {
       name : "Application Web",
       price: "999",
       tableau: TabWeb,
-      video: ""
+      video: "empty"
       
     },
     {
@@ -421,7 +421,7 @@ export default function Home() {
       name : "Application Mobile",
       price: "999",
       tableau: TabMobile,
-      video: ""
+      video: "empty"
       
     }
   ]
@@ -454,7 +454,7 @@ export default function Home() {
       
       <section className="scroller-section w-screen h-[100vh] relative mb-0.5" ref={targetLanding}>
         <Image src={bg} alt="background" className={`${useIsVisible(targetLanding) ? " transform animate-slideout500 opacity-0 h-screen  w-[200vw] md:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
-        <Image src={logo} alt="" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
+        <Image src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
         <h2 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl 2xl:text-5xl font-semibold text-[#3586FF] text-center relative pt-52 2xl:pt-60 z-10"`}>Applications Web & Mobile</h2>
         <div className="flex flex-row z-10">
           <Image src={iPad} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideleft500 opacity-0 -translate-y-full z-10 w-44 absolute bottom-[15vh] left-0 right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
@@ -469,7 +469,7 @@ export default function Home() {
         <div className="w-[60vw] flex flex-col">
           <div className={`${useIsVisible(targetProducts) ?"w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
             <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
-            <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name : "")}</h3>
+            <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name :null)}</h3>
             <Image src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {NextProduct()}}/>
           </div>
           
@@ -492,15 +492,15 @@ export default function Home() {
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                   <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                 </svg>
-                <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : "")}</span>€</span>
+                <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
               </button>
             </div>
           </div>     
         </div>
         <div className={`${useIsVisible(targetProducts) ? "transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] -top-3 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
             <Image src={clipboard} alt="clipboard" className="transform -skew-y-12 rotate-12 w-[45vw] mx-auto my-auto pr-[5vw] self-center absolute"/>
-            <div className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar max-h-[70vh] space-y-6">
-            {products.map(p => p.id == productId ? p.tableau : "")}
+            <div key={"clipboard"} className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar max-h-[70vh] space-y-6">
+            {products.map(p => p.id == productId ? p.tableau : <></>)}
           </div>
         </div>
       </section>
@@ -663,8 +663,8 @@ export default function Home() {
 
       <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" ref={targetClients}>
         <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
-          <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 mt-20 2xl:mt-40 w-32 absolute"/>
-          <div className="flex w-full items-center 2xl:pl-32 2xl:mt-20">
+          <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-80 mt-20 2xl:mt-40 w-32 absolute"/>
+          <div className="flex w-full items-center 2xl:pl-24 2xl:mt-20">
             <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-56 2xl:ml-64 italic mt-56  transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
               <div className=" text-xl p-2 text-[#3586FF] pr-[10vw] 2xl:pr-64">https://www.drivephone.fr</div>
               <Image src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
