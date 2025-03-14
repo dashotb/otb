@@ -47,8 +47,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { div } from "motion/react-client";
-import { useTimeout } from "usehooks-ts";
+import { Badge } from "@/components/ui/badge"
+
 // import { Icons } from "@/components/icons"
 
 
@@ -439,18 +439,22 @@ export default function Home() {
       </a>
       {/* Nav */}
       <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 translate-x-[-100px] transform animate-disappear" : "flex flex-col space-y-6 self-center absolute top-0 bottom-0 left-6 z-50"}`}>
-        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn1 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
-          <div className={`${useIsVisible(targetProducts) ? "transform animate-appear w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto opacity-0" : "hidden opacity-0 transform animate-disappear translate-x-[-100px]"}`}/>
-        </div>
-        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn2 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+        <a href="#products" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn1 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex relative"}`}>
+          <div className={` ${useIsVisible(targetProducts) ? "transform animate-appear w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto opacity-0" : "hidden opacity-0 transform animate-disappear translate-x-[-100px]"}`}/>
+          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Produits</Badge>
+        </a>
+        <a href="#details" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn2 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
           <div className={`${useIsVisible(targetDetails) ?  "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
-        </div>
-        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn3 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Details</Badge>
+        </a>
+        <a href="#showcases" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn3 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
           <div className={`${useIsVisible(targetClients) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
-        </div>
-        <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn4 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Presentations</Badge>
+        </a>
+        <a href="#contact" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn4 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
           <div className={`${useIsVisible(targetContact) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
-        </div>
+          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Contact</Badge>
+        </a>
       </div>
 
       {/* Section Landing */}
@@ -468,7 +472,7 @@ export default function Home() {
 
       {/* Section Produits */}
 
-      <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" ref={targetProducts}>
+      <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" id="products" ref={targetProducts}>
         <div className="w-[60vw] flex flex-col">
           <div className={`${useIsVisible(targetProducts) ?"w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
             <Image src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
@@ -510,7 +514,7 @@ export default function Home() {
 
       {/* Section  Details Competences*/}
 
-      <section className="scroller-section h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" ref={targetDetails}>
+      <section className="scroller-section h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" id="details" ref={targetDetails}>
         <div className="w-full h-[68vh] mt-[10vh] lg:mt-0 flex flex-col flex-col-reverse lg:flex-row justify-between relative">
           <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
             <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
@@ -529,7 +533,7 @@ export default function Home() {
               <Image src={ecommerceIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
               <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">E-Commerce</h3>
             </div> 
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetDetails) ? "group hover:z-50 flex transform animate-slideup1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
               <Image src={creatiiveIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
               <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Développ<span className="lg:hidden"><br />-</span>ement Créatif</h3>
             </div>
@@ -664,7 +668,7 @@ export default function Home() {
 
       {/* Section Avis Clients/Associes */}
 
-      <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" ref={targetClients}>
+      <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" id="showcases" ref={targetClients}>
         <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
           <Image src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-80 mt-20 2xl:mt-40 w-32 absolute"/>
           <div className="flex w-full items-center 2xl:pl-24 2xl:mt-20">
@@ -685,9 +689,9 @@ export default function Home() {
 
       {/* Section  Contact*/}
 
-      <section className="scroller-section min-h-[100vh] mb-1" ref={targetContact}>
+      <section className="scroller-section min-h-[100vh] mb-1" id="contact" ref={targetContact}>
         <div className='h-screen w-screen relative'>
-          <div className={`${useIsVisible(targetContact) ? "absolute transform animate-slideout700_0px opacity-0 top-[35vh] bottom-[35vh] left-0 right-0 w-[70vw] h-[50vh] m-auto shadow-xl rounded-xl z-10 flex flex-row": "hidden transform-disappear"} `}>
+          <div className={`${useIsVisible(targetContact) ? "absolute transform animate-slideout700_0px opacity-0 top-0 bottom-0 left-0 right-0 w-[70vw] h-[50vh] m-auto shadow-xl rounded-xl z-10 flex flex-row": "hidden transform-disappear"} `}>
             <Image src={avatar} alt="avatar" className="w-1/3 h-full p-24"/>
             <div className="w-2/3 h-full flex flex-col">
               <h3 className="text-center text-[#3586FF] text-2xl 2xl:text-4xl font-semibold pt-12 italic w-5/6">Contactez-nous !</h3>
