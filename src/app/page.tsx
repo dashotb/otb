@@ -407,45 +407,10 @@ export default function Home() {
   useEffect(() => {
     setTimeout(Load, 3000)
   })
-  const pageLoading = <section className="main-container">
-  <div className="main">
-    <div className="big-circle">
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/web-dev-icon.png" alt="web design icon" />
-      </div>
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/game-design-icon.png" alt="game design icon" />
-      </div>
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/game-dev-icon.png" alt="game dev icon" />
-      </div>
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/ui-ux-icon.png" alt="ui-ux icon" />
-      </div>
-    </div>
-    <div className="circle">
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/app-icon.png" alt="app icon" />
-      </div>
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/blockchain-icon.png" alt="blockchain icon" />
-      </div>
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/arvr-icon.png" alt="ar-vr icon" />
-      </div>
-      <div className="icon-block">
-        <img src="https://www.yudiz.com/codepen/animated-portfolio/artificial-intelligence-icon.png" alt="artificial intelligence icon" />
-      </div>
-    </div>
-    <div className="center-logo">
-      <img src="https://www.yudiz.com/codepen/animated-portfolio/logo.png" alt="logo" />
-    </div>
-  </div>
-  </section>
 
   return (
-    <main  id="main">
-      <div className={`${ loaded ? "scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden" : "hidden"}`}>
+    <main className='bg-[#ebebeb]' id="main">
+      <div className={`${ loaded ? "scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden transform animate-appear opacity-0" : "hidden"}`}>
         
           {/* Overlay */}
           <a href="/">
@@ -716,7 +681,42 @@ export default function Home() {
             <div className='h-[30vh] bg-neutral-200 '></div>
           </section>
       </div> 
-      
+
+      <section className={`${loaded ? "hidden" : "main-container transform animate-disappearLoader"}`}>
+        <div className="main">
+          <div className="big-circle">
+            <div className="icon-block">
+              <img src={seoIcon} alt="web design icon" />
+            </div>
+            <div className="icon-block">
+              <img src={magaeIcon} alt="game design icon" />
+            </div>
+            <div className="icon-block">
+              <img src={emailIcon} alt="game dev icon" />
+            </div>
+            <div className="icon-block">
+              <img src={ecommerceIcon} alt="ui-ux icon" />
+            </div>
+          </div>
+          <div className="circle">
+            <div className="icon-block">
+              <img src={creatiiveIcon} alt="app icon" />
+            </div>
+            <div className="icon-block">
+              <img src={blockchainIcon} alt="blockchain icon" />
+            </div>
+            <div className="icon-block">
+              <img src={cyberrsecIcon} alt="ar-vr icon" />
+            </div>
+            <div className="icon-block">
+              <img src={robotIcon} alt="artificial intelligence icon" />
+            </div>
+          </div>
+          <div className="center-logo">
+            <img src={logo} alt="logo" />
+          </div>
+        </div>
+        </section>
     </main>
   );
 }

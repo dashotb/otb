@@ -223,6 +223,7 @@ export default {
 			appearText: 'appear 0.3s ease 100ms forwards',
 			appearVideo: 'appear 0.5s ease 400ms forwards',
 			disappear: 'disappear 0.01s ease 10ms forwards',
+			disappearLoader: 'disappear 0.5s ease 3000ms forwards',
 			slidelogo: 'slidein_10px 1s ease 500ms forwards',
   			slidein300: 'slideinto 2.2s ease 300ms forwards',
   			slidein500: 'slidein 2s ease 500ms forwards',
