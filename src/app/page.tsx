@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, Suspense } from 'react';
 
 // Images
 import {iMac, iPhone, iPad, bg, clipboard, logo, avatar} from "@/img/images"
@@ -399,276 +399,324 @@ export default function Home() {
 
   const [currentVitrine, setCurrentVitrine] = useState("/VideoZidi.mp4")
 
-  return (
-    <main className="scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden" id="main">
-      {/* Overlay */}
-      <a href="/">
-        <img src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "hidden transform animate-disappear opacity-0 translate-y-[-200px]" : "absolute top-4 md:left-4 left-0 right-0 mx-auto md:mx-0 transform animate-slidelogo w-12 z-30 opacity-0"}`}/>
-      </a>
-      {/* Nav */}
-      <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 translate-x-[-100px] transform animate-disappear" : "flex flex-col space-y-6 self-center absolute top-0 bottom-0 left-6 z-50"}`}>
-        <a href="#products" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn1 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex relative"}`}>
-          <div className={` ${useIsVisible(targetProducts) ? "transform animate-appear w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto opacity-0" : "hidden opacity-0 transform animate-disappear translate-x-[-100px]"}`}/>
-          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Produits</Badge>
-        </a>
-        <a href="#details" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn2 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
-          <div className={`${useIsVisible(targetDetails) ?  "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
-          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Details</Badge>
-        </a>
-        <a href="#showcases" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn3 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
-          <div className={`${useIsVisible(targetClients) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
-          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Presentations</Badge>
-        </a>
-        <a href="#contact" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn4 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
-          <div className={`${useIsVisible(targetContact) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
-          <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Contact</Badge>
-        </a>
+
+  const [loaded, setLoaded] = useState(false)
+  async function Load () {
+    setLoaded(true)
+  }
+  useEffect(() => {
+    setTimeout(Load, 3000)
+  })
+  const pageLoading = <section className="main-container">
+  <div className="main">
+    <div className="big-circle">
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/web-dev-icon.png" alt="web design icon" />
       </div>
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/game-design-icon.png" alt="game design icon" />
+      </div>
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/game-dev-icon.png" alt="game dev icon" />
+      </div>
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/ui-ux-icon.png" alt="ui-ux icon" />
+      </div>
+    </div>
+    <div className="circle">
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/app-icon.png" alt="app icon" />
+      </div>
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/blockchain-icon.png" alt="blockchain icon" />
+      </div>
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/arvr-icon.png" alt="ar-vr icon" />
+      </div>
+      <div className="icon-block">
+        <img src="https://www.yudiz.com/codepen/animated-portfolio/artificial-intelligence-icon.png" alt="artificial intelligence icon" />
+      </div>
+    </div>
+    <div className="center-logo">
+      <img src="https://www.yudiz.com/codepen/animated-portfolio/logo.png" alt="logo" />
+    </div>
+  </div>
+  </section>
 
-      {/* Section Landing */}
-      
-      <section className="scroller-section w-screen h-[100vh] relative mb-0.5" ref={targetLanding}>
-        <img src={bg} alt="background" className={`${useIsVisible(targetLanding) ? " transform animate-slideout500 opacity-0 h-screen  w-[200vw] md:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
-        <img src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
-        <h1 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl 2xl:text-5xl font-semibold text-[#3586FF] text-center relative pt-52 2xl:pt-60 z-10"`}>Applications Web & Mobile</h1>
-        <div className="flex flex-row z-10">
-          <img src={iPad} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideleft500 opacity-0 -translate-y-full z-10 w-44 absolute bottom-[15vh] left-0 right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
-          <img src={iMac} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slidein500 opacity-0 -translate-y-full z-10 w-[30vw] absolute bottom-[15vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
-          <img src={iPhone} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideright500 opacity-0 -translate-y-full z-10 w-20 absolute bottom-[15vh] left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
-        </div>
-      </section>
-
-      {/* Section Produits */}
-
-      <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" id="products" ref={targetProducts}>
-        <div className="w-[60vw] flex flex-col">
-          <div className={`${useIsVisible(targetProducts) ?"w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
-            <img src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
-            <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name :null)}</h3>
-            <img src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {NextProduct()}}/>
-          </div>
-          
-          {useIsVisible(targetProducts) ? 
-          products.map(p => p.id == productId ? 
-            <div className={`${productVideoAnim} h-full w-full`}>
-                <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
-                  <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
-                    <source src={p.video}  />
-                  </video>
-                </div>
-            </div> : <></>)
-              : <></>
-          }
-
-          <div className={` z-0 ${useIsVisible(targetProducts) ?"container text-[#3586FF] text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
-            <div className="center">
-              <button className="btn border-none rounded-md">
-                <svg width="280px" height="60px" viewBox="0 0 280 60" className="border-0">
-                  <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
-                  <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
-                </svg>
-                <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
-              </button>
-            </div>
-          </div>     
-        </div>
-        <div className={`${useIsVisible(targetProducts) ? "transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] -top-3 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
-            <img src={clipboard} alt="clipboard" className="transform -skew-y-12 rotate-12 w-[45vw] mx-auto my-auto pr-[5vw] self-center absolute"/>
-            <div key={"clipboard"} className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar max-h-[70vh] space-y-6">
-            {products.map(p => p.id == productId ? p.tableau : <></>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Section  Details Competences*/}
-
-      <section className="scroller-section h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" id="details" ref={targetDetails}>
-        <div className="w-full h-[68vh] mt-[10vh] lg:mt-0 flex flex-col flex-col-reverse lg:flex-row justify-between relative">
-          <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={seoIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600"/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Référen<span className="lg:hidden"><br />-</span>cement</h3>
-            </div>
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative overflow-hidden card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={magaeIcon} alt="-icon" className="p-5 lg:p-6 z-10 absolute top-0 bottom-0 2xl:w-5/6 mx-auto left-0 right-0 self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Logiciel <br /> de Gestion</h3>
-            </div>
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={emailIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Relation Client</h3>
-            </div>
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={ecommerceIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">E-Commerce</h3>
-            </div> 
-            <div className={`${useIsVisible(targetDetails) ? "group hover:z-50 flex transform animate-slideup1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={creatiiveIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Développ<span className="lg:hidden"><br />-</span>ement Créatif</h3>
-            </div>
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={blockchainIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Smart Contract</h3>
-            </div>
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={cyberrsecIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Cyber Sécurité</h3>
-            </div>
-            
-            <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
-              <img src={robotIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600"/>
-              <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Intégarion d'IA</h3>
-            </div>
-          </div>
-          <div className={`${useIsVisible(targetDetails) ? "transform animate-slideright300 opacity-0 flex flex-col lg:flex-col w-full lg:w-[50vw] text-white relative pt-16 h-full": "hidden opacity-0 translate-y-[100px]"}`}>
-            <div className="lg:ml-16 h-1/3 content-center">
-                <div className="lg:w-full pt-2 md:pt-0">
-                    <h2 className="font-bold text-xl md:text-2xl lg:text-3xl 2xl:text-4xl text-[#3586FF] text-center">Le process de création</h2>
-                    <p className="pt-2 lg:pt-5 leading-5 text-[#3586FF] text-xs lg:text-base 2xl:text-xl text-center">Découvrez les différentes étapes pour créer votre application, <br /> de l'idée à la prise en main...</p>
-                </div>
-            </div>
-            <div className="h-2/3 relative ">
-              <div className="absolute hidden lg:flex flex-col h-[50vw] w-[20vw] right-32 -top-56 2xl:-top-72 overflow-hidden overflow-y-scroll no-scrollbar -rotate-90">
-                  <div className="inline-block rotate-90 mt-12 2xl:mt-32">
-                      <div className="bg-[#3586FF] relative  w-48 h-48 2xl:w-64 2xl:h-64 rounded-[5px]">
-                          <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">1</p>
-                          <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Screening telephonique</h2>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">20 min</p>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 leading-5 px-5">1er échange pour comprendre vos besoins.</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "><div className="bg-[#3586FF] w-[58rem] 2xl:w-[75rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
-                  </div>
-                  <div className="inline-block rotate-90">
-                      <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
-                          <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">2</p>
-                          <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Maquette <br />& Devis</h2>
-                          {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">90 min</p> */}
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Présentation de ce que nous sommes en mesure de vous proposer.</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                  <div className="inline-block rotate-90">
-                      <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
-                      <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">3</p>
-                          <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Création du MVP</h2>
-                          {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">2h à 3h</p> */}
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Développement de la version de base de votre application, qui pourra être améliorée par la suite...</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                  <div className="inline-block rotate-90">
-                      <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
-                      <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">4</p>
-                          <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Entretien Final</h2>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">1h</p>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Rencontre avec un des fondateurs et Elodie notre Head of People.</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                  <div className="inline-block rotate-90 mb-80">
-                      <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
-                      <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
-                          <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Welcome Aboard!</h2>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">On ne te fait pas attendre !</p>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Ta proposition est déjà prête, il ne te reste plus qu'à l'accepter!</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                      
-              </div>
-              <div className="lg:hidden flex flex-row h-fit gap-x-6 w-full overflow-y-hidden overflow-x-scroll no-scrollbar my-6 mx-8">
-                  <div className="inline-block">
-                      <div className="bg-[#3586FF] relative  w-32 h-32 rounded-[5px]">
-                          <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">1</p>
-                          <h2 className="text-base font-bold ml-5 relative leading-1 z-[1] px-0.5 pt-0.5">Screening telephonique</h2>
-                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 px-1">20 min</p>
-                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">1er échange pour comprendre vos besoins.</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "><div className="bg-[#3586FF] w-[58rem] 2xl:w-[75rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
-                  </div>
-                  <div className="inline-block">
-                      <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
-                          <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">2</p>
-                          <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Maquette <br />& Devis</h2>
-                          {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">90 min</p> */}
-                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Présentation de ce que nous sommes en mesure de vous proposer.</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                  <div className="inline-block">
-                      <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
-                      <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">3</p>
-                          <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Création <br /> du MVP</h2>
-                          {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">2h à 3h</p> */}
-                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Développement de la version de base de votre application, qui pourra être améliorée <span className="hidden">par la suite...</span></p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                  <div className="inline-block">
-                      <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
-                      <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">4</p>
-                          <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Entretien Final</h2>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">1h</p>
-                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Rencontre avec un des fondateurs et Elodie notre Head of People.</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                  <div className="inline-block">
-                      <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
-                      <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
-                          <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Welcome Aboard!</h2>
-                          <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">On ne te fait pas attendre !</p>
-                          <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Ta proposition est déjà prête, il ne te reste plus qu'à l'accepter!</p>
-                      </div>
-                      <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
-                  </div>
-                      
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 className={`${useIsVisible(targetDetails) ? "transform animate-slideout1500 opacity-0 text-[#3586FF] text-center text-xl lg:text-2xl 2xl:text-3xl absolute bottom-[12vh] lg:bottom-[22vh] 2xl:bottom-72 left-0 right-0 font-semibold": "hidden opacity-0 translate-y-[100px]"}`}>Ils nous font confiance</h3>
-          <div className={`${useIsVisible(targetDetails) ? "transform animate-slideout1700 opacity-0 w-full 2xl:h-64 h-[10vh] lg:h-[20vh] bg-neutral-200 absolute bottom-0 left-0": "hidden opacity-0 translate-y-[100px]"}`}>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Section Avis Clients/Associes */}
-
-      <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" id="showcases" ref={targetClients}>
-        <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
-          <img src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-80 mt-20 2xl:mt-40 w-32 absolute"/>
-          <div className="flex w-full items-center 2xl:pl-24 2xl:mt-20">
-            <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-56 2xl:ml-64 italic mt-56  transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
-              <div className=" text-xl p-2 text-[#3586FF] pr-[10vw] 2xl:pr-64">https://www.drivephone.fr</div>
-              <img src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
+  return (
+    <main  id="main">
+      <div className={`${ loaded ? "scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden" : "hidden"}`}>
+        
+          {/* Overlay */}
+          <a href="/">
+            <img src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "hidden transform animate-disappear opacity-0 translate-y-[-200px]" : "absolute top-4 md:left-4 left-0 right-0 mx-auto md:mx-0 transform animate-slidelogo w-12 z-30 opacity-0"}`}/>
+          </a>
+          {/* Nav */}
+          <div className={`${useIsVisible(targetLanding) ? "hidden opacity-0 translate-x-[-100px] transform animate-disappear" : "flex flex-col space-y-6 self-center absolute top-0 bottom-0 left-6 z-50"}`}>
+            <a href="#products" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn1 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex relative"}`}>
+              <div className={` ${useIsVisible(targetProducts) ? "transform animate-appear w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto opacity-0" : "hidden opacity-0 transform animate-disappear translate-x-[-100px]"}`}/>
+              <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Produits</Badge>
+            </a>
+            <a href="#details" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn2 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+              <div className={`${useIsVisible(targetDetails) ?  "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
+              <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Details</Badge>
+            </a>
+            <a href="#showcases" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn3 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+              <div className={`${useIsVisible(targetClients) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
+              <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Presentations</Badge>
+            </a>
+            <a href="#contact" className={`group ${useIsVisible(targetLanding) ? "hidden opacity-0 transform animate-disappear" : "transform animate-slideleftn4 opacity-0 w-3 h-3 rounded-full bg-white inner-shadow border flex"}`}>
+              <div className={`${useIsVisible(targetContact) ? "transform animate-appear opacity-0 w-2 h-2 bg-[#3586FF] rounded-full self-center mx-auto" : "hidden opacity-0 transform animate-disappear"}`}/>
+              <Badge className="absolute left-6 -top-1.5 opacity-0 group-hover:transform group-hover:animate-appearQuick hover:bg-white bg-white text-[#3586FF] border border-[#3586FF]" >Contact</Badge>
             </a>
           </div>
-          <div className="flex flex-row w-[40vw] items-center h-full 2xl:h-[40vh] pb-12 2xl:pt-24 mx-auto">
-            <img src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-64 2xl:w-96 h-64 2xl:h-96 ml-52 2xl:ml-72"/>
-            <img src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-16 h-24 2xl:h-32 ml-8 2xl:ml-12 mt-36 2xl:mt-60"/>
-          </div>
-        </div>
-        <div className="w-[66vw] h-screen ml-auto">
 
-        </div>
-      </section>
+          {/* Section Landing */}
+          
+          <section className="scroller-section w-screen h-[100vh] relative mb-0.5" ref={targetLanding}>
+            <img src={bg} alt="background" className={`${useIsVisible(targetLanding) ? " transform animate-slideout500 opacity-0 h-screen  w-[200vw] md:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
+            <img src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
+            <h1 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-3xl 2xl:text-5xl font-semibold text-[#3586FF] text-center relative pt-52 2xl:pt-60 z-10"`}>Applications Web & Mobile</h1>
+            <div className="flex flex-row z-10">
+              <img src={iPad} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideleft500 opacity-0 -translate-y-full z-10 w-44 absolute bottom-[15vh] left-0 right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
+              <img src={iMac} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slidein500 opacity-0 -translate-y-full z-10 w-[30vw] absolute bottom-[15vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
+              <img src={iPhone} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideright500 opacity-0 -translate-y-full z-10 w-20 absolute bottom-[15vh] left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
+            </div>
+          </section>
 
-      {/* Section  Contact*/}
+          {/* Section Produits */}
 
-      <section className="scroller-section min-h-[100vh] mb-1" id="contact" ref={targetContact}>
-        <div className='h-screen w-screen relative'>
-          <div className={`${useIsVisible(targetContact) ? "absolute transform animate-slideout700_0px opacity-0 top-0 bottom-0 left-0 right-0 w-[70vw] h-[50vh] m-auto shadow-xl rounded-xl z-10 flex flex-row": "hidden transform-disappear"} `}>
-            <img src={avatar} alt="avatar" className="w-1/3 h-fit p-24"/>
-            <div className="w-2/3 h-full flex flex-col">
-              <h3 className="text-center text-[#3586FF] text-2xl 2xl:text-4xl font-semibold pt-12 italic w-5/6">Contactez-nous !</h3>
+          <section className="scroller-section w-screen h-[100vh] relative flex flex-row mb-0.5" id="products" ref={targetProducts}>
+            <div className="w-[60vw] flex flex-col">
+              <div className={`${useIsVisible(targetProducts) ?"w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
+                <img src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
+                <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name :null)}</h3>
+                <img src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {NextProduct()}}/>
+              </div>
+              
+              {useIsVisible(targetProducts) ? 
+              products.map(p => p.id == productId ? 
+                <div className={`${productVideoAnim} h-full w-full`}>
+                    <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
+                      <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
+                        <source src={p.video}  />
+                      </video>
+                    </div>
+                </div> : <></>)
+                  : <></>
+              }
+
+              <div className={` z-0 ${useIsVisible(targetProducts) ?"container text-[#3586FF] text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
+                <div className="center">
+                  <button className="btn border-none rounded-md">
+                    <svg width="280px" height="60px" viewBox="0 0 280 60" className="border-0">
+                      <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
+                      <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
+                    </svg>
+                    <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                  </button>
+                </div>
+              </div>     
+            </div>
+            <div className={`${useIsVisible(targetProducts) ? "transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] -top-3 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
+                <img src={clipboard} alt="clipboard" className="transform -skew-y-12 rotate-12 w-[45vw] mx-auto my-auto pr-[5vw] self-center absolute"/>
+                <div key={"clipboard"} className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar max-h-[70vh] space-y-6">
+                {products.map(p => p.id == productId ? p.tableau : <></>)}
+              </div>
+            </div>
+          </section>
+
+          {/* Section  Details Competences*/}
+
+          <section className="scroller-section h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" id="details" ref={targetDetails}>
+            <div className="w-full h-[68vh] mt-[10vh] lg:mt-0 flex flex-col flex-col-reverse lg:flex-row justify-between relative">
+              <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
+                <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={seoIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600"/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Référen<span className="lg:hidden"><br />-</span>cement</h3>
+                </div>
+                <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative overflow-hidden card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={magaeIcon} alt="-icon" className="p-5 lg:p-6 z-10 absolute top-0 bottom-0 2xl:w-5/6 mx-auto left-0 right-0 self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Logiciel <br /> de Gestion</h3>
+                </div>
+                <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={emailIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Relation Client</h3>
+                </div>
+                <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={ecommerceIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">E-Commerce</h3>
+                </div> 
+                <div className={`${useIsVisible(targetDetails) ? "group hover:z-50 flex transform animate-slideup1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={creatiiveIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Développ<span className="lg:hidden"><br />-</span>ement Créatif</h3>
+                </div>
+                <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup2 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={blockchainIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Smart Contract</h3>
+                </div>
+                <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup3 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={cyberrsecIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600 "/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Cyber Sécurité</h3>
+                </div>
+                
+                <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slideup4 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
+                  <img src={robotIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600"/>
+                  <h3 className="hidden group-hover:block transform animate-appearText opacity-0 absolute top-0 bottom-0 left-0 right-0 w-full text-clip mx-auto m-auto z-0 text-center self-center text-[#46A6F7] font-semibold 2xl:text-2xl italic">Intégarion d'IA</h3>
+                </div>
+              </div>
+              <div className={`${useIsVisible(targetDetails) ? "transform animate-slideright300 opacity-0 flex flex-col lg:flex-col w-full lg:w-[50vw] text-white relative pt-16 h-full": "hidden opacity-0 translate-y-[100px]"}`}>
+                <div className="lg:ml-16 h-1/3 content-center">
+                    <div className="lg:w-full pt-2 md:pt-0">
+                        <h2 className="font-bold text-xl md:text-2xl lg:text-3xl 2xl:text-4xl text-[#3586FF] text-center">Le process de création</h2>
+                        <p className="pt-2 lg:pt-5 leading-5 text-[#3586FF] text-xs lg:text-base 2xl:text-xl text-center">Découvrez les différentes étapes pour créer votre application, <br /> de l'idée à la prise en main...</p>
+                    </div>
+                </div>
+                <div className="h-2/3 relative ">
+                  <div className="absolute hidden lg:flex flex-col h-[50vw] w-[20vw] right-32 -top-56 2xl:-top-72 overflow-hidden overflow-y-scroll no-scrollbar -rotate-90">
+                      <div className="inline-block rotate-90 mt-12 2xl:mt-32">
+                          <div className="bg-[#3586FF] relative  w-48 h-48 2xl:w-64 2xl:h-64 rounded-[5px]">
+                              <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">1</p>
+                              <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Screening telephonique</h2>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">20 min</p>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 leading-5 px-5">1er échange pour comprendre vos besoins.</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "><div className="bg-[#3586FF] w-[58rem] 2xl:w-[75rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
+                      </div>
+                      <div className="inline-block rotate-90">
+                          <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
+                              <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">2</p>
+                              <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Maquette <br />& Devis</h2>
+                              {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">90 min</p> */}
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Présentation de ce que nous sommes en mesure de vous proposer.</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                      <div className="inline-block rotate-90">
+                          <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
+                          <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">3</p>
+                              <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Création du MVP</h2>
+                              {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">2h à 3h</p> */}
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Développement de la version de base de votre application, qui pourra être améliorée par la suite...</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                      <div className="inline-block rotate-90">
+                          <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
+                          <p className="absolute text-[5rem] leading-5 font-bold mt-10 mr-5 text-[#fff] z-[0]">4</p>
+                              <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Entretien Final</h2>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">1h</p>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Rencontre avec un des fondateurs et Elodie notre Head of People.</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                      <div className="inline-block rotate-90 mb-80">
+                          <div className="bg-[#3586FF] relative w-48 h-48 2xl:w-64 2xl:h-64  rounded-[5px]">
+                          <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
+                              <h2 className="text-xl 2xl:text-2xl font-bold ml-7 relative z-[1] px-5 pt-5">Welcome Aboard!</h2>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">On ne te fait pas attendre !</p>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 leading-5">Ta proposition est déjà prête, il ne te reste plus qu'à l'accepter!</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                          
+                  </div>
+                  <div className="lg:hidden flex flex-row h-fit gap-x-6 w-full overflow-y-hidden overflow-x-scroll no-scrollbar my-6 mx-8">
+                      <div className="inline-block">
+                          <div className="bg-[#3586FF] relative  w-32 h-32 rounded-[5px]">
+                              <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">1</p>
+                              <h2 className="text-base font-bold ml-5 relative leading-1 z-[1] px-0.5 pt-0.5">Screening telephonique</h2>
+                              <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 px-1">20 min</p>
+                              <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">1er échange pour comprendre vos besoins.</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "><div className="bg-[#3586FF] w-[58rem] 2xl:w-[75rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
+                      </div>
+                      <div className="inline-block">
+                          <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
+                              <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">2</p>
+                              <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Maquette <br />& Devis</h2>
+                              {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">90 min</p> */}
+                              <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Présentation de ce que nous sommes en mesure de vous proposer.</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                      <div className="inline-block">
+                          <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
+                          <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">3</p>
+                              <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Création <br /> du MVP</h2>
+                              {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">2h à 3h</p> */}
+                              <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Développement de la version de base de votre application, qui pourra être améliorée <span className="hidden">par la suite...</span></p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                      <div className="inline-block">
+                          <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
+                          <p className="absolute text-[3.5rem] leading-5 font-bold -ml-1 mt-4 mr-2 text-[#fff] z-[0]">4</p>
+                              <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Entretien Final</h2>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">1h</p>
+                              <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Rencontre avec un des fondateurs et Elodie notre Head of People.</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                      <div className="inline-block">
+                          <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
+                          <p className="absolute text-[5rem] leading-5 font-bold mr-5 mt-10 text-[#fff] z-[0]"></p>
+                              <h2 className="text-base font-bold ml-7 relative leading-1 z-[1] px-0.5 pt-0.5">Welcome Aboard!</h2>
+                              <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">On ne te fait pas attendre !</p>
+                              <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Ta proposition est déjà prête, il ne te reste plus qu'à l'accepter!</p>
+                          </div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                      </div>
+                          
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className={`${useIsVisible(targetDetails) ? "transform animate-slideout1500 opacity-0 text-[#3586FF] text-center text-xl lg:text-2xl 2xl:text-3xl absolute bottom-[12vh] lg:bottom-[22vh] 2xl:bottom-72 left-0 right-0 font-semibold": "hidden opacity-0 translate-y-[100px]"}`}>Ils nous font confiance</h3>
+              <div className={`${useIsVisible(targetDetails) ? "transform animate-slideout1700 opacity-0 w-full 2xl:h-64 h-[10vh] lg:h-[20vh] bg-neutral-200 absolute bottom-0 left-0": "hidden opacity-0 translate-y-[100px]"}`}>
+
+              </div>
+            </div>
+          </section>
+
+          {/* Section Avis Clients/Associes */}
+
+          <section className="scroller-section h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" id="showcases" ref={targetClients}>
+            <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
+              <img src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-80 mt-20 2xl:mt-40 w-32 absolute"/>
+              <div className="flex w-full items-center 2xl:pl-24 2xl:mt-20">
+                <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-56 2xl:ml-64 italic mt-56  transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
+                  <div className=" text-xl p-2 text-[#3586FF] pr-[10vw] 2xl:pr-64">https://www.drivephone.fr</div>
+                  <img src={searchIcon} alt="search_icon" className="w-6 h-6 self-center mr-2"/>
+                </a>
+              </div>
+              <div className="flex flex-row w-[40vw] items-center h-full 2xl:h-[40vh] pb-12 2xl:pt-24 mx-auto">
+                <img src={iMac} alt="iMac" className="tansform -skew-y-12 rotate-12 w-64 2xl:w-96 h-64 2xl:h-96 ml-52 2xl:ml-72"/>
+                <img src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-16 h-24 2xl:h-32 ml-8 2xl:ml-12 mt-36 2xl:mt-60"/>
+              </div>
+            </div>
+            <div className="w-[66vw] h-screen ml-auto">
 
             </div>
-          </div>
-        </div>
-        <div className='h-[30vh] bg-neutral-200 '></div>
-      </section>
+          </section>
+
+          {/* Section  Contact*/}
+
+          <section className="scroller-section min-h-[100vh] mb-1" id="contact" ref={targetContact}>
+            <div className='h-screen w-screen relative'>
+              <div className={`${useIsVisible(targetContact) ? "absolute transform animate-slideout700_0px opacity-0 top-0 bottom-0 left-0 right-0 w-[70vw] h-[50vh] m-auto shadow-xl rounded-xl z-10 flex flex-row": "hidden transform-disappear"} `}>
+                <img src={avatar} alt="avatar" className="w-1/3 h-fit p-24"/>
+                <div className="w-2/3 h-full flex flex-col">
+                  <h3 className="text-center text-[#3586FF] text-2xl 2xl:text-4xl font-semibold pt-12 italic w-5/6">Contactez-nous !</h3>
+
+                </div>
+              </div>
+            </div>
+            <div className='h-[30vh] bg-neutral-200 '></div>
+          </section>
+      </div> 
+      
     </main>
   );
 }
