@@ -409,8 +409,8 @@ export default function Home() {
   })
 
   return (
-    <main className='bg-[#ebebeb]' id="main">
-      <div className={`${ loaded ? "scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden transform animate-appear opacity-0" : "hidden"}`}>
+    <div className='bg-[#f7f7f7]' id="main">
+      <main className={`${ loaded ? "scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden transition duration-500" : "hidden"}`}>
         
           {/* Overlay */}
           <a href="/">
@@ -680,7 +680,7 @@ export default function Home() {
             </div>
             <div className='h-[30vh] bg-neutral-200 '></div>
           </section>
-      </div> 
+      </main> 
 
       <section className={`${loaded ? "hidden" : "main-container transform animate-disappearLoader"}`}>
         <div className="main">
@@ -717,7 +717,7 @@ export default function Home() {
           </div>
         </div>
         </section>
-    </main>
+    </div>
   );
 }
 
