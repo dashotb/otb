@@ -662,7 +662,7 @@ export default function Home() {
           <div className={`${useIsVisible(targetContact) ? "absolute transform animate-slideout700_0px opacity-0 top-0 bottom-0 left-0 right-0 w-[70vw] h-[50vh] m-auto shadow-xl rounded-xl z-10 flex flex-row": "hidden transform-disappear"} `}>
             <img src={avatar} alt="avatar" className="w-1/3 h-fit p-24"/>
             <div className="w-2/3 h-full flex flex-col">
-              <h3 className="text-center text-[#3586FF] text-2xl 2xl:text-4xl font-semibold pt-12 italic w-5/6">Contactez-nous !</h3>
+              <h3 className="text-center text-[#3586FF] text-2xl lg:text-3xl 2xl:text-4xl font-semibold pt-12 italic w-5/6">Contactez-nous !</h3>
 
             </div>
           </div>
