@@ -9,6 +9,14 @@ import {blockchainIcon, seoIcon, cyberrsecIcon, creatiiveIcon, magaeIcon, ecomme
 
 //UI components
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import {
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -410,6 +418,9 @@ export default function Home() {
 
   return (
     <div className='bg-[#f7f7f7]' id="main">
+
+      {/* Main */}
+      
       <main className={`${ loaded ? "scroller no-scrollbar min-h-screen bg-neutral-100 overflow-hidden transition duration-500" : "hidden"}`}>
         
           {/* Overlay */}
@@ -473,13 +484,25 @@ export default function Home() {
 
               <div className={` z-0 ${useIsVisible(targetProducts) ?"container text-[#3586FF] text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
                 <div className="center">
-                  <button className="btn border-none rounded-md">
-                    <svg width="280px" height="60px" viewBox="0 0 280 60" className="border-0">
-                      <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
-                      <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
-                    </svg>
-                    <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
-                  </button>
+                  <Dialog>
+                    <DialogTrigger className="btn border-none rounded-md">
+                        <svg width="280px" height="60px" viewBox="0 0 280 60" className="border-0">
+                          <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
+                          <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
+                        </svg>
+                        <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                        <DialogDescription>
+                          This action cannot be undone. This will permanently delete your account
+                          and remove your data from our servers.
+                        </DialogDescription>
+                      </DialogHeader>
+                    </DialogContent>
+                  </Dialog>
+                  
                 </div>
               </div>     
             </div>
@@ -682,6 +705,8 @@ export default function Home() {
           </section>
       </main> 
 
+      {/* Section Loader */}
+
       <section className={`${loaded ? "hidden" : "main-container transform animate-disappearLoader"}`}>
         <div className="main">
           <div className="big-circle">
@@ -716,7 +741,7 @@ export default function Home() {
             <img src={logo} alt="logo" />
           </div>
         </div>
-        </section>
+      </section>
     </div>
   );
 }
