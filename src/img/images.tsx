@@ -13,5 +13,9 @@ const iPad = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.fireb
 
 //Logos
 const DP_logo = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2FDP.png?alt=media&token=f09d6fb9-63c1-4cb5-9a14-53c0f3659a7f"
+const A2V_logo = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fa2v.png?alt=media&token=8cc2e36c-f9bc-48e4-99c1-fc48aee005bc"
+const Zidi_logo = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fzidi.png?alt=media&token=14ad8f7b-f139-47ff-8442-20fbbc18ae65"
 
-export {iMac, iPad, iPhone, logo, avatar, bg, clipboard, DP_logo}
+export {iMac, iPad, iPhone, logo, avatar, bg, clipboard}
+
+export {DP_logo, A2V_logo, Zidi_logo}

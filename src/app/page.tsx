@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState, useCallback, Suspense } from 'react
 
 // Images
 import {iMac, iPhone, iPad, bg, clipboard, logo, avatar} from "@/img/images"
-import { DP_logo } from "@/img/images";
+import { DP_logo, A2V_logo, Zidi_logo } from "@/img/images";
 import {blockchainIcon, seoIcon, cyberrsecIcon, creatiiveIcon, magaeIcon, ecommerceIcon, emailIcon, robotIcon, searchIcon, chevronleft, chevronright} from "@/icons/icons"
 
 //UI components
@@ -412,6 +412,7 @@ export default function Home() {
   async function Load () {
     setLoaded(true)
   }
+
   useEffect(() => {
     setTimeout(Load, 3000)
   })
