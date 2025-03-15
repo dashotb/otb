@@ -495,12 +495,14 @@ export default function Home() {
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                        <DialogTitle className='text-[#3586FF]'>Parlez-nous de votre projet</DialogTitle>
                         <DialogDescription>
-                          This action cannot be undone. This will permanently delete your account
-                          and remove your data from our servers.
+                          Merci de renseigner les informations relatives à votre projet, <br /> pour faciliter la prise en charge de votre demande.
                         </DialogDescription>
                       </DialogHeader>
+                      <form>
+                        
+                      </form>
                     </DialogContent>
                   </Dialog>
                   
