@@ -450,7 +450,7 @@ export default function Home() {
 
           {/* Section Landing */}
           
-          <section className={`scroller-section w-screen h-[100dvh] relative mb-0.5 ${useIsVisible(targetLanding) ? "landing-bg transform animate-appear500 opacity-0" : "transform animate-disappear opacity-1"} `} ref={targetLanding}>
+          <section className={`scroller-section w-screen h-[100dvh] lg:h-[100vh] relative mb-0.5 ${useIsVisible(targetLanding) ? "landing-bg transform animate-appear500 opacity-0" : "transform animate-disappear opacity-1"} `} ref={targetLanding}>
           <img src={bg} alt="background" className={`${useIsVisible(targetLanding) ? "hidden lg:block transform animate-slideout500 opacity-0 h-[70vh] lg:h-screen  w-[200vw] lg:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
           <img src={bg_mobile} alt="background" className={`${useIsVisible(targetLanding) ? "block lg:hidden transform animate-slideout500 opacity-0 h-[65dvh] lg:h-screen  w-[200vw] lg:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
           <img src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
@@ -464,7 +464,7 @@ export default function Home() {
 
           {/* Section Produits */}
 
-          <section className="scroller-section w-screen h-[100dvh] relative flex flex-row mb-0.5" id="products" ref={targetProducts}>
+          <section className="scroller-section w-screen h-[100dvh] lg:h-[100vh] relative flex flex-row mb-0.5" id="products" ref={targetProducts}>
             <div className="w-[60vw] flex flex-col">
               <div className={`${useIsVisible(targetProducts) ?"w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
                 <img src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
@@ -520,8 +520,8 @@ export default function Home() {
 
           {/* Section  Details Competences*/}
 
-          <section className="scroller-section h-[100dvh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" id="details" ref={targetDetails}>
-            <div className="w-full h-[68dvh] mt-[5dvh] lg:mt-0 flex flex-col flex-col-reverse lg:flex-row justify-between relative">
+          <section className="scroller-section h-[100dvh] lg:h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" id="details" ref={targetDetails}>
+            <div className="w-full h-[68dvh] lg:h-[68vh] mt-[5dvh] lg:mt-0 flex flex-col flex-col-reverse lg:flex-row justify-between relative">
               <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
                 <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
                   <img src={seoIcon} alt="-icon" className="p-5 lg:p-6 z-10 2xl:w-5/6 mx-auto self-center group-hover:blur-sm group-hover:opacity-25 transition duration-600"/>
@@ -674,7 +674,7 @@ export default function Home() {
 
           {/* Section Avis Clients/Associes */}
 
-          <section className="scroller-section h-[100dvh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" id="showcases" ref={targetClients}>
+          <section className="scroller-section h-[100dvh] lg:h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" id="showcases" ref={targetClients}>
             <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
               <img src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-80 mt-20 2xl:mt-40 w-32 absolute"/>
               <div className="flex w-full items-center 2xl:pl-24 2xl:mt-20">
@@ -695,7 +695,7 @@ export default function Home() {
 
           {/* Section  Contact*/}
 
-          <section className="scroller-section min-h-[100vh] mb-1" id="contact" ref={targetContact}>
+          <section className="scroller-section min-h-[100dvh] mb-1" id="contact" ref={targetContact}>
             <div className='h-screen w-screen relative'>
               <div className={`${useIsVisible(targetContact) ? "absolute transform animate-slideout700_0px opacity-0 top-0 bottom-0 left-0 right-0 w-[70vw] h-[50vh] m-auto shadow-xl rounded-xl z-10 flex flex-row": "hidden transform-disappear"} `}>
                 <img src={avatar} alt="avatar" className="w-1/3 h-fit p-12 2xl:p-24"/>
