@@ -219,6 +219,7 @@ export default {
   		animation: {
 			scale: 'scale 0.5s ease 1s forwards',
 			appear: 'appear 0.5s ease 800ms forwards',
+			appear500: 'appear 1.5s ease 800ms forwards',
 			appearQuick: 'appear 0.5s ease 10ms forwards',
 			appearText: 'appear 0.3s ease 100ms forwards',
 			appearVideo: 'appear 0.5s ease 400ms forwards',

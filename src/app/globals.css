@@ -20,7 +20,7 @@ body {
 
 .landing-bg {
   background: rgb(194,194,194);
-  background: linear-gradient(0deg, #c2c2c2 20%, rgba(255,255,255,1) 90%);
+  background: linear-gradient(0deg, #c2c2c2 30%, rgba(255,255,255,1) 90%);
 }
 
 .inner-shadow{
