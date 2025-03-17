@@ -450,7 +450,7 @@ export default function Home() {
 
           {/* Section Landing */}
           
-          <section className={` w-screen h-[100dvh] relative mb-0.5 ${useIsVisible(targetLanding) ? "landing-bg transform animate-appear500 opacity-0" : ""} `} ref={targetLanding}>
+          <section className={` w-screen h-[100dvh] relative mb-0.5 ${useIsVisible(targetLanding) ? "landing-bg transform animate-appear500 opacity-0" : "transform animate-disappear opacity-1"} `} ref={targetLanding}>
           <img src={bg} alt="background" className={`${useIsVisible(targetLanding) ? "hidden lg:block transform animate-slideout500 opacity-0 h-[70vh] lg:h-screen  w-[200vw] lg:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
           <img src={bg_mobile} alt="background" className={`${useIsVisible(targetLanding) ? "block lg:hidden transform animate-slideout500 opacity-0 h-[65dvh] lg:h-screen  w-[200vw] lg:w-screen absolute top-0 left-0 z-0" : "hidden opacity-0 translate-y-[100px]"}`}/>
           <img src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
