@@ -520,7 +520,7 @@ export default function Home() {
 
           {/* Section  Details Competences*/}
 
-          <section className="scroller-section h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" id="details" ref={targetDetails}>
+          <section className="scroller-section h-[100dvh] lg:h-[100vh] px-4 lg:px-24 w-full flex flex-col relative mb-0.5" id="details" ref={targetDetails}>
             <div className="w-full h-[68vh] mt-[10vh] lg:mt-0 flex flex-col flex-col-reverse lg:flex-row justify-between relative">
               <div className="w-full lg:w-[40vw] grid grid-cols-4 2xl:gap-6 items-center self-center px-8 lg:px-0">
                 <div className={`${useIsVisible(targetDetails) ? "group flex transform animate-slidedown1 opacity-0 w-20 h-20 lg:w-32  lg:h-32 2xl:w-52 2xl:h-52 rounded-lg mx-auto relative card transition ease-in-out duration-300": "hidden opacity-0 translate-y-[100px]"}`}>
