@@ -6,6 +6,11 @@ import React, { useRef, useEffect, useState, useCallback, Suspense } from 'react
 import {iMac, iPhone, iPad, bg, bg_mobile, clipboard, logo, avatar} from "@/img/images"
 import { DP_logo, A2V_logo, Zidi_logo } from "@/img/images";
 import {blockchainIcon, seoIcon, cyberrsecIcon, creatiiveIcon, magaeIcon, ecommerceIcon, emailIcon, robotIcon, searchIcon, chevronleft, chevronright} from "@/icons/icons"
+import phone from "@/icons/phone.png"
+import email from "@/icons/email2.png"
+import insta from "@/icons/instagram.png"
+import whatsapp from "@/icons/whatsapp.png"
+import linkedin from "@/icons/linkedin.png"
 
 //UI components
 import {
@@ -27,6 +32,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Badge } from "@/components/ui/badge"
+import { Phone } from 'lucide-react';
+import Image from 'next/image';
 
 function useIsVisible(ref: any) {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -389,7 +396,7 @@ export default function Home() {
     },
     {
       id : 1,
-      name : "Application Web",
+      name : "Application",
       price: "999",
       tableau: TabWeb,
       video: "empty"
@@ -397,7 +404,7 @@ export default function Home() {
     },
     {
       id : 2,
-      name : "Application Mobile",
+      name : "E-Commerce",
       price: "999",
       tableau: TabMobile,
       video: "empty"
@@ -465,17 +472,17 @@ export default function Home() {
           {/* Section Produits */}
 
           <section className="scroller-section w-screen h-[100dvh] lg:h-[100vh] relative flex flex-row mb-0.5" id="products" ref={targetProducts}>
-            <div className="w-[60vw] flex flex-col">
-              <div className={`${useIsVisible(targetProducts) ?"w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
-                <img src={chevronleft} alt="chevronleft" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
-                <h3 className={`${productNameAnim} text-[#3586FF] text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name :null)}</h3>
-                <img src={chevronright} alt="chevronright" className="w-10 h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {NextProduct()}}/>
+            <div className="w-full md:w-[60vw] flex flex-col">
+              <div className={`${useIsVisible(targetProducts) ?"w-[80vw] md:w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
+                <img src={chevronleft} alt="chevronleft" className="mt-2 md:mt-0 w-6 md:w-10 h-6 md:h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
+                <h3 className={`${productNameAnim} text-[#3586FF] text-2xl md:text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name :null)}</h3>
+                <img src={chevronright} alt="chevronright" className="mt-2 md:mt-0 w-6 md:w-10 h-6 md:h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {NextProduct()}}/>
               </div>
               
               {useIsVisible(targetProducts) ? 
               products.map(p => p.id == productId ? 
                 <div className={`${productVideoAnim} h-full w-full`}>
-                    <div className="w-[40vw] h-[50vh] mx-auto mt-7 2xl:mt-14 py-12 object-cover rounded-[0.5rem] ">
+                    <div className="w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] ">
                       <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
                         <source src={p.video}  />
                       </video>
@@ -484,15 +491,22 @@ export default function Home() {
                   : <></>
               }
 
-              <div className={` z-0 ${useIsVisible(targetProducts) ?"container text-[#3586FF] text-2xl font-semibold absolute -bottom-20 left-32 transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
+              <div className={` z-0 ${useIsVisible(targetProducts) ?"container w-[45vw] text-[#3586FF] text-2xl font-semibold absolute -bottom-6 md:-bottom-20 left-[10vw] md:left-32 transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
                 <div className="center">
                   <Dialog>
-                    <DialogTrigger className="btn border-none rounded-md">
-                        <svg width="280px" height="60px" viewBox="0 0 280 60" className="border-0">
+                    <DialogTrigger className="hidden md:block btn border-none rounded-md">
+                        <svg width="280px" height="60px" viewBox="0 0 280 60" className="hidden md:block border-0">
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                         </svg>
-                        <span className={`text-[#3586FF] 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                        <span className={`text-[#3586FF] text-sm 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                    </DialogTrigger>
+                    <DialogTrigger className="block md:hidden bg-[#3586FF] border border-2 border-[#3586FF] px-2 pb-1 w-fit  md:btn border-none rounded-md">
+                        <svg width="280px" height="60px" viewBox="0 0 280 60" className="hidden md:block border-0">
+                          <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
+                          <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
+                        </svg>
+                        <span className={`text-white md:text-[#3586FF] text-base 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
@@ -508,9 +522,10 @@ export default function Home() {
                   </Dialog>
                   
                 </div>
+                <a href="" className='text-base flex ml-auto lg:text-xl pb-3'>En Savoir Plus</a>
               </div>     
             </div>
-            <div className={`${useIsVisible(targetProducts) ? "transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] top-1.5 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetProducts) ? "hidden md:flex transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] top-1.5 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
                 <img src={clipboard} alt="clipboard" className="transform -skew-y-12 rotate-12 w-[45vw] mx-auto my-auto pr-[5vw] self-center absolute"/>
                 <div key={"clipboard"} className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar max-h-[70vh] space-y-6">
                 {products.map(p => p.id == productId ? p.tableau : <></>)}
@@ -675,7 +690,7 @@ export default function Home() {
           {/* Section Avis Clients/Associes */}
 
           <section className="scroller-section h-[100dvh] lg:h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" id="showcases" ref={targetClients}>
-            <div className={`${useIsVisible(targetClients) ? "transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
+            <div className={`${useIsVisible(targetClients) ? "hidden lg:flex transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
               <img src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-80 mt-20 2xl:mt-40 w-32 absolute"/>
               <div className="flex w-full items-center 2xl:pl-24 2xl:mt-20">
                 <a href="https://www.drivephone.fr"  className="flex flex-row self-center ml-56 2xl:ml-64 italic mt-56  transform -skew-y-12 rotate-12 px-2 rounded-full w-fit bg-white">
@@ -701,7 +716,17 @@ export default function Home() {
                 <img src={avatar} alt="avatar" className="w-1/3 h-fit p-12 2xl:p-24"/>
                 <div className="w-2/3 h-full flex flex-col">
                   <h3 className="text-center text-[#3586FF] text-2xl 2xl:text-4xl font-semibold pt-12 italic w-5/6">Contactez-nous !</h3>
-
+                  <div className='flex flex-row content-center pl-24'>
+                    <div className='flex flex-col gap-y-8'>
+                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center mt-36'><Image src={phone} alt='phone-icon' className='w-5 h-5 mr-2'/>+33 7 60 78 66 36</a>
+                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center'><Image src={email} alt='phone-icon' className='w-5 h-5 mr-2'/>digitaldashotb@gmail.com</a>
+                    </div>
+                    <div className='flex flex-col gap-y-8 pl-24 px-12'>
+                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center mt-28'><Image src={whatsapp} alt='phone-icon' className='w-5 h-5 mr-2'/>+33 7 60 78 66 36</a>
+                      <a href="https://www.linkedin.com/company/on-the-board-tech/" className='text-xl text-[#3586ff] flex flex-row items-center '><Image src={linkedin} alt='phone-icon' className='w-5 h-5 mr-2'/>On The Board</a>
+                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center '><Image src={insta} alt='phone-icon' className='w-5 h-5 mr-2'/>@ontheboard_</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -713,7 +738,7 @@ export default function Home() {
 
       <section className={`${loaded ? "hidden" : "main-container transform animate-disappearLoader"}`}>
         <div className="main">
-          <div className="big-circle">
+          <div className="big-circle absolute md:relative md:top-0 md:left-0 top-[13%] left-[5%] max-w-[90dvw] max-h-[90dvw] md:max-w-[100%] md:max-h-[100%]">
             <div className="icon-block">
               <img src={seoIcon} alt="web design icon" />
             </div>
@@ -727,7 +752,7 @@ export default function Home() {
               <img src={ecommerceIcon} alt="ui-ux icon" />
             </div>
           </div>
-          <div className="circle">
+          <div className="circle  max-w-[65dvw] max-h-[65dvw]">
             <div className="icon-block">
               <img src={creatiiveIcon} alt="app icon" />
             </div>
@@ -742,7 +767,7 @@ export default function Home() {
             </div>
           </div>
           <div className="center-logo">
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" className='w-[40dvw] h-[40dvw] max-w-[200px] max-h-[200px]' />
           </div>
         </div>
       </section>
