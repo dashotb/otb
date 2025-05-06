@@ -3,8 +3,8 @@ const logo = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.fireb
 const avatar = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Favatar.png?alt=media&token=7f49911f-6827-4fa7-85f0-bfad4c9ee5b9"
 
 //Assets
-const bg = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fbg.png?alt=media&token=594dc146-d04e-4a89-a24f-b03140a116fe"
-const bg_mobile = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fbg-mobile.png?alt=media&token=026ed15f-9f44-4fb9-ad11-8104fd4b05b7"
+const bg = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fbackground.png?alt=media&token=449aa2b0-369c-477d-a42e-71a47986d445"
+const bg_mobile = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fbg-mobile.png?alt=media&token=8303e6ad-4527-410b-8fde-aa4a3aea4f17"
 const clipboard = "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclipboard.png?alt=media&token=883ed4a0-d0e9-44e4-83be-10df03b789fe"
 
 //Devices
