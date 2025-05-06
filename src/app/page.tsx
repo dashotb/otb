@@ -555,7 +555,7 @@ export default function Home() {
                     pagination={{ clickable: false }}
                     autoplay={{ delay: 10000 }}
                     loop
-                    className="w-[12vw] lg:w-[9.25vw] h-[16.273vw] lg:h-[12.476vw] relative"
+                    className="w-[12vw] lg:w-[9.25vw] relative transition duration-300"
                     slidesPerView={1}
 
                   >
@@ -595,7 +595,7 @@ export default function Home() {
                     modules={[Autoplay]}
                     autoplay={{ delay: 10000 }}
                     loop
-                    className="w-[6vw] lg:w-[4.2vw] h-[10.7vw] lg:h-[11.5vw] relative"
+                    className="w-[6vw] lg:w-[4.2vw] relative transition duration-300"
                     slidesPerView={1}
 
                   >
