@@ -405,7 +405,7 @@ export default function Home() {
     {
       id : 2,
       name : "E-Commerce",
-      price: "999",
+      price: "799",
       tableau: TabMobile,
       video: "empty"
       
@@ -472,7 +472,7 @@ export default function Home() {
           {/* Section Produits */}
 
           <section className="scroller-section w-screen h-[100dvh] lg:h-[100vh] relative flex flex-row mb-0.5" id="products" ref={targetProducts}>
-            <div className="w-full md:w-[60vw] flex flex-col">
+            <div className="w-full md:w-[60vw] flex flex-col relative">
               <div className={`${useIsVisible(targetProducts) ?"w-[80vw] md:w-[33vw] 2xl:w-[30vw] justify-between mx-auto  pt-24 flex flex-row transform animate-slidein700_0px opacity-0 content-center" : "hidden opacity-0 translate-y-full"}`}>
                 <img src={chevronleft} alt="chevronleft" className="mt-2 md:mt-0 w-6 md:w-10 h-6 md:h-10 lg:w-12 lg:h-12 cursor-pointer hover:bg-gray-300/30 rounded-full transition duration-500" onClick={() => {PreviousProduct()}}/>
                 <h3 className={`${productNameAnim} text-[#3586FF] text-2xl md:text-4xl 2xl:text-5xl pt-1 2xl:pt-0 px-4 font-semibold transition duration-500`}>{products.map(p => p.id == productId ? p.name :null)}</h3>
@@ -481,7 +481,7 @@ export default function Home() {
               
               {useIsVisible(targetProducts) ? 
               products.map(p => p.id == productId ? 
-                <div className={`${productVideoAnim} h-full w-full`}>
+                <div className={`${productVideoAnim} h-fit  w-full`}>
                     <div className="w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] ">
                       <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
                         <source src={p.video}  />
@@ -491,22 +491,24 @@ export default function Home() {
                   : <></>
               }
 
-              <div className={` z-0 ${useIsVisible(targetProducts) ?"container w-[45vw] text-[#3586FF] text-2xl font-semibold absolute -bottom-6 md:-bottom-20 left-[10vw] md:left-32 transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
-                <div className="center">
+              <div className={` z-0 ${useIsVisible(targetProducts) ?" flex flex-row px-7 mt-40 md:mt-28 md:px-28 justify-between w-full text-[#3586FF] text-2xl font-semibold  transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
+                <div className="">
                   <Dialog>
-                    <DialogTrigger className="hidden md:block btn border-none rounded-md">
+                    <DialogTrigger className="hidden md:block center btn border-none rounded-md group">
                         <svg width="280px" height="60px" viewBox="0 0 280 60" className="hidden md:block border-0">
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                         </svg>
-                        <span className={`text-[#3586FF] text-sm 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                        <span className={`text-[#3586FF] text-sm 2xl:text-3xl transition duration-500 group-hover:hidden`}>A partir de <span className={`${productNameAnim} `}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                        <span className='text-white md:text-[#3586FF] text-base 2xl:text-2xl transition duration-500 group-hover:block hidden'>Demander un devis</span>
                     </DialogTrigger>
-                    <DialogTrigger className="block md:hidden bg-[#3586FF] border border-2 border-[#3586FF] px-2 pb-1 w-fit  md:btn border-none rounded-md">
+                    <DialogTrigger className="block md:hidden bg-[#3586FF] border border-2 border-[#3586FF] px-2 pb-1 w-fit group md:btn border-none rounded-md">
                         <svg width="280px" height="60px" viewBox="0 0 280 60" className="hidden md:block border-0">
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                         </svg>
-                        <span className={`text-white md:text-[#3586FF] text-base 2xl:text-3xl transition duration-500`}>A partir de <span className={`${productNameAnim} transition duration-500`}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                        <span className={`text-white md:text-[#3586FF] text-base 2xl:text-3xl transition duration-500 group-hover:hidden`}>A partir de <span className={`${productNameAnim} `}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                        <span className='text-white md:text-[#3586FF] text-base 2xl:text-2xl transition duration-500 group-hover:block hidden'>Demander un devis</span>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
@@ -522,9 +524,10 @@ export default function Home() {
                   </Dialog>
                   
                 </div>
-                <a href="" className='text-base flex ml-auto lg:text-xl pb-3'>En Savoir Plus</a>
+                <a href="" className='text-base flex lg:text-xl pt-2 md:pt-3 p-3 hover:underline transition duration-300'>En Savoir plus</a>
               </div>     
             </div>
+            
             <div className={`${useIsVisible(targetProducts) ? "hidden md:flex transform animate-slidein300 opacity-0 absolute shadow-xl border-left -right-[10vw] top-1.5 w-[50vw] h-[100vh] flex transform skew-y-12 -rotate-12 bg-neutral-200 " : "hidden opacity-0 translate-y-[100px]"}`}>
                 <img src={clipboard} alt="clipboard" className="transform -skew-y-12 rotate-12 w-[45vw] mx-auto my-auto pr-[5vw] self-center absolute"/>
                 <div key={"clipboard"} className="transform -skew-y-12 rotate-12 relative w-[45vw] ml-[12vw] mt-[25vh] 2xl:mt-[22vh] content-center z-10 sroller text-[#3586FF] text-xl mx-32 pt-8 2xl:pt-24 h-fit ml-40 overflow-scroll no-scrollbar max-h-[70vh] space-y-6">
