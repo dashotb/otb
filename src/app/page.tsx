@@ -590,7 +590,7 @@ export default function Home() {
               </div>
               <div>
                 <img src={iPhone} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideright500 opacity-0 -translate-y-full z-10 w-[6vw] lg:w-[4.2vw] h-[12vw] lg:h-[8.512vw] absolute bottom-[45dvh] lg:bottom-[15vh] left-[45vw] lg:left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
-                <div className={`${useIsVisible(targetLanding) ? "opacity-0 overflow-hidden transition animate-appear1500 z-20 w-[6vw] lg:w-[4.2vw] pb-0 h-[12vw] lg:h-[8.512vw] absolute bottom-[45dvh] lg:bottom-[15vh]  left-[45vw] lg:left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
+                <div className={`${useIsVisible(targetLanding) ? "opacity-0 overflow-hidden transition animate-appear1500 z-20 w-[6vw] lg:w-[4.2vw] pb-0 h-[11.9vw] lg:h-[8.512vw] absolute bottom-[45dvh] lg:bottom-[15vh]  left-[45vw] lg:left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
                   <Swiper
                     modules={[Autoplay]}
                     autoplay={{ delay: 10000 }}
