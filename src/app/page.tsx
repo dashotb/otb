@@ -6,6 +6,10 @@ import React, { useRef, useEffect, useState, useCallback, Suspense } from 'react
 import {iMac, iPhone, iPad, bg, bg_mobile, clipboard, logo, avatar} from "@/img/images"
 import { DP_logo, A2V_logo, Zidi_logo } from "@/img/images";
 import {blockchainIcon, seoIcon, cyberrsecIcon, creatiiveIcon, magaeIcon, ecommerceIcon, emailIcon, robotIcon, searchIcon, chevronleft, chevronright} from "@/icons/icons"
+import zidiComp from "@/img/clients/zidi-comp.png"
+import zidiPhone from "@/img/clients/zidi-phone.png"
+import zidiIpad from "@/img/clients/zidi-ipad.png"
+
 import phone from "@/icons/phone.png"
 import email from "@/icons/email2.png"
 import insta from "@/icons/instagram.png"
@@ -34,6 +38,11 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Phone } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+
 
 function useIsVisible(ref: any) {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -412,8 +421,82 @@ export default function Home() {
     }
   ]
 
-  const [currentVitrine, setCurrentVitrine] = useState("/VideoZidi.mp4")
+  const vitrines = [
+    {
+      name: "Zidi Pizza",
+      logo: "",
+      description: "",
+      comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fzidi-comp.png?alt=media&token=017224cf-ba53-4200-89f2-dbc88a9ea422",
+      ipad: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fzidi-ipad.png?alt=media&token=b7516ce0-629b-4fa4-91b2-a2f1583f69df",
+      phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fzidi-phone.png?alt=media&token=629e89c8-5c16-4fe0-807d-af841eac5f0e"
+    },
+    {
+      name: "HJ Services Autos",
+      logo: "",
+      description: "",
+      comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fhj-comp.png?alt=media&token=db6408d2-9e61-4361-b712-ac36bc20dd1b",
+      ipad: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fhj-ipad.png?alt=media&token=7291cd47-fba9-4341-ac10-ff82bbb88d28",
+      phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fhj-phone.png?alt=media&token=05f5e6b4-cd0d-462c-bba7-1cc1528162d9"
+    },
+    {
+      name: "Vice Cars",
+      logo: "",
+      description: "",
+      comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fvc-comp.png?alt=media&token=2a3ff9ea-f6bc-4f2e-9f42-eef98e2fe000",
+      ipad: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fvc-ipad.png?alt=media&token=7514dd0f-f032-4e15-b206-3b48c77f3b12",
+      phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fvc-phone.png?alt=media&token=d5669ddf-7650-4a98-b7b6-fd8630272334"
+    },
+    {
+      name: "Stevan Stakic",
+      logo: "",
+      description: "",
+      comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fss-comp.png?alt=media&token=395c1a64-ea7b-498e-af24-55493e397d0a",
+      ipad: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fss-ipad.png?alt=media&token=aff6cb14-929c-4fde-85ea-253441a44412",
+      phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fss-phone.png?alt=media&token=2c10cdf5-dd7d-4cdf-8a6c-d0b1c2e72a6d"
+    },
+    {
+      name: "Arka",
+      logo: "",
+      description: "",
+      comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Farka-comp.png?alt=media&token=683fd189-d764-418e-bbd3-b47a1e474fd4",
+      ipad: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Farka-ipad.png?alt=media&token=14ba230a-c082-4e8b-bdca-c6367d6c4e91",
+      phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Farka-phone.png?alt=media&token=07a26111-493d-433f-a897-889710b7df05"
+    },
+    {
+      name: "Patisserie Artisanale",
+      logo: "",
+      description: "",
+      comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fpatissier-comp.png?alt=media&token=733829a6-5022-49dc-9818-222ac28ddf1c",
+      ipad: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fpatissier-ipad.png?alt=media&token=83b3a280-c761-44b0-a742-becf64996403",
+      phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fpatissier-phone.png?alt=media&token=811d9014-b647-4b18-859e-964174388077"
+    },
+    {
+      name: "Drive Phone",
+      logo: "",
+      description: "",
+      comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fdp-comp.png?alt=media&token=d5e48d59-ef27-4b88-8bb0-1de5943d7537",
+      ipad: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fdp-ipad.png?alt=media&token=80f0d190-11a9-43b8-b828-0f74337450f5",
+      phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fdp-phone.png?alt=media&token=99dfcd94-13d8-4d75-90cf-620dd9c604e4"
+    },
+  ]
+  const [loadingVitrine, setLoadingVitrine] = useState(false)
+  var i = 0
+  const [currentVitrine, setCurrentVitrine] = useState<any>(vitrines[i])
+  function changeVitrine(){
+    if (i + 1 < vitrines.length){
+      i += 1
 
+    }else (i = 0)
+    setLoadingVitrine(true)
+    setCurrentVitrine(vitrines[i])
+    console.log(currentVitrine)
+    setLoadingVitrine(false)
+
+    return currentVitrine
+  }
+  useEffect(() => {
+    setInterval(changeVitrine, 10000);
+  })
 
   const [loaded, setLoaded] = useState(false)
   async function Load () {
@@ -463,9 +546,68 @@ export default function Home() {
           <img src={logo} alt="logo" className={`${useIsVisible(targetLanding) ? "transform animate-slidein700_10px opacity-0 w-24 2xl:w-32 z-10 absolute left-0 right-0 mx-auto pt-24" : "hidden opacity-0 translate-y-[100px]"}`}/>
             <h1 className={`${useIsVisible(targetLanding) ? "transform animate-slideout500 " : "hidden opacity-0 translate-y-[100px]"}"hidden opacity-0 translate-y-[100px] text-2xl lg:text-3xl 2xl:text-5xl font-semibold text-[#3586FF] text-center relative pt-52 2xl:pt-60 z-10"`}>Agence Digitale</h1>
             <div className="flex flex-row z-10">
-              <img src={iPad} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideleft500 opacity-0 -translate-y-full z-10 w-12 lg:w-44 absolute bottom-[45dvh] lg:bottom-[15vh] left-0 right-[50vw] lg:right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
-              <img src={iMac} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slidein500 opacity-0 -translate-y-full z-10 w-[35vw] lg:w-[30vw] absolute bottom-[45dvh] lg:bottom-[15vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
-              <img src={iPhone} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideright500 opacity-0 -translate-y-full z-10 w-6 lg:w-20 absolute bottom-[45dvh] lg:bottom-[15vh] left-[45vw] lg:left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
+              <div className=''>
+                <img src={iPad} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideleft500 opacity-0 -translate-y-full z-10 w-[12vw] lg:w-[9.2vw] h-[16.273vw] lg:h-[12.476vw] absolute bottom-[45dvh] lg:bottom-[15vh] left-0 right-[50vw] lg:right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
+                <div className={`${useIsVisible(targetLanding) ? "opacity-0 transition animate-appear1500 z-20 w-[12vw] h-[16.273vw] lg:w-[9.25vw] lg:h-[12.476vw] pb-0 absolute overflow-hidden bottom-[45dvh] lg:bottom-[15vh] left-0 right-[50vw] lg:right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    navigation
+                    pagination={{ clickable: false }}
+                    autoplay={{ delay: 10000 }}
+                    loop
+                    className="w-[12vw] lg:w-[9.25vw] h-[16.273vw] lg:h-[12.476vw] relative"
+                    slidesPerView={1}
+
+                  >
+                    {vitrines.map((image, index) => (
+                      <SwiperSlide key={index}>
+                        <img src={image.ipad} />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+
+                </div>
+              </div>
+              <div className=''>
+                <img src={iMac} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slidein500 opacity-0 -translate-y-full z-10 w-[35vw] lg:w-[30vw] h-[33.774vw] lg:h-[28.95vw] absolute bottom-[45dvh] lg:bottom-[15vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/> 
+                <div className={`${useIsVisible(targetLanding) ? "opacity-0 transition animate-appear1500 z-20 w-[35vw] lg:w-[30vw] h-[33.774vw] lg:h-[28.95vw] overflow-hidden absolute bottom-[45dvh] lg:bottom-[15.2vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
+                  <Swiper
+                    modules={[Autoplay]}
+                    autoplay={{ delay: 10000 }}
+                    loop
+                    className="w-[35vw] lg:w-[30.2vw] relative transition duration-300"
+                    slidesPerView={1}
+
+                  >
+                    {vitrines.map((image, index) => (
+                      <SwiperSlide key={index}>
+                        <img src={image.comp} />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+
+                </div>
+              </div>
+              <div>
+                <img src={iPhone} alt="i" className={`${useIsVisible(targetLanding) ? "transform animate-slideright500 opacity-0 -translate-y-full z-10 w-[6vw] lg:w-[4.2vw] h-[12vw] lg:h-[8.512vw] absolute bottom-[45dvh] lg:bottom-[15vh] left-[45vw] lg:left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}/>
+                <div className={`${useIsVisible(targetLanding) ? "opacity-0 overflow-hidden transition animate-appear1500 z-20 w-[6vw] lg:w-[4.2vw] pb-0 h-[12vw] lg:h-[8.512vw] absolute bottom-[45dvh] lg:bottom-[15vh]  left-[45vw] lg:left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
+                  <Swiper
+                    modules={[Autoplay]}
+                    autoplay={{ delay: 10000 }}
+                    loop
+                    className="w-[6vw] lg:w-[4.2vw] h-[10.7vw] lg:h-[11.5vw] relative"
+                    slidesPerView={1}
+
+                  >
+                    {vitrines.map((image, index) => (
+                      <SwiperSlide key={index}>
+                        <img src={image.phone} />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+
+                </div>
+              </div>
             </div>
           </section>
 
@@ -484,14 +626,14 @@ export default function Home() {
                 <div className={`${productVideoAnim} h-fit  w-full`}>
                     <div className="w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] ">
                       <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
-                        <source src={p.video}  />
+                        <source src={p.video} />
                       </video>
                     </div>
                 </div> : <></>)
                   : <></>
               }
 
-              <div className={` z-0 ${useIsVisible(targetProducts) ?" flex flex-row px-7 mt-40 md:mt-28 md:px-28 justify-between w-full text-[#3586FF] text-2xl font-semibold  transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
+              <div className={` z-0 ${useIsVisible(targetProducts) ?" flex flex-row px-7 mt-24 md:mt-28 md:px-28 justify-between w-full text-[#3586FF] text-2xl font-semibold  transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
                 <div className="">
                   <Dialog>
                     <DialogTrigger className="hidden md:block center btn border-none rounded-md group">
@@ -777,5 +919,3 @@ export default function Home() {
     </div>
   );
 }
-
-
