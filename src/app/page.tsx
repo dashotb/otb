@@ -618,34 +618,34 @@ export default function Home() {
               </div>
               
               {useIsVisible(targetProducts) ? 
-              productId == 0 ? 
-              <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              navigation
-              pagination={{ clickable: false }}
-              autoplay={{ delay: 10000 }}
-              loop
-              className={`${productVideoAnim} "overflow-hidden w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] "`}
-              slidesPerView={1}
+                productId == 0 ? 
+                <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                navigation
+                pagination={{ clickable: false }}
+                autoplay={{ delay: 10000 }}
+                loop
+                className={`${productVideoAnim} "overflow-hidden w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] "`}
+                slidesPerView={1}
 
-              >
-                {vitrines.filter(i => i.type == "Vitrine").map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <img src={image.comp} className='rounded-xl w-full h-full'/> 
-                  </SwiperSlide>
-                ))}
-              </Swiper> :
-              productId == 1 ? 
-              <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              navigation
-              pagination={{ clickable: false }}
-              autoplay={{ delay: 10000 }}
-              loop
-              className={`${productVideoAnim} "overflow-hidden w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] "`}
-              slidesPerView={1}
+                >
+                  {vitrines.filter(i => i.type == "Vitrine").map((image, index) => (
+                    <SwiperSlide key={index}>
+                      <img src={image.comp} className='rounded-xl w-full h-full'/> 
+                    </SwiperSlide>
+                  ))}
+                </Swiper> :
+                productId == 1 ? 
+                <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                navigation
+                pagination={{ clickable: false }}
+                autoplay={{ delay: 10000 }}
+                loop
+                className={`${productVideoAnim} "overflow-hidden w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] "`}
+                slidesPerView={1}
 
-              >
+                >
                 {vitrines.filter(i => i.type == "App").map((image, index) => (
                   <SwiperSlide key={index}>
                     
@@ -654,22 +654,11 @@ export default function Home() {
                   </SwiperSlide>
                 ))}
               </Swiper> :
-              <iframe src="https://lottie.host/embed/70f4d6b3-c7b7-41e6-a48f-531dd9cee2d1/6dDDNt0cvs.lottie" className={`${productVideoAnim} 'w-[40vw] h-[50vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 mt-7 2xl:mt-14 py-12 '`}></iframe>
-
-              
-              
-              // products.map(p => p.id == productId ? 
-              //   <div key={p.id} className={`${productVideoAnim} h-fit  w-full`}>
-              //       <div className="w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] ">
-              //         <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
-              //           <source src={p.video} />
-              //         </video>
-              //       </div>
-              //   </div> : <></>)
+              <iframe src="https://lottie.host/embed/70f4d6b3-c7b7-41e6-a48f-531dd9cee2d1/6dDDNt0cvs.lottie" className={`${productVideoAnim} 'w-[40vw] h-[46.3vh] md:w-[40vw] md:h-[50vh] mx-auto mt-24 mt-7 2xl:mt-14 md:py-12 '`}></iframe>
                   : <></>
               }
 
-              <div className={` z-0 ${useIsVisible(targetProducts) ?" flex flex-row px-7 mt-24 md:mt-28 md:px-28 justify-between w-full text-[#3586FF] text-2xl font-semibold  transform animate-slideout500_0px opacity-0": "opacity-0 -translate-X-full"}`}>
+              <div className={` z-0 ${useIsVisible(targetProducts) ?` flex flex-row px-7 ${productId != 2 ? "mt-24" : "mt-0" }  md:mt-28 md:px-28 justify-between w-full text-[#3586FF] text-2xl font-semibold  transform animate-slideout500_0px opacity-0`: "opacity-0 -translate-X-full"}`}>
                 <div className="">
                   <Dialog>
                     <DialogTrigger className="hidden md:block center btn border-none rounded-md group">
@@ -817,7 +806,7 @@ export default function Home() {
                               <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 px-1">20 min</p>
                               <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">1er échange pour comprendre vos besoins.</p>
                           </div>
-                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "><div className="bg-[#3586FF] w-[58rem] 2xl:w-[75rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[3.5rem] 2xl:ml-32 z-[2] "><div className="bg-[#3586FF] w-[38rem] 2xl:w-[75rem] h-[0.2rem] rounded-[100px] absolute mt-2 mr-12 z-[2]"></div></div>
                       </div>
                       <div className="inline-block">
                           <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
@@ -826,7 +815,7 @@ export default function Home() {
                               {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">90 min</p> */}
                               <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Présentation de ce que nous sommes en mesure de vous proposer.</p>
                           </div>
-                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[3.5rem] 2xl:ml-32 z-[2] "></div>
                       </div>
                       <div className="inline-block">
                           <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
@@ -835,7 +824,7 @@ export default function Home() {
                               {/* <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">2h à 3h</p> */}
                               <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Développement de la version de base de votre application, qui pourra être améliorée <span className="hidden">par la suite...</span></p>
                           </div>
-                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[3.5rem] 2xl:ml-32 z-[2] "></div>
                       </div>
                       <div className="inline-block">
                           <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
@@ -844,7 +833,7 @@ export default function Home() {
                               <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5 relative z-[1]">1h</p>
                               <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Rencontre avec un des fondateurs et Elodie notre Head of People.</p>
                           </div>
-                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[3.5rem] 2xl:ml-32 z-[2] "></div>
                       </div>
                       <div className="inline-block">
                           <div className="bg-[#3586FF] relative w-32 h-32 rounded-[5px]">
@@ -853,7 +842,7 @@ export default function Home() {
                               <p className="text-sm 2xl:text-lg 2xl:font-semibold pt-2 px-5">On ne te fait pas attendre !</p>
                               <p className="text-xs 2xl:text-lg 2xl:font-semibold pt-0.5 leading-2 px-1">Ta proposition est déjà prête, il ne te reste plus qu'à l'accepter!</p>
                           </div>
-                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[5.5rem] 2xl:ml-32 z-[2] "></div>
+                          <div className="bg-[#3586FF] w-[1.2rem] h-[1.2rem] rounded-[100px] relative mt-5 ml-[3.5rem] 2xl:ml-32 z-[2] "></div>
                       </div>
                           
                   </div>
