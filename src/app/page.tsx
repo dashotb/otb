@@ -40,6 +40,7 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
+import { ContactForm } from '@/components/ContactForm';
 
 
 function useIsVisible(ref: any) {
@@ -133,7 +134,7 @@ export default function Home() {
     setTimeout(appearProductName, 500)
   }
 
-  const TabVitrine = <>
+   const TabVitrine = <>
     <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
                 <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
@@ -153,8 +154,8 @@ export default function Home() {
                 </p>
                 <p className="text-lg text-gray-700 mb-6">
                   Nos clients peuvent ainsi explorer chaque détail de leur futur site avant même que la première ligne de code ne soit écrite. 
-                  Ils ont l'opportunité de <span className="font-semibold">valider le design, l’ergonomie et les fonctionnalités</span> tout en 
-                  apportant d’éventuels ajustements en amont, garantissant ainsi un produit final qui correspond 
+                  Ils ont l'opportunité de <span className="font-semibold">valider le design, l'ergonomie et les fonctionnalités</span> tout en 
+                  apportant d'éventuels ajustements en amont, garantissant ainsi un produit final qui correspond 
                   <span className="font-semibold"> exactement à leurs attentes</span>.
                 </p>
 
@@ -162,7 +163,7 @@ export default function Home() {
                 <p className="text-gray-700 mb-6">
                   Contrairement à d'autres agences qui facturent la conception des maquettes, nous avons choisi de l'offrir gratuitement. 
                   Nous voulons que nos clients sachent <span className="font-semibold">précisément ce pour quoi ils vont payer</span>, avant 
-                  d’engager tout budget de développement. Cette transparence permet d'éviter les incompréhensions et de garantir un 
+                  d'engager tout budget de développement. Cette transparence permet d'éviter les incompréhensions et de garantir un 
                   résultat final optimal.
                 </p>
 
@@ -173,8 +174,8 @@ export default function Home() {
                   dans une pré-version de son site. 
                 </p>
                 <ul className="list-disc list-inside text-gray-700 mb-6">
-                  <li><span className="font-semibold">L’apparence générale :</span> couleurs, typographie, mise en page.</li>
-                  <li><span className="font-semibold">L’expérience utilisateur (UX) :</span> navigation intuitive et ergonomie.</li>
+                  <li><span className="font-semibold">L'apparence générale :</span> couleurs, typographie, mise en page.</li>
+                  <li><span className="font-semibold">L'expérience utilisateur (UX) :</span> navigation intuitive et ergonomie.</li>
                   <li><span className="font-semibold">Les fonctionnalités essentielles :</span> CTA, formulaires, animations.</li>
                 </ul>
 
@@ -184,7 +185,7 @@ export default function Home() {
                 </p>
                 <ol className="list-decimal list-inside text-gray-700 mb-6">
                   <li><span className="font-semibold">Compréhension des besoins :</span> définition des objectifs du projet.</li>
-                  <li><span className="font-semibold">Création de la maquette :</span> réalisation d’un premier jet visuel.</li>
+                  <li><span className="font-semibold">Création de la maquette :</span> réalisation d'un premier jet visuel.</li>
                   <li><span className="font-semibold">Validation et ajustements :</span> modifications avant validation finale.</li>
                   <li><span className="font-semibold">Lancement du développement :</span> début du projet en toute sérénité.</li>
                 </ol>
@@ -394,16 +395,18 @@ export default function Home() {
               </DrawerContent>
             </Drawer>  
   </>
-  const TabWeb = <>
-  </>
-  const TabMobile = <>
-  </>
+
+ const TabApp = <>
+  </>;
+
+ const TabIA = <>
+  </>;
 
   const products = [
     {
       id : 0,
       name : "Site Vitrine",
-      price: "499",
+      price: "799",
       tableau: TabVitrine,
       video: "empty"
       
@@ -411,8 +414,8 @@ export default function Home() {
     {
       id : 1,
       name : "Application",
-      price: "999",
-      tableau: TabWeb,
+      price: "1499",
+      tableau: TabApp,
       video: "empty"
       
     },
@@ -420,7 +423,7 @@ export default function Home() {
       id : 2,
       name : "IA",
       price: "799",
-      tableau: TabMobile,
+      tableau: TabIA,
       video: "empty"
       
     }
@@ -684,14 +687,12 @@ export default function Home() {
                           Merci de renseigner les informations relatives à votre projet, <br /> pour faciliter la prise en charge de votre demande.
                         </DialogDescription>
                       </DialogHeader>
-                      <form>
-                        
-                      </form>
+                        <ContactForm/>
                     </DialogContent>
                   </Dialog>
                   
                 </div>
-                <a href="" className='text-base flex lg:text-xl pt-2 md:pt-3 p-3 hover:underline transition duration-300'>En Savoir plus</a>
+                <a href={`${productId == 0 ? "/sites-vitrine" : productId == 1 ? "/applications" : productId == 2 ? "/intelligence-artificielle" : "/"}`} className='text-base flex lg:text-xl pt-2 md:pt-3 p-3 hover:underline transition duration-300'>En Savoir plus</a>
               </div>     
             </div>
             
