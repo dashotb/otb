@@ -40,8 +40,7 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import dynamic from 'next/dynamic';
-const AIPlayer = dynamic(() => import('@/components/Johnny/Player'), { ssr: false });
+
 
 function useIsVisible(ref: any) {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -655,10 +654,9 @@ export default function Home() {
                   </SwiperSlide>
                 ))}
               </Swiper> :
-              <div className={`${productVideoAnim} 'w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 relative'`}>
-                <AIPlayer/>
+              <iframe src="https://lottie.host/embed/70f4d6b3-c7b7-41e6-a48f-531dd9cee2d1/6dDDNt0cvs.lottie" className={`${productVideoAnim} 'w-[40vw] h-[50vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 mt-7 2xl:mt-14 py-12 '`}></iframe>
 
-              </div>
+              
               
               // products.map(p => p.id == productId ? 
               //   <div key={p.id} className={`${productVideoAnim} h-fit  w-full`}>
