@@ -39,6 +39,7 @@ import { Badge } from "@/components/ui/badge"
 import { Phone } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import {Player} from "@lottiefiles/react-lottie-player";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -400,7 +401,7 @@ export default function Home() {
       name : "Site Vitrine",
       price: "499",
       tableau: TabVitrine,
-      video: "/VideoZidi.mp4"
+      video: "empty"
       
     },
     {
@@ -413,7 +414,7 @@ export default function Home() {
     },
     {
       id : 2,
-      name : "E-Commerce",
+      name : "IA",
       price: "799",
       tableau: TabMobile,
       video: "empty"
@@ -424,6 +425,7 @@ export default function Home() {
   const vitrines = [
     {
       name: "Zidi Pizza",
+      type: "Vitrine",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fzidi-comp.png?alt=media&token=017224cf-ba53-4200-89f2-dbc88a9ea422",
@@ -432,6 +434,7 @@ export default function Home() {
     },
     {
       name: "HJ Services Autos",
+      type: "App",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fhj-comp.png?alt=media&token=db6408d2-9e61-4361-b712-ac36bc20dd1b",
@@ -440,6 +443,7 @@ export default function Home() {
     },
     {
       name: "Vice Cars",
+      type: "Vitrine",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fvc-comp.png?alt=media&token=2a3ff9ea-f6bc-4f2e-9f42-eef98e2fe000",
@@ -448,6 +452,7 @@ export default function Home() {
     },
     {
       name: "Stevan Stakic",
+      type: "Vitrine",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fss-comp.png?alt=media&token=395c1a64-ea7b-498e-af24-55493e397d0a",
@@ -456,6 +461,7 @@ export default function Home() {
     },
     {
       name: "Arka",
+      type: "Vitrine",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Farka-comp.png?alt=media&token=683fd189-d764-418e-bbd3-b47a1e474fd4",
@@ -464,6 +470,7 @@ export default function Home() {
     },
     {
       name: "Patisserie Artisanale",
+      type: "App",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fpatissier-comp.png?alt=media&token=733829a6-5022-49dc-9818-222ac28ddf1c",
@@ -472,6 +479,7 @@ export default function Home() {
     },
     {
       name: "Drive Phone",
+      type: "App",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fdp-comp.png?alt=media&token=d5e48d59-ef27-4b88-8bb0-1de5943d7537",
@@ -479,25 +487,7 @@ export default function Home() {
       phone: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fdp-phone.png?alt=media&token=99dfcd94-13d8-4d75-90cf-620dd9c604e4"
     },
   ]
-  const [loadingVitrine, setLoadingVitrine] = useState(false)
-  var i = 0
-  const [currentVitrine, setCurrentVitrine] = useState<any>(vitrines[i])
-  function changeVitrine(){
-    if (i + 1 < vitrines.length){
-      i += 1
-
-    }else (i = 0)
-    setLoadingVitrine(true)
-    setCurrentVitrine(vitrines[i])
-    console.log(currentVitrine)
-    setLoadingVitrine(false)
-
-    return currentVitrine
-  }
-  useEffect(() => {
-    setInterval(changeVitrine, 10000);
-  })
-
+ 
   const [loaded, setLoaded] = useState(false)
   async function Load () {
     setLoaded(true)
@@ -506,6 +496,8 @@ export default function Home() {
   useEffect(() => {
     setTimeout(Load, 3000)
   })
+
+  const animationURL = "https://lottie.host/353ded5b-a00c-40d7-8c32-2989e88be4f5/KxbT5j9Gci.json";
 
   return (
     <div className='bg-[#f7f7f7]' id="main">
@@ -622,14 +614,58 @@ export default function Home() {
               </div>
               
               {useIsVisible(targetProducts) ? 
-              products.map(p => p.id == productId ? 
-                <div className={`${productVideoAnim} h-fit  w-full`}>
-                    <div className="w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] ">
-                      <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
-                        <source src={p.video} />
-                      </video>
-                    </div>
-                </div> : <></>)
+              productId == 0 ? 
+              <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              navigation
+              pagination={{ clickable: false }}
+              autoplay={{ delay: 10000 }}
+              loop
+              className={`${productVideoAnim} "overflow-hidden w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] "`}
+              slidesPerView={1}
+
+              >
+                {vitrines.filter(i => i.type == "Vitrine").map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <img src={image.comp} className='rounded-xl w-full h-full'/> 
+                  </SwiperSlide>
+                ))}
+              </Swiper> :
+              productId == 1 ? 
+              <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              navigation
+              pagination={{ clickable: false }}
+              autoplay={{ delay: 10000 }}
+              loop
+              className={`${productVideoAnim} "overflow-hidden w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] "`}
+              slidesPerView={1}
+
+              >
+                {vitrines.filter(i => i.type == "App").map((image, index) => (
+                  <SwiperSlide key={index}>
+                    
+                    <img src={image.comp} className='rounded-xl w-full h-full'/>
+                    
+                  </SwiperSlide>
+                ))}
+              </Swiper> :
+              <Player
+              src={animationURL}
+              autoplay
+              loop
+              speed={1}
+              className={`${productVideoAnim} 'w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 relative'`}
+              style={{marginTop: 56}}
+          />
+              // products.map(p => p.id == productId ? 
+              //   <div key={p.id} className={`${productVideoAnim} h-fit  w-full`}>
+              //       <div className="w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] ">
+              //         <video className="w-full h-full object-cover rounded-[0.5rem] shadow-xl border border-[#FFFFFF]" id="zidi" autoPlay muted playsInline>
+              //           <source src={p.video} />
+              //         </video>
+              //       </div>
+              //   </div> : <></>)
                   : <></>
               }
 
@@ -641,7 +677,7 @@ export default function Home() {
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="bg-line" />
                           <polyline points="279,1 279,59 1,59 1,1 279,1" className="hl-line" />
                         </svg>
-                        <span className={`text-[#3586FF] text-sm 2xl:text-3xl transition duration-500 group-hover:hidden`}>A partir de <span className={`${productNameAnim} `}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
+                        <span className={`text-[#3586FF] text-sm lg:text-xl 2xl:text-3xl transition duration-500 group-hover:hidden`}>A partir de <span className={`${productNameAnim} `}>{products.map(p => p.id == productId ? p.price : null)}</span>€</span>
                         <span className='text-white md:text-[#3586FF] text-base 2xl:text-2xl transition duration-500 group-hover:block hidden'>Demander un devis</span>
                     </DialogTrigger>
                     <DialogTrigger className="block md:hidden bg-[#3586FF] border border-2 border-[#3586FF] px-2 pb-1 w-fit group md:btn border-none rounded-md">
