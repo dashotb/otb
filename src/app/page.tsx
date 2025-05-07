@@ -36,14 +36,12 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Badge } from "@/components/ui/badge"
-import { Phone } from 'lucide-react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import {Player} from "@lottiefiles/react-lottie-player";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
-
+import dynamic from 'next/dynamic';
+const AIPlayer = dynamic(() => import('@/components/Johnny/Player'), { ssr: false });
 
 function useIsVisible(ref: any) {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -68,6 +66,13 @@ function useIsVisible(ref: any) {
 }
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // This code only runs on the client side
+    setIsClient(true);
+  }, []);
+
   // Page Sections
   const targetLanding = useRef(null);
   const targetProducts = useRef(null);
@@ -650,14 +655,11 @@ export default function Home() {
                   </SwiperSlide>
                 ))}
               </Swiper> :
-              <Player
-              src={animationURL}
-              autoplay
-              loop
-              speed={1}
-              className={`${productVideoAnim} 'w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 relative'`}
-              style={{marginTop: 56}}
-          />
+              <div className={`${productVideoAnim} 'w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 relative'`}>
+                <AIPlayer/>
+
+              </div>
+              
               // products.map(p => p.id == productId ? 
               //   <div key={p.id} className={`${productVideoAnim} h-fit  w-full`}>
               //       <div className="w-[80vw] h-[25vh] md:w-[40vw] md:h-[50vh] mx-auto mt-32 md:mt-7 2xl:mt-14 md:py-12 object-cover rounded-[0.5rem] ">
