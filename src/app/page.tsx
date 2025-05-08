@@ -41,6 +41,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { ContactForm } from '@/components/ContactForm';
+import { url } from 'inspector';
 
 
 function useIsVisible(ref: any) {
@@ -134,7 +135,7 @@ export default function Home() {
     setTimeout(appearProductName, 500)
   }
 
-   const TabVitrine = <>
+   const TabVitrine = <div className={`${productNameAnim}`}>
     <Drawer>
               <DrawerTrigger asChild className={`text-2xl 2xl:text-3xl font-semibold ${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0": "opacity-0 -translate-X-full" }`}>
                 <p className={`${useIsVisible(targetProducts) ?"scroller-section transform animate-slideleft1 opacity-0 w-fit": "opacity-0 -translate-X-full" } hover:cursor-pointer hover:underline decoration-solid`}>
@@ -394,7 +395,7 @@ export default function Home() {
                 </DrawerDescription>
               </DrawerContent>
             </Drawer>  
-  </>
+  </div>
 
  const TabApp = <>
   </>;
@@ -432,6 +433,7 @@ export default function Home() {
   const vitrines = [
     {
       name: "Zidi Pizza",
+      url: "https://www.zidi-pizza.fr",
       type: "Vitrine",
       logo: "",
       description: "",
@@ -441,6 +443,7 @@ export default function Home() {
     },
     {
       name: "HJ Services Autos",
+      url: "",
       type: "App",
       logo: "",
       description: "",
@@ -451,6 +454,7 @@ export default function Home() {
     {
       name: "Vice Cars",
       type: "Vitrine",
+      url: "https://vicecars.fr",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fvc-comp.png?alt=media&token=2a3ff9ea-f6bc-4f2e-9f42-eef98e2fe000",
@@ -460,6 +464,7 @@ export default function Home() {
     {
       name: "Stevan Stakic",
       type: "Vitrine",
+      url: "https://www.stevan-stakic.fr",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fss-comp.png?alt=media&token=395c1a64-ea7b-498e-af24-55493e397d0a",
@@ -469,6 +474,7 @@ export default function Home() {
     {
       name: "Arka",
       type: "Vitrine",
+      url: "https://www.arka-auto.fr",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Farka-comp.png?alt=media&token=683fd189-d764-418e-bbd3-b47a1e474fd4",
@@ -487,6 +493,7 @@ export default function Home() {
     {
       name: "Drive Phone",
       type: "App",
+      url: "https://www.drivephone.fr",
       logo: "",
       description: "",
       comp: "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fdp-comp.png?alt=media&token=d5e48d59-ef27-4b88-8bb0-1de5943d7537",
@@ -552,7 +559,7 @@ export default function Home() {
                     modules={[Navigation, Pagination, Autoplay]}
                     navigation
                     pagination={{ clickable: false }}
-                    autoplay={{ delay: 10000 }}
+                    autoplay={{ delay: 7000 }}
                     loop
                     className="w-[12vw] lg:w-[9.25vw] relative transition duration-300"
                     slidesPerView={1}
@@ -560,7 +567,9 @@ export default function Home() {
                   >
                     {vitrines.map((image, index) => (
                       <SwiperSlide key={index}>
-                        <img src={image.ipad} />
+                        <a href={image.url}>
+                          <img src={image.ipad} />
+                        </a>
                       </SwiperSlide>
                     ))}
                   </Swiper>
@@ -572,7 +581,7 @@ export default function Home() {
                 <div className={`${useIsVisible(targetLanding) ? "opacity-0 transition animate-appear1500 z-20 w-[35vw] lg:w-[30vw] h-[33.774vw] lg:h-[28.95vw] overflow-hidden absolute bottom-[45dvh] lg:bottom-[15.2vh] left-0 right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
                   <Swiper
                     modules={[Autoplay]}
-                    autoplay={{ delay: 10000 }}
+                    autoplay={{ delay: 7000 }}
                     loop
                     className="w-[35vw] lg:w-[30.2vw] relative transition duration-300"
                     slidesPerView={1}
@@ -580,7 +589,9 @@ export default function Home() {
                   >
                     {vitrines.map((image, index) => (
                       <SwiperSlide key={index}>
-                        <img src={image.comp} />
+                        <a href={image.url}>
+                          <img src={image.comp} />
+                        </a>
                       </SwiperSlide>
                     ))}
                   </Swiper>
@@ -592,7 +603,7 @@ export default function Home() {
                 <div className={`${useIsVisible(targetLanding) ? "opacity-0 overflow-hidden transition animate-appear1500 z-20 w-[6vw] lg:w-[4.2vw] pb-0 h-[11.9vw] lg:h-[8.512vw] absolute bottom-[45.1dvh] lg:bottom-[15vh]  left-[45vw] lg:left-[40vw] right-0 mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
                   <Swiper
                     modules={[Autoplay]}
-                    autoplay={{ delay: 10000 }}
+                    autoplay={{ delay: 7000 }}
                     loop
                     className="w-[6vw] lg:w-[4.2vw] relative transition duration-300"
                     slidesPerView={1}
@@ -600,7 +611,9 @@ export default function Home() {
                   >
                     {vitrines.map((image, index) => (
                       <SwiperSlide key={index}>
-                        <img src={image.phone} />
+                        <a href={image.url}>
+                          <img src={image.phone} />
+                        </a>
                       </SwiperSlide>
                     ))}
                   </Swiper>
@@ -634,7 +647,9 @@ export default function Home() {
                 >
                   {vitrines.filter(i => i.type == "Vitrine").map((image, index) => (
                     <SwiperSlide key={index}>
-                      <img src={image.comp} className='rounded-xl w-full h-full'/> 
+                      <a href={image.url}>
+                        <img src={image.comp} className='rounded-xl w-full h-full'/> 
+                      </a>
                     </SwiperSlide>
                   ))}
                 </Swiper> :
@@ -651,8 +666,9 @@ export default function Home() {
                 >
                 {vitrines.filter(i => i.type == "App").map((image, index) => (
                   <SwiperSlide key={index}>
-                    
-                    <img src={image.comp} className='rounded-xl w-full h-full'/>
+                    <a href={image.url}>
+                      <img src={image.comp} className='rounded-xl w-full h-full'/>
+                    </a>
                     
                   </SwiperSlide>
                 ))}
@@ -882,26 +898,36 @@ export default function Home() {
           {/* Section  Contact*/}
 
           <section className="scroller-section min-h-[100dvh] mb-1" id="contact" ref={targetContact}>
-            <div className='h-screen w-screen relative'>
+            <h3 className={`${useIsVisible(targetContact) ? " transform animate-slideout700_0px opacity-0 text-center text-[#3586FF] text-2xl 2xl:text-4xl font-semibold py-auto pt-24 pb-6 lg:h-[25vh] lg:content-center italic w-full": "hidden transform-disappear"} `}>Contactez-nous !</h3>
+            <div className='h-[40dvh] content-center flex flex-col'>
+              <div className={`${useIsVisible(targetContact) ? " transform animate-slideout700_0px opacity-0 my-auto relative bg-white shadow-lg w-[90vw] lg:w-[40vw] mx-auto  p-10 rounded-lg": "hidden transform-disappear"} `}>
+                <ContactForm/>
+                <div className='flex flex-col w-full justify-between mt-12 gap-12'>
+                    <div className='flex flex-col mx-auto gap-y-6 justify-between w-full xl:px-[10vw]'>
+                      <a href="tel:+33760786636" className='text-base lg:text-xl text-[#3586ff] flex flex-row items-center'><Image src={phone} alt='phone-icon' className='w-5 h-5 mr-2'/>+33 7 60 78 66 36</a>
+                      <a href="tel:+33760786636" className='text-base lg:text-xl text-[#3586ff] flex flex-row items-center'><Image src={email} alt='phone-icon' className='w-5 h-5 mr-2'/>digitaldashotb@gmail.com</a>
+                    </div>
+                    <div className='flex flex-row gap-y-8 justify-between w-full px-[10vw]'>
+                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center '><Image src={whatsapp} alt='phone-icon' className='w-8 lg:w-10  lg:h-10 mr-2'/></a>
+                      <a href="https://www.linkedin.com/company/on-the-board-tech/" className='text-xl text-[#3586ff] flex flex-row items-center '><Image src={linkedin} alt='phone-icon' className='w-8 lg:w-10  lg:h-10 mr-2'/></a>
+                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center '><Image src={insta} alt='phone-icon' className='w-8 lg:w-10  lg:h-10 mr-2'/></a>
+                    </div>
+                </div>
+              </div>
+            </div>
+           
+            {/* <div className='h-screen w-screen relative'>
               <div className={`${useIsVisible(targetContact) ? "absolute transform animate-slideout700_0px opacity-0 top-0 bottom-0 left-0 right-0 w-[70vw] h-[50vh] m-auto shadow-xl rounded-xl z-10 flex flex-row": "hidden transform-disappear"} `}>
                 <img src={avatar} alt="avatar" className="w-1/3 h-fit p-12 2xl:p-24"/>
                 <div className="w-2/3 h-full flex flex-col">
-                  <h3 className="text-center text-[#3586FF] text-2xl 2xl:text-4xl font-semibold pt-12 italic w-5/6">Contactez-nous !</h3>
                   <div className='flex flex-row content-center pl-24'>
-                    <div className='flex flex-col gap-y-8'>
-                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center mt-36'><Image src={phone} alt='phone-icon' className='w-5 h-5 mr-2'/>+33 7 60 78 66 36</a>
-                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center'><Image src={email} alt='phone-icon' className='w-5 h-5 mr-2'/>digitaldashotb@gmail.com</a>
-                    </div>
-                    <div className='flex flex-col gap-y-8 pl-24 px-12'>
-                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center mt-28'><Image src={whatsapp} alt='phone-icon' className='w-5 h-5 mr-2'/>+33 7 60 78 66 36</a>
-                      <a href="https://www.linkedin.com/company/on-the-board-tech/" className='text-xl text-[#3586ff] flex flex-row items-center '><Image src={linkedin} alt='phone-icon' className='w-5 h-5 mr-2'/>On The Board</a>
-                      <a href="tel:+33760786636" className='text-xl text-[#3586ff] flex flex-row items-center '><Image src={insta} alt='phone-icon' className='w-5 h-5 mr-2'/>@ontheboard_</a>
-                    </div>
+                    
+                    
                   </div>
                 </div>
               </div>
             </div>
-            <div className='h-[30vh] bg-neutral-200 '></div>
+            <div className='h-[30vh] bg-neutral-200 '></div> */}
           </section>
       </main> 
 
