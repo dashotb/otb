@@ -12,168 +12,301 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Image from 'next/image';
+import Navbar from '@/components/Navbar';
 
 export default function SitesVitrine() {
   const data = [
-    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fzidi-comp.png?alt=media&token=017224cf-ba53-4200-89f2-dbc88a9ea422",
-    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fvc-comp.png?alt=media&token=2a3ff9ea-f6bc-4f2e-9f42-eef98e2fe000",
-    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Fss-comp.png?alt=media&token=395c1a64-ea7b-498e-af24-55493e397d0a",
-    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.firebasestorage.app/o/Otb%2Fimage%2Fclients%2Farka-comp.png?alt=media&token=683fd189-d764-418e-bbd3-b47a1e474fd4",
-  ]
+    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.appspot.com/o/Otb%2Fimage%2Fclients%2Fzidi-comp.png?alt=media&token=017224cf-ba53-4200-89f2-dbc88a9ea422",
+    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.appspot.com/o/Otb%2Fimage%2Fclients%2Fvc-comp.png?alt=media&token=2a3ff9ea-f6bc-4f2e-9f42-eef98e2fe000",
+    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.appspot.com/o/Otb%2Fimage%2Fclients%2Fss-comp.png?alt=media&token=395c1a64-ea7b-498e-af24-55493e397d0a",
+    "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.appspot.com/o/Otb%2Fimage%2Fclients%2Farka-comp.png?alt=media&token=683fd189-d764-418e-bbd3-b47a1e474fd4",
+  ];
+
   return (
-    <main className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="py-20 text-center">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl font-bold mb-6 text-[#3586FF]"
-        >
-          Sites Vitrine
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl text-gray-600 max-w-3xl mx-auto px-4"
-        >
-          Votre présence en ligne professionnelle et impactante
-        </motion.p>
+    <main className="min-h-screen">
+      <Navbar />
+      
+      {/* Hero Section with Video Background */}
+      <section className="h-screen content-center relative overflow-hidden ">
+        <div className="absolute inset-0 opacity-50 ">
+          <div className="absolute z-1 inset-0 bg-[url(/image.png)] bg-cover"></div>
+          <div className='absolute z-2 inset-0  bg-gradient-to-b from-transparent to-white'></div>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4  sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between h-full">
+          <div className="md:w-1/2 space-y-6">
+            <motion.h1 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-5xl font-bold text-[#3586FF]"
+            >
+              Sites Vitrine Professionnels
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl text-gray-600"
+            >
+              Créez une présence en ligne impactante avec un site vitrine sur mesure. Notre expertise en développement web vous garantit un site professionnel, optimisé pour le référencement et parfaitement adapté à vos besoins.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex gap-4"
+            >
+              <button 
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-[#3586FF] text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Demander un devis
+              </button>
+              <button className="border border-[#3586FF] text-[#3586FF] px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors">
+                Voir nos réalisations
+              </button>
+            </motion.div>
+          </div>
+          <motion.div 
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="md:w-1/2 mt-8 md:mt-0"
+          >
+            <img 
+              src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+              alt="Site vitrine exemple" 
+              className="rounded-lg shadow-xl"
+            />
+          </motion.div>
+        </div>
       </section>
 
-      {/* Carousel Section */}
-      <AnimatedSection>
-        <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-4xl  font-semibold text-center text-[#3586FF]">Nos Réalisations</h2>
-            <Swiper
-              modules={[Navigation, Pagination]}
-              spaceBetween={30}
-              slidesPerView={1}
-              
-              pagination={{ clickable: true }}
-              className="overflow-hidden w-[80vw] h-[25vh] md:w-[60vw] md:h-[75vh] mx-auto  object-cover rounded-[0.5rem] "
-            >
-              <SwiperSlide>
-                  <img
-                    src={data[0]}
-                    alt="Project 1"
-                    
-                    className="object-cover w-full h-full rounded-lg"
-                  />
-              </SwiperSlide>
-              <SwiperSlide>
-
-                  <img
-                    src={data[1]}
-                    alt="Project 2"
-                    
-                    className="object-cover w-full h-full  rounded-lg"
-                  />
-  
-              </SwiperSlide>
-              <SwiperSlide>
-
-                  <img
-                    src={data[2]}
-                    alt="Project 3"
-                    
-                    className="object-cover w-full h-full rounded-lg"
-                  />
-                
-              </SwiperSlide>
-            </Swiper>
+      {/* Stats Section with Animated Counters */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { number: "150+", label: "Sites Réalisés" },
+              { number: "98%", label: "Clients Satisfaits" },
+              { number: "12+", label: "Années d'Expérience" },
+              { number: "24/7", label: "Support Client" }
+            ].map((stat, index) => (
+              <AnimatedCard key={index} delay={index * 0.1}>
+                <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-lg">
+                  <div className="text-4xl font-bold text-[#3586FF] mb-2">{stat.number}</div>
+                  <div className="text-gray-600">{stat.label}</div>
+                </div>
+              </AnimatedCard>
+            ))}
           </div>
-        </section>
-      </AnimatedSection>
+        </div>
+      </section>
 
-      {/* Description Section */}
-      <AnimatedSection>
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-semibold mb-8 text-center text-[#3586FF]">Qu'est-ce qu'un Site Vitrine ?</h2>
-            <p className="text-lg text-gray-700 mb-6">
-              Un site vitrine est votre carte de visite numérique, une plateforme dédiée à présenter votre entreprise, vos services et votre expertise de manière professionnelle et attractive. C'est le premier point de contact digital avec vos clients potentiels.
-            </p>
-            <p className="text-lg text-gray-700">
-              Il permet de renforcer votre crédibilité, d'augmenter votre visibilité en ligne et de générer des leads qualifiés pour votre entreprise.
-            </p>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* Features Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
+      {/* Features Section with Interactive Cards */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl font-semibold mb-12 text-center text-[#3586FF]">Fonctionnalités et Avantages</h2>
+            <h2 className="text-3xl font-bold text-center text-[#3586FF] mb-12">
+              Fonctionnalités Clés
+            </h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Image de Marque",
-                items: [
-                  "Renforcement de votre crédibilité professionnelle",
-                  "Différenciation face à la concurrence",
-                  "Cohérence visuelle avec votre identité",
-                  "Valorisation de votre expertise"
+                title: "Design Moderne",
+                description: "Des designs contemporains et personnalisés qui reflètent votre identité",
+                features: [
+                  "Responsive design",
+                  "Animations fluides",
+                  "Interface intuitive",
+                  "Expérience utilisateur optimisée"
+                ],
+                image: "https://images.pexels.com/photos/196646/pexels-photo-196646.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              },
+              {
+                title: "Performance Optimale",
+                description: "Des sites rapides et optimisés pour une expérience utilisateur exceptionnelle",
+                features: [
+                  "Temps de chargement rapide",
+                  "Optimisation mobile",
+                  "SEO avancé",
+                  "Analytics intégrés"
+                ],
+                image: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              },
+              {
+                title: "Sécurité Maximale",
+                description: "Protection complète de votre site et des données de vos visiteurs",
+                features: [
+                  "Certificat SSL",
+                  "Protection DDoS",
+                  "Sauvegardes automatiques",
+                  "Mises à jour régulières"
+                ],
+                image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              }
+            ].map((feature, index) => (
+              <AnimatedCard key={index} delay={index * 0.2}>
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                  <img 
+                    src={feature.image} 
+                    alt={feature.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-gray-600 mb-4">{feature.description}</p>
+                    <ul className="space-y-2">
+                      {feature.features.map((item, i) => (
+                        <li key={i} className="flex items-center">
+                          <span className="text-[#3586FF] mr-2">•</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section with Case Studies */}
+      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <h2 className="text-3xl font-bold text-center text-[#3586FF] mb-12">
+              Nos Réalisations
+            </h2>
+          </AnimatedSection>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {[
+              {
+                title: "Restaurant Le Gourmet",
+                description: "Site vitrine moderne avec réservation en ligne",
+                results: [
+                  "Augmentation des réservations de 150%",
+                  "Temps de chargement < 2 secondes",
+                  "1ère page Google pour les mots-clés ciblés"
+                ],
+                image: data[0]
+              },
+              {
+                title: "Cabinet d'Architecte",
+                description: "Portfolio interactif avec galerie de projets",
+                results: [
+                  "Trafic multiplié par 3",
+                  "Taux de conversion de 15%",
+                  "Interface primée pour son design"
+                ],
+                image: data[1]
+              }
+            ].map((project, index) => (
+              <AnimatedCard key={index} delay={index * 0.2}>
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img 
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                    <p className="text-gray-600 mb-4">{project.description}</p>
+                    <div className="space-y-2">
+                      {project.results.map((result, i) => (
+                        <div key={i} className="flex items-center text-green-600">
+                          <span className="mr-2">✓</span>
+                          {result}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+          <div className="text-center">
+            <button className="bg-[#3586FF] text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+              Voir plus de projets
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section with Timeline */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <h2 className="text-3xl font-bold text-center text-[#3586FF] mb-12">
+              Notre Processus
+            </h2>
+          </AnimatedSection>
+          <div className="relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200"></div>
+            {[
+              {
+                title: "1. Analyse & Stratégie",
+                description: "Compréhension approfondie de vos besoins et objectifs",
+                details: [
+                  "Analyse de marché",
+                  "Définition des objectifs",
+                  "Stratégie digitale",
+                  "Planning détaillé"
                 ]
               },
               {
-                title: "Présentation Professionnelle",
-                items: [
-                  "Mise en valeur de vos produits/services",
-                  "Navigation intuitive et ergonomique",
-                  "Contenu structuré et persuasif",
-                  "Design moderne et impactant"
+                title: "2. Design & UX",
+                description: "Création d'une expérience utilisateur optimale",
+                details: [
+                  "Wireframes",
+                  "Design sur mesure",
+                  "Responsive design",
+                  "Validation client"
                 ]
               },
               {
-                title: "Acquisition Client",
-                items: [
-                  "Élargissement de votre audience",
-                  "Génération de leads qualifiés",
-                  "Conversion des visiteurs en clients",
-                  "Fidélisation de votre clientèle"
+                title: "3. Développement",
+                description: "Intégration et développement technique",
+                details: [
+                  "Développement front-end",
+                  "Optimisation SEO",
+                  "Tests de performance",
+                  "Contrôle qualité"
                 ]
               },
               {
-                title: "Visibilité Digitale",
-                items: [
-                  "Optimisation pour les moteurs de recherche",
-                  "Présence 24/7 sur internet",
-                  "Rayonnement géographique étendu",
+                title: "4. Lancement & Suivi",
+                description: "Mise en ligne et optimisation continue",
+                details: [
+                  "Déploiement",
+                  "Formation",
+                  "Support technique",
                   "Analyse des performances"
                 ]
-              },
-              {
-                title: "Engagement Client",
-                items: [
-                  "Interactions personnalisées",
-                  "Formulaires de contact optimisés",
-                  "Intégration réseaux sociaux",
-                  "Témoignages et avis clients"
-                ]
-              },
-              {
-                title: "Évolution Continue",
-                items: [
-                  "Mises à jour régulières",
-                  "Adaptation aux tendances",
-                  "Scalabilité du contenu",
-                  "Support technique réactif"
-                ]
               }
-            ].map((card, index) => (
-              <AnimatedCard key={card.title} delay={index * 0.1}>
-                <div className="p-6 bg-gray-50 rounded-lg h-full">
-                  <h3 className="text-xl font-semibold mb-4">{card.title}</h3>
-                  <ul className="space-y-2 text-gray-600">
-                    {card.items.map((item, i) => (
-                      <li key={i}>• {item}</li>
-                    ))}
-                  </ul>
+            ].map((step, index) => (
+              <AnimatedCard key={index} delay={index * 0.2}>
+                <div className={`relative min-w-md max-w-md mx-auto flex items-center mb-8 ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}>
+                  <div className="flex-1">
+                    <div className={`bg-white p-6 rounded-lg shadow-lg ${
+                      index % 2 === 0 ? "md:mr-8" : "md:ml-8"
+                    }`}>
+                      <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                      <p className="text-gray-600 mb-4">{step.description}</p>
+                      <ul className="space-y-2">
+                        {step.details.map((detail, i) => (
+                          <li key={i} className="flex items-center">
+                            <span className="text-[#3586FF] mr-2">•</span>
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </AnimatedCard>
             ))}
@@ -181,77 +314,90 @@ export default function SitesVitrine() {
         </div>
       </section>
 
-      {/* Operational Benefits Section */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4">
+      {/* Pricing Section with Comparison */}
+      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl font-semibold mb-12 text-center text-[#3586FF]">Avantages Opérationnels</h2>
+            <h2 className="text-3xl font-bold text-center text-[#3586FF] mb-12">
+              Nos Offres
+            </h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Gain de Temps",
-                items: [
-                  "Mise à jour instantanée du contenu",
-                  "Automatisation des publications",
-                  "Gestion centralisée des médias",
-                  "Planification simplifiée"
-                ]
+                title: "Essentiel",
+                price: "À partir de 799€",
+                description: "Idéal pour les petites entreprises",
+                features: [
+                  "5 pages personnalisées",
+                  "Design responsive",
+                  "Optimisation SEO de base",
+                  "Formulaire de contact",
+                  "Certificat SSL",
+                  "Support 3 mois"
+                ],
+                recommended: false
               },
               {
-                title: "Outils Intégrés",
-                items: [
-                  "CMS intuitif pour les contenus",
-                  "Tableau de bord analytics",
-                  "Gestionnaire de médias",
-                  "Éditeur visuel WYSIWYG"
-                ]
+                title: "Pro",
+                price: "À partir de 1499€",
+                description: "Pour une présence professionnelle complète",
+                features: [
+                  "10 pages personnalisées",
+                  "Design premium responsive",
+                  "SEO avancé",
+                  "Blog intégré",
+                  "Analytics avancés",
+                  "Support 6 mois",
+                  "Formation incluse",
+                  "Multilingue"
+                ],
+                recommended: true
               },
               {
-                title: "Automatisation",
-                items: [
-                  "Sauvegarde automatique",
-                  "Optimisation des images",
-                  "Génération de sitemap",
-                  "Mise en cache intelligente"
-                ]
-              },
-              {
-                title: "Productivité",
-                items: [
-                  "Workflows optimisés",
-                  "Collaboration en temps réel",
-                  "Gestion des versions",
-                  "Templates réutilisables"
-                ]
-              },
-              {
-                title: "Maintenance Facilitée",
-                items: [
-                  "Mises à jour en 1 clic",
-                  "Monitoring automatique",
-                  "Sauvegardes régulières",
-                  "Support technique réactif"
-                ]
-              },
-              {
-                title: "Analyse & Reporting",
-                items: [
-                  "Rapports automatisés",
-                  "Suivi des performances",
-                  "Analyse du trafic",
-                  "KPIs personnalisables"
-                ]
+                title: "Enterprise",
+                price: "Sur devis",
+                description: "Solutions sur mesure pour grandes entreprises",
+                features: [
+                  "Pages illimitées",
+                  "Design sur mesure",
+                  "SEO premium",
+                  "Fonctionnalités avancées",
+                  "Intégrations personnalisées",
+                  "Support prioritaire",
+                  "Formation complète",
+                  "Maintenance incluse"
+                ],
+                recommended: false
               }
-            ].map((card, index) => (
-              <AnimatedCard key={card.title} delay={index * 0.1}>
-                <div className="p-6 bg-gray-50 rounded-lg h-full">
-                  <h3 className="text-xl font-semibold mb-4">{card.title}</h3>
-                  <ul className="space-y-2 text-gray-600">
-                    {card.items.map((item, i) => (
-                      <li key={i}>• {item}</li>
+            ].map((plan, index) => (
+              <AnimatedCard key={index} delay={index * 0.2}>
+                <div className={`bg-white rounded-lg shadow-lg p-8 relative ${
+                  plan.recommended ? "border-2 border-[#3586FF]" : ""
+                }`}>
+                  {plan.recommended && (
+                    <div className="absolute top-0 right-0 bg-[#3586FF] text-white px-4 py-1 rounded-bl-lg rounded-tr-lg">
+                      Recommandé
+                    </div>
+                  )}
+                  <h3 className="text-xl font-semibold mb-2">{plan.title}</h3>
+                  <p className="text-3xl font-bold mb-2">{plan.price}</p>
+                  <p className="text-gray-600 mb-6">{plan.description}</p>
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-center">
+                        <span className="text-green-500 mr-2">✓</span>
+                        {feature}
+                      </li>
                     ))}
                   </ul>
+                  <button className={`w-full py-3 rounded-lg transition-colors ${
+                    plan.recommended
+                      ? "bg-[#3586FF] text-white hover:bg-blue-600"
+                      : "border border-[#3586FF] text-[#3586FF] hover:bg-blue-50"
+                  }`}>
+                    Choisir cette offre
+                  </button>
                 </div>
               </AnimatedCard>
             ))}
@@ -259,107 +405,53 @@ export default function SitesVitrine() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <AnimatedSection>
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-semibold mb-8 text-center text-[#3586FF]">Questions Fréquentes</h2>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Combien de temps faut-il pour créer un site vitrine ?</AccordionTrigger>
-                <AccordionContent>
-                  En général, la création d'un site vitrine prend entre 4 et 8 semaines, selon la complexité du projet et le nombre de pages nécessaires. Ce délai comprend la phase de conception, le développement, les révisions et les tests avant la mise en ligne.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Le site sera-t-il responsive ?</AccordionTrigger>
-                <AccordionContent>
-                  Oui, tous nos sites sont responsive par défaut et s'adaptent parfaitement à tous les appareils (ordinateurs, tablettes, smartphones). Nous testons rigoureusement chaque site sur différents appareils et navigateurs pour garantir une expérience utilisateur optimale.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Puis-je mettre à jour mon site moi-même ?</AccordionTrigger>
-                <AccordionContent>
-                  Oui, nous intégrons un système de gestion de contenu intuitif qui vous permet de mettre à jour votre contenu facilement. Une formation complète est fournie, et notre équipe reste disponible pour vous accompagner dans la gestion de votre site.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger>Comment le référencement (SEO) est-il géré ?</AccordionTrigger>
-                <AccordionContent>
-                  Nous intégrons les meilleures pratiques SEO dès la conception : structure optimisée, temps de chargement rapide, contenu de qualité, balises méta personnalisées, et compatibilité mobile. Un suivi régulier des performances est inclus dans nos forfaits maintenance.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-5">
-                <AccordionTrigger>Quelles fonctionnalités sont incluses dans un site vitrine ?</AccordionTrigger>
-                <AccordionContent>
-                  Nos sites incluent par défaut : formulaire de contact, intégration réseaux sociaux, galerie d'images, carte interactive, statistiques de visites, et optimisation SEO. Des fonctionnalités supplémentaires peuvent être ajoutées selon vos besoins.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-6">
-                <AccordionTrigger>Proposez-vous un service de maintenance ?</AccordionTrigger>
-                <AccordionContent>
-                  Oui, nous proposons différentes formules de maintenance incluant : mises à jour de sécurité, sauvegardes régulières, modifications mineures du contenu, support technique, et monitoring des performances. Vous pouvez choisir la formule adaptée à vos besoins.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-7">
-                <AccordionTrigger>Comment gérez-vous l'hébergement du site ?</AccordionTrigger>
-                <AccordionContent>
-                  Nous travaillons avec des hébergeurs de premier plan offrant d'excellentes performances et une sécurité optimale. L'hébergement inclut : certificat SSL, sauvegardes automatiques, protection DDoS, et support technique 24/7.
-                </AccordionContent>
-              </AccordionItem>
+      {/* FAQ Section with Improved Accordion */}
+      <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-4xl mx-auto px-4">
+          <AnimatedSection>
+            <h2 className="text-3xl font-bold text-center text-[#3586FF] mb-12">
+              Questions Fréquentes
+            </h2>
+            <Accordion type="single" collapsible className="space-y-4">
+              {[
+                {
+                  question: "Combien de temps faut-il pour créer un site vitrine ?",
+                  answer: "Le délai moyen est de 4 à 8 semaines, selon la complexité du projet. Nous suivons un processus structuré qui comprend la conception, le développement, les tests et la mise en ligne. Des délais plus courts sont possibles pour les projets urgents."
+                },
+                {
+                  question: "Le site sera-t-il optimisé pour les moteurs de recherche ?",
+                  answer: "Oui, tous nos sites sont optimisés SEO dès leur création. Nous intégrons les meilleures pratiques : structure optimisée, temps de chargement rapide, méta-données personnalisées, et compatibilité mobile. Un suivi des performances est inclus."
+                },
+                {
+                  question: "Proposez-vous un service de maintenance ?",
+                  answer: "Oui, nous proposons plusieurs formules de maintenance incluant : mises à jour de sécurité, sauvegardes régulières, modifications mineures du contenu, support technique, et monitoring des performances."
+                },
+                {
+                  question: "Puis-je mettre à jour le contenu moi-même ?",
+                  answer: "Absolument ! Nous intégrons un système de gestion de contenu intuitif qui vous permet de modifier facilement vos textes, images et autres contenus. Une formation complète est fournie à la livraison du site."
+                }
+              ].map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="bg-white rounded-lg">
+                  <AccordionTrigger className="px-6">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="px-6">{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
-          </div>
-        </section>
-      </AnimatedSection>
+          </AnimatedSection>
+        </div>
+      </section>
 
-      {/* Pricing Section */}
-      <AnimatedSection>
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-semibold mb-8 text-center text-[#3586FF]">Tarifs</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="p-6 border rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Essentiel</h3>
-                <p className="text-3xl font-bold mb-4">À partir de 799€</p>
-                <ul className="space-y-2 mb-6">
-                  <li>✓ 5 pages</li>
-                  <li>✓ Design responsive</li>
-                  <li>✓ SEO de base</li>
-                </ul>
-              </div>
-              <div className="p-6 border rounded-lg bg-blue-50">
-                <h3 className="text-xl font-semibold mb-4">Pro</h3>
-                <p className="text-3xl font-bold mb-4">À partir de 1499€</p>
-                <ul className="space-y-2 mb-6">
-                  <li>✓ 10 pages</li>
-                  <li>✓ Design responsive</li>
-                  <li>✓ SEO avancé</li>
-                  <li>✓ Blog intégré</li>
-                </ul>
-              </div>
-              <div className="p-6 border rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Sur Mesure</h3>
-                <p className="text-3xl font-bold mb-4">Sur devis</p>
-                <ul className="space-y-2 mb-6">
-                  <li>✓ Pages illimitées</li>
-                  <li>✓ Fonctionnalités personnalisées</li>
-                  <li>✓ SEO premium</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* Contact Form Section */}
-      <AnimatedSection>
-        <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-semibold mb-8 text-center text-[#3586FF]">Demander un Devis</h2>
+      {/* Contact Section with Enhanced Form */}
+      <section id="contact" className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <AnimatedSection>
+            <h2 className="text-3xl font-bold text-center text-[#3586FF] mb-12">
+              Démarrez Votre Projet
+            </h2>
             <ContactForm />
-          </div>
-        </section>
-      </AnimatedSection>
+          </AnimatedSection>
+        </div>
+      </section>
     </main>
   );
 }

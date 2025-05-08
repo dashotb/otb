@@ -42,6 +42,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { ContactForm } from '@/components/ContactForm';
 import { url } from 'inspector';
+import { motion } from 'framer-motion';
 
 
 function useIsVisible(ref: any) {
@@ -66,8 +67,111 @@ function useIsVisible(ref: any) {
   return isIntersecting;
 }
 
+
+
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
+
+  const projects = [
+    
+      {
+        name: "HJ Services Autos",
+        type: "application",
+        description: "Application de gestion complète pour garage automobile",
+        images: [
+          "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.appspot.com/o/Otb%2Fimage%2Fclients%2Fhj-comp.png?alt=media&token=db6408d2-9e61-4361-b712-ac36bc20dd1b",
+          "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.appspot.com/o/Otb%2Fimage%2Fclients%2Fhj-ipad.png?alt=media&token=7291cd47-fba9-4341-ac10-ff82bbb88d28",
+          "https://firebasestorage.googleapis.com/v0/b/ontheboard-e3f0f.appspot.com/o/Otb%2Fimage%2Fclients%2Fhj-phone.png?alt=media&token=05f5e6b4-cd0d-462c-bba7-1cc1528162d9"
+        ],
+        technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+        launchDate: "2023-09-15",
+        url: "https://hj-services-autos.fr",
+        steps: {
+          idea: {
+            title: "De l'Idée à la Vision",
+            description: "Création d'une solution de gestion complète pour faciliter le suivi des interventions et la relation client dans un garage automobile.",
+            challenges: [
+              "Gestion complexe des rendez-vous",
+              "Suivi des interventions en temps réel",
+              "Communication client inefficace"
+            ],
+            solutions: [
+              "Système de réservation intelligent",
+              "Dashboard en temps réel",
+              "Notifications automatiques"
+            ]
+          },
+          proposal: {
+            title: "Architecture & Technologies",
+            description: "Application web responsive avec dashboard administrateur et interface client. Stack MERN pour performances et scalabilité.",
+            technicalStack: {
+              frontend: ["React", "Redux", "Tailwind CSS"],
+              backend: ["Node.js", "Express", "MongoDB"],
+              devops: ["Docker", "CI/CD", "AWS"]
+            },
+            keyFeatures: [
+              "Interface adaptative",
+              "API RESTful",
+              "Authentification sécurisée",
+              "Base de données optimisée"
+            ]
+          },
+          mvp: {
+            title: "Prototype & Tests",
+            description: "Premier prototype avec gestion des rendez-vous et suivi des interventions. Tests utilisateurs avec le personnel du garage.",
+            phases: [
+              {
+                name: "Phase 1: Core Features",
+                duration: "4 semaines",
+                features: ["Gestion des rendez-vous", "Profils clients", "Suivi basique"]
+              },
+              {
+                name: "Phase 2: Tests & Feedback",
+                duration: "2 semaines",
+                activities: ["Tests utilisateurs", "Ajustements UX", "Optimisations"]
+              }
+            ]
+          },
+          launch: {
+            title: "Déploiement & Formation",
+            description: "Déploiement progressif avec formation du personnel. Migration des données existantes.",
+            steps: [
+              {
+                title: "Préparation",
+                tasks: ["Configuration serveurs", "Tests de charge", "Plan de migration"]
+              },
+              {
+                title: "Formation",
+                tasks: ["Sessions utilisateurs", "Documentation", "Support initial"]
+              },
+              {
+                title: "Go-Live",
+                tasks: ["Déploiement", "Migration données", "Monitoring"]
+              }
+            ]
+          },
+          followUp: {
+            title: "Évolution & Maintenance",
+            description: "Support technique continu et ajout de nouvelles fonctionnalités selon les retours utilisateurs.",
+            services: [
+              "Maintenance préventive",
+              "Support utilisateurs",
+              "Mises à jour régulières",
+              "Nouvelles fonctionnalités"
+            ],
+            metrics: {
+              uptime: "99.9%",
+              responseTime: "< 2h",
+              satisfaction: "4.8/5"
+            }
+          }
+        }
+      },
+    
+    // Autres projets...
+  ];
+  const project: any = projects[0];
+
 
   useEffect(() => {
     // This code only runs on the client side
@@ -518,7 +622,7 @@ export default function Home() {
 
       {/* Main */}
       
-      <main className={`${ loaded ? "scroller no-scrollbar min-h-[100dvh] bg-neutral-100 overflow-hidden transition duration-500" : "hidden"}`}>
+      <main className={`${ loaded ? "scroller no-scrollbar min-h-[100dvh] bg-[#F4F4F4] opacity-100 bg-cover -z-1 overflow-hidden transition duration-500" : "hidden"}`}>
         
           {/* Overlay */}
           <a href="/">
@@ -557,8 +661,8 @@ export default function Home() {
                 <div className={`${useIsVisible(targetLanding) ? "opacity-0 transition animate-appear1500 z-20 w-[12vw] h-[16.273vw] lg:w-[9.25vw] lg:h-[12.476vw] pb-0 absolute overflow-hidden bottom-[45dvh] lg:bottom-[15vh] left-0 right-[50vw] lg:right-[45vw] mx-auto" : "hidden opacity-0 translate-y-[100px]"}`}>
                   <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
-                    navigation
-                    pagination={{ clickable: false }}
+                    
+                    
                     autoplay={{ delay: 7000 }}
                     loop
                     className="w-[12vw] lg:w-[9.25vw] relative transition duration-300"
@@ -637,7 +741,7 @@ export default function Home() {
                 productId == 0 ? 
                 <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
-                navigation
+      
                 pagination={{ clickable: false }}
                 autoplay={{ delay: 10000 }}
                 loop
@@ -656,7 +760,7 @@ export default function Home() {
                 productId == 1 ? 
                 <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
-                navigation
+                
                 pagination={{ clickable: false }}
                 autoplay={{ delay: 10000 }}
                 loop
@@ -876,7 +980,7 @@ export default function Home() {
 
           {/* Section Avis Clients/Associes */}
 
-          <section className="scroller-section h-[100dvh] lg:h-[100vh] w-screen flex flex-row content-center relative z-10 bg-neutral-100 mb-0.5" id="showcases" ref={targetClients}>
+          <section className="scroller-section h-[100dvh] lg:h-[100vh] w-screen flex flex-row content-center relative z-10  mb-0.5" id="showcases" ref={targetClients}>
             <div className={`${useIsVisible(targetClients) ? "hidden lg:flex transform animate-slideleftskew  opacity-0 absolute shadow-xl border-left -left-[10vw] -top-3 w-[50vw] h-[100vh] transform skew-y-12 -rotate-12 bg-neutral-200 overflow-hidden flex flex-col" : "hidden opacity-0 translate-y-[100px]"}`}>
               <img src={DP_logo} alt="drive phone" className="transform -skew-y-12 rotate-12 self-center ml-64 2xl:ml-80 mt-20 2xl:mt-40 w-32 absolute"/>
               <div className="flex w-full items-center 2xl:pl-24 2xl:mt-20">
@@ -890,7 +994,193 @@ export default function Home() {
                 <img src={iPhone} alt="iPhone" className="tansform -skew-y-12 rotate-12 w-12 2xl:w-16 h-24 2xl:h-32 ml-8 2xl:ml-12 mt-36 2xl:mt-60"/>
               </div>
             </div>
-            <div className="w-[66vw] h-screen ml-auto">
+            <div className={`${useIsVisible(targetClients) ? "transform animate-slideright300 opacity-0 flex flex-col h-screen lg:w-[45vw] ml-[50vw]": "hidden opacity-0 translate-y-[100px]"}`}>
+              <div className="no-scrollbar py-24 h-[80vh] overflow-y-scroll">
+                
+
+                <div className="space-y-16">
+                  {/* Section 1: Idée du Projet */}
+                  <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="bg-white rounded-lg shadow-lg p-8"
+                  >
+                    <h2 className="text-2xl font-semibold text-[#3586FF] mb-6">
+                      1. {project.steps.idea.title}
+                    </h2>
+                    <p className="text-gray-600 mb-6">{project.steps.idea.description}</p>
+                    
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Défis</h3>
+                        <ul className="space-y-2">
+                          {project.steps.idea.challenges.map((challenge: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                            <li key={index} className="flex items-center text-gray-600">
+                              <span className="text-red-500 mr-2">⚠</span>
+                              {challenge}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Solutions</h3>
+                        <ul className="space-y-2">
+                          {project.steps.idea.solutions.map((solution: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                            <li key={index} className="flex items-center text-gray-600">
+                              <span className="text-green-500 mr-2">✓</span>
+                              {solution}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </motion.section>
+
+                  {/* Section 2: Stack Technique */}
+                  <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="bg-white rounded-lg shadow-lg p-8"
+                  >
+                    <h2 className="text-2xl font-semibold text-[#3586FF] mb-6">
+                      2. {project.steps.proposal.title}
+                    </h2>
+                    <p className="text-gray-600 mb-6">{project.steps.proposal.description}</p>
+                    
+                    <div className="grid md:grid-cols-3 gap-6 mb-8">
+                      {Object.entries(project.steps.proposal.technicalStack as Record<string, string[]>).map(([category, techs]) => (
+                        <div key={category} className="bg-gray-50 rounded-lg p-4">
+                          <h3 className="text-lg font-semibold mb-3 capitalize">{category}</h3>
+                          <ul className="space-y-2">
+                            {techs.map((tech: string, index: number) => (
+                              <li key={index} className="flex items-center text-gray-600">
+                                <span className="text-blue-500 mr-2">•</span>
+                                {tech}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold mb-4">Fonctionnalités Clés</h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {project.steps.proposal.keyFeatures.map((feature: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                          <div key={index} className="flex items-center bg-blue-50 p-3 rounded-lg">
+                            <span className="text-blue-500 mr-2">✓</span>
+                            {feature}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.section>
+
+                  {/* Section 3: MVP & Tests */}
+                  <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="bg-white rounded-lg shadow-lg p-8"
+                  >
+                    <h2 className="text-2xl font-semibold text-[#3586FF] mb-6">
+                      3. {project.steps.mvp.title}
+                    </h2>
+                    <p className="text-gray-600 mb-6">{project.steps.mvp.description}</p>
+                    
+                    <div className="space-y-6">
+                      {project.steps.mvp.phases.map((phase: { name: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; duration: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; features: any; activities: any; }, index: React.Key | null | undefined) => (
+                        <div key={index} className="border-l-4 border-blue-500 pl-4">
+                          <h3 className="text-lg font-semibold mb-2">{phase.name}</h3>
+                          <p className="text-gray-500 mb-3">Durée: {phase.duration}</p>
+                          <ul className="space-y-2">
+                            {(phase.features || phase.activities).map((item: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, i: React.Key | null | undefined) => (
+                              <li key={i} className="flex items-center text-gray-600">
+                                <span className="text-blue-500 mr-2">•</span>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.section>
+
+                  {/* Section 4: Déploiement */}
+                  <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                    className="bg-white rounded-lg shadow-lg p-8"
+                  >
+                    <h2 className="text-2xl font-semibold text-[#3586FF] mb-6">
+                      4. {project.steps.launch.title}
+                    </h2>
+                    <p className="text-gray-600 mb-6">{project.steps.launch.description}</p>
+                    
+                    <div className="space-y-8">
+                      {project.steps.launch.steps.map((step: { title: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; tasks: any[]; }, index: React.Key | null | undefined) => (
+                        <div key={index} className="relative pl-8">
+                          <div className="absolute left-0 top-0 w-4 h-4 bg-blue-500 rounded-full"></div>
+                          <div className="absolute left-2 top-4 bottom-0 w-0.5 bg-blue-200"></div>
+                          <h3 className="text-lg font-semibold mb-3">{step.title}</h3>
+                          <ul className="space-y-2">
+                            {step.tasks.map((task: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, i: React.Key | null | undefined) => (
+                              <li key={i} className="flex items-center text-gray-600">
+                                <span className="text-green-500 mr-2">✓</span>
+                                {task}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.section>
+
+                  {/* Section 5: Suivi */}
+                  <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1 }}
+                    className="bg-white rounded-lg shadow-lg p-8"
+                  >
+                    <h2 className="text-2xl font-semibold text-[#3586FF] mb-6">
+                      5. {project.steps.followUp.title}
+                    </h2>
+                    <p className="text-gray-600 mb-6">{project.steps.followUp.description}</p>
+                    
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Services Inclus</h3>
+                        <ul className="space-y-3">
+                          {project.steps.followUp.services.map((service: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => (
+                            <li key={index} className="flex items-center text-gray-600">
+                              <span className="text-blue-500 mr-2">✓</span>
+                              {service}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold mb-4">Métriques de Performance</h3>
+                        <div className="space-y-4">
+                          {Object.entries(project.steps.followUp.metrics as Record<string, string>).map(([key, value]) => (
+                            <div key={key} className="bg-gray-50 p-4 rounded-lg">
+                              <div className="text-sm text-gray-500 capitalize">{key}</div>
+                              <div className="text-xl font-semibold text-blue-600">{value}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.section>
+                </div>
+              </div>
+              <div className=" h-[20vh]">
+
+              </div>
 
             </div>
           </section>
