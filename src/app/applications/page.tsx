@@ -3,9 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ContactForm } from "@/components/ContactForm";
-import { AnimatedSection } from '@/components/AnimatedSection';
-import { AnimatedCard } from '@/components/AnimatedCard';
+import { ContactForm } from "@/components/ui/ContactForm";
+import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import { AnimatedCard } from '@/components/ui/AnimatedCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';

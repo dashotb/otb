@@ -3,9 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ContactForm } from "@/components/ContactForm";
-import { AnimatedSection } from '@/components/AnimatedSection';
-import { AnimatedCard } from '@/components/AnimatedCard';
+import { ContactForm } from "@/components/ui/ContactForm";
+import { AnimatedSection } from '@/components/ui/AnimatedSection';
+import { AnimatedCard } from '@/components/ui/AnimatedCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -32,7 +32,7 @@ export default function SitesVitrine() {
           <div className="absolute z-1 inset-0 bg-[url(/image.png)] bg-cover"></div>
           <div className='absolute z-2 inset-0  bg-gradient-to-b from-transparent to-white'></div>
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4  sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between h-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 mt-32 md:mt-0 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center content-center gap-y-8 md:justify-between h-full">
           <div className="md:w-1/2 space-y-6">
             <motion.h1 
               initial={{ opacity: 0, y: -20 }}
@@ -71,7 +71,7 @@ export default function SitesVitrine() {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="md:w-1/2 mt-8 md:mt-0"
+            className="md:w-1/2 mt-0 md:mt-0"
           >
             <img 
               src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 

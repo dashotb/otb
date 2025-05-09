@@ -134,6 +134,13 @@ body {
           100% { background-position: 0 0; }
       }
 
+      .inner-shadow {
+        box-shadow: rgb(211, 211, 211) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;            }
+
+        .inner-shadow-reverse {
+          box-shadow: rgb(211, 211, 211) -3px -3px 6px 1px inset, rgba(255, 255, 255, 0.5) 3px 3px 6px 0px inset;            }
+  
+
       .container {
         
         height: 400px;
